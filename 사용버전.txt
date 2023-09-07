@@ -1,0 +1,15 @@
+STS3 3.9.17
+JavaSE-11
+톰캣 - 9.0.46
+
+MySQL
+ username root
+ pw root
+ localhost:3306
+
+database 이름 game_gc 라고 기본으로 되어있는데 바꿀 예정입니다
+(root-context에서 수정 예정)
+
+프로젝트 이름 tp
+패키지 com.teamp.spring.tp
+
