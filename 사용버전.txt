@@ -7,8 +7,11 @@ MySQL
  pw root
  localhost:3306
 
-database 이름 game_gc 라고 기본으로 되어있는데 바꿀 예정입니다
-(root-context에서 수정 예정)
+database 이름 team_portal
+-- MySQL에 team_portal DATABASE 생성, 사용
+CREATE DATABASE team_portal default CHARACTER SET utf8mb4;
+use team_portal;
+
 
 프로젝트 이름 tp
 패키지 com.teamp.spring.tp
