@@ -9,6 +9,6 @@
 </head>
 <body>
 <P>  The time on the server is ${serverTime}. </P>
-<p>남준우</p>
+남준우
 </body>
 </html>
