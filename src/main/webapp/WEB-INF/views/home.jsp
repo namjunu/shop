@@ -8,7 +8,11 @@
 	<title>Home</title>
 </head>
 <body>
+<h1>
+	Hello world!  
+</h1>
 <P>  The time on the server is ${serverTime}. </P>
 강동형
+<a href="./Login/createID">회원가입</a>
 </body>
 </html>
