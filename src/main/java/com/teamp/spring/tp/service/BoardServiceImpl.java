@@ -23,4 +23,9 @@ public class BoardServiceImpl implements BoardService{
 		log.info("비지니스 계층===========");
 		return mapper.getList();
 	}
+	
+	@Override
+	public BoardVO read(int no) {
+		return mapper.read(no);
+	}	
 }

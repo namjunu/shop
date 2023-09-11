@@ -11,15 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach var="board" items="${list}">
-    ${board.no}
-    <a href = "/tp/board/BoardRead?no=${board.no}">${board.title}</a>
-    ${board.writer}
-    ${board.writedate}
-    ${board.category}
-    <hr>
-</c:forEach>
+글번호:${read.no}
+글제목:${read.title}
+<hr>
+글내용:${read.content}
+<hr>
+글쓴이:${read.writer}
+작성일:${read.writedate}
 </body>
 </html>
-    
-    

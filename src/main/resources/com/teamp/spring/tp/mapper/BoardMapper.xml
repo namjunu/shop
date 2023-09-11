@@ -8,4 +8,7 @@
 	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
 		SELECT * from tp_board
 	</select>
+	<select id="read" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT  * from tp_board where no = #{no}
+	</select>
 </mapper>

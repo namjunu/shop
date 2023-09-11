@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamp.spring.tp.service.BoardService;
 
@@ -34,5 +35,9 @@ public class BoardController {
 	// PJ\src\main\webapp\WEB-INF\views\guest\getList.jsp
 	// 에 만들어 놓으면 됨.
 	
-	
+	@GetMapping("/BoardRead")
+	public void read(@RequestParam("no") int no, Model model) {
+		log.info("컨트롤러 ==== 글번호 ==============="+no);
+		model.addAttribute("read",service.read(no));
+	}
 }

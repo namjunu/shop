@@ -9,4 +9,5 @@ import com.teamp.spring.tp.dto.BoardVO;
 
 public interface BoardService {
 	public ArrayList<BoardVO> getList();
+	public BoardVO read(int no);
 }

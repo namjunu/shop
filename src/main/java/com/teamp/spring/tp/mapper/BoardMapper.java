@@ -6,4 +6,5 @@ import com.teamp.spring.tp.dto.BoardVO;
 
 public interface BoardMapper {
 	public ArrayList<BoardVO> getList();
+	public BoardVO read(int no);
 }
