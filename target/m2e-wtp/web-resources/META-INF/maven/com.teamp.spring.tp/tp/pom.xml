@@ -191,6 +191,13 @@
 		</dependency>
 		<!-- ////////////////// 내가 추가 (끝) ////////////////////// -->
 		
+		<!-- 장우식 jlayer 추가 -->
+		 <dependency>
+			<groupId>javazoom</groupId>
+			<artifactId>jlayer</artifactId>
+			<version>1.0.1</version>
+		</dependency> 
+		
 		       
 	</dependencies>
     <build>

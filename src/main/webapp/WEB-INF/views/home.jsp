@@ -6,8 +6,10 @@
 <html>
 <head>
 	<title>Home</title>
+	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
 </head>
 <body>
 <P>  The time on the server is ${serverTime}. </P>
+	<a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
 </body>
 </html>
