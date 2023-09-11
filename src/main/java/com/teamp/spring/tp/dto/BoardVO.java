@@ -1,5 +1,4 @@
-package com.teamp.spring.dto;
-
+package com.teamp.spring.tp.dto;
 import java.sql.Timestamp;
 
 import lombok.Data;

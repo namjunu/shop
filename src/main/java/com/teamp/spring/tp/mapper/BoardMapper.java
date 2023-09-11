@@ -1,8 +1,8 @@
-package com.teamp.mapper;
+package com.teamp.spring.tp.mapper;
 
 import java.util.ArrayList;
 
-import com.teamp.spring.dto.BoardVO;
+import com.teamp.spring.tp.dto.BoardVO;
 
 public interface BoardMapper {
 	public ArrayList<BoardVO> getList();

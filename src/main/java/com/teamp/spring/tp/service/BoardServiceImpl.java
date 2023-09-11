@@ -1,12 +1,12 @@
-package com.teamp.service;
+package com.teamp.spring.tp.service;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamp.mapper.BoardMapper;
-import com.teamp.spring.dto.BoardVO;
+import com.teamp.spring.tp.dto.BoardVO;
+import com.teamp.spring.tp.mapper.BoardMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
