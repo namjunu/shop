@@ -44,16 +44,19 @@
 
 	<!-- 내가 추가한거 -->
 	<!-- mybatis - mapper 설정 -->
+ 	<mybatis-spring:scan
+		base-package="com.teamp.spring.tp.mapper" />
 	<mybatis-spring:scan
-		base-package="com.teamp.spring.tp.mapper" /><!-- 패키지명에 맞게 수정 -->
-
+		base-package="com.teamp.mapper" /><!-- 패키지명에 맞게 수정 -->
 	<!-- 내가 추가한거 -->
 	<!-- <context:component-scan base-package="org.zerock.sample"> </context:component-scan> -->
 	
 	<!-- 내가 추가한거 -->
 
-	<context:component-scan base-package="com.teamp.spring.tp.service">
+ 	<context:component-scan base-package="com.teamp.spring.tp.service">
 	</context:component-scan>
 
-	
+	<context:component-scan base-package="com.teamp.service">
+	</context:component-scan>
+
 </beans>
