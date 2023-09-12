@@ -21,4 +21,7 @@ public class LoginServiceImpl implements LoginService{
 	public void createID(UserInfo id) {
 		mapper.createID(id);
 	}	
+	public int loginCheck(UserInfo id) {
+		return mapper.loginCheck(id);
+	}
 }

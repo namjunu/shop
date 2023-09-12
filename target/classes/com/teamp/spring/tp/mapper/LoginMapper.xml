@@ -5,6 +5,9 @@
 <mapper namespace="com.teamp.spring.tp.mapper.LoginMapper">
 	<insert id="createID">
 		insert into members (U_ID,U_PW) values (#{U_ID}, #{U_PW})
-	</insert>		
+	</insert>
+	<select id="loginCheck" resultType = "int">
+		select count(*) from members where U_ID = #{U_ID} and U_PW = #{U_PW}
+	</select>
 
 </mapper>

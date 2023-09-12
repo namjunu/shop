@@ -32,6 +32,7 @@ import lombok.extern.log4j.Log4j;
 public class LoginController {
 	private LoginService service;
 	
+
 	@PostMapping("/createID")
 	public String createID(UserInfo id) {
 		log.info("아이디 만드는 중.");
@@ -46,5 +47,21 @@ public class LoginController {
 	public void test() {
 		log.info("testest");
 	}
-
+	@PostMapping("loginCheck")
+	public String loginCheck(UserInfo id,HttpSession session,RedirectAttributes redirectAttributes) {
+		boolean loginSuccess;
+		if(service.loginCheck(id)== 1) {
+			loginSuccess = true;
+		} else {
+			loginSuccess = false;
+		}
+		if(loginSuccess) {
+			session.setAttribute("id",id.getU_ID());
+			return "redirect:/";
+		} else {
+			redirectAttributes.addFlashAttribute("message", "로그인 실패, 아이디또는 비밀번호가 일치하지 않습니다");
+			return "redirect:/";
+		}
+	}
+	
 }
