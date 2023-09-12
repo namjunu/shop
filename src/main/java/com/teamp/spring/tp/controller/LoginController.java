@@ -32,5 +32,8 @@ public class LoginController {
 	public void test() {
 		log.info("testest");
 	}
+	@GetMapping("/book")
+	public void book() {
+	}
 
 }
