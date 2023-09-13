@@ -42,5 +42,22 @@ public class HomeController {
 	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
 	    return "hospital_map";
 	}
-	
+	@RequestMapping(value = "/map/book", method = RequestMethod.GET)
+	public String showBookPage() {
+	    // 여기에서 필요한 로직을 수행하고
+	    // book.jsp를 보여주는 뷰 이름을 반환합니다.
+	    return "book/hopistal_book";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String showLoginPage() {
+	    // 로그인 페이지를 보여주는 뷰 이름을 반환합니다.
+	    return "login/login"; // 뷰 이름은 "login"으로 반환하십시오.
+	}
+	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
+	public String showLoginSuccessPage() {
+	    // 로그인 성공 페이지를 보여주는 뷰 이름을 반환합니다.
+	    return "login/loginSuccess"; // 뷰 이름은 "loginsuccess"로 반환하십시오.
+	}
+
 }
+
