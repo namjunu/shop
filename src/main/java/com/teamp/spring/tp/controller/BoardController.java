@@ -3,9 +3,11 @@ package com.teamp.spring.tp.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.teamp.spring.tp.dto.BoardVO;
 import com.teamp.spring.tp.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -27,17 +29,26 @@ public class BoardController {
 	
 	private BoardService service;
 	
-	@GetMapping("/BoardList")	// 프로젝트 루트 경로 이하 /guest/getList url 진입 시 여기로 진입하게 됨.
-	public void BoardList(Model model) {	// 매개변수에 Model m 식으로 작성하게 되면, 스프링이 알아서 모델 객체를 만들어서 넘겨줌.
-		model.addAttribute("list",service.getList());
-	}	// 위 /getList 와 동일한 jsp파일을 염. 상위 경로 포함(/guest). 즉 PJ루트/guest/getList.jsp 파일을 염.
-	// 그리고 이 파일은 
-	// PJ\src\main\webapp\WEB-INF\views\guest\getList.jsp
-	// 에 만들어 놓으면 됨.
-	
+	@GetMapping("/BoardList")
+	public void BoardList(@RequestParam(value="currentPage", defaultValue = "1") int currentPage, Model model) {
+		model.addAttribute("list",service.getList(currentPage));
+	}
+		
 	@GetMapping("/BoardRead")
 	public void read(@RequestParam("no") int no, Model model) {
 		log.info("컨트롤러 ==== 글번호 ==============="+no);
 		model.addAttribute("read",service.read(no));
+	}
+
+	@PostMapping("/BoardWrite")
+	public String BoardWrite(BoardVO bvo) {
+		service.write(bvo);
+		return "redirect:/board/BoardList";	//sendRedirect 로 이동하게 됨. // 책 p.245 참고
+	}	
+	
+	// >>> 홈페이지/spring/guest/write (get 방식으로 오면 여기로 옴. 일반링크이동=get방식임)	
+	@GetMapping("/BoardWrite")	// 책 p.239 /write 중복이지만 이건 글쓰기 화면을 위한 url 매핑
+	public void BoardWrite() {
+		
 	}
 }

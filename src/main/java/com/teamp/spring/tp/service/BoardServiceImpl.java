@@ -19,13 +19,20 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 	
 	@Override
-	public ArrayList<BoardVO> getList() {
+	public ArrayList<BoardVO> getList(int currentPage) {
 		log.info("비지니스 계층===========");
-		return mapper.getList();
+		int limitIndex = (currentPage-1) * 5;
+		return mapper.getList(limitIndex);
 	}
 	
 	@Override
 	public BoardVO read(int no) {
+		mapper.upCount(no);
 		return mapper.read(no);
+	}
+	
+	@Override
+	public void write(BoardVO bvo) {
+		mapper.write(bvo);
 	}	
 }

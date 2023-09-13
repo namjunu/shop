@@ -18,5 +18,6 @@
 <hr>
 글쓴이:${read.writer}
 작성일:${read.writedate}
+조회수:${read.readcount}
 </body>
 </html>

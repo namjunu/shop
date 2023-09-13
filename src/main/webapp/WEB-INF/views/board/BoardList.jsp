@@ -19,6 +19,8 @@
     ${board.category}
     <hr>
 </c:forEach>
+
+<a href = "/tp/board/BoardWrite"><button>글쓰기</button></a>
 </body>
 </html>
     

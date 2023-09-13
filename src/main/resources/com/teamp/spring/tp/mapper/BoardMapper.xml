@@ -6,9 +6,16 @@
 	<!-- resultType 에 복수형(ArrayList 등)을 적는게 아님. 
 	그냥 vo 단수의 경로를 적어야됨. -->
 	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
-		SELECT * from tp_board
+		SELECT * from tp_board limit #{limitIndex} , 10
 	</select>
 	<select id="read" resultType="com.teamp.spring.tp.dto.BoardVO">
 		SELECT  * from tp_board where no = #{no}
 	</select>
+	<update id="upCount" parameterType="int">
+		UPDATE tp_board SET readcount = readcount + 1 where no = #{no} 
+	</update>
+	
+	<insert id="write">
+		insert into tp_board (title, content) values (#{title}, #{content})
+	</insert>
 </mapper>
