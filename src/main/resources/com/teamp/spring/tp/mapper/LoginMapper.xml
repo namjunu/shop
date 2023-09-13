@@ -9,5 +9,7 @@
 	<select id="loginCheck" resultType = "int">
 		select count(*) from members where U_ID = #{U_ID} and U_PW = #{U_PW}
 	</select>
-
+	<select id="checkID" resultType = "int">
+		select count(*) from members where U_ID = #{U_ID}
+	</select>
 </mapper>

@@ -4,6 +4,8 @@ package com.teamp.spring.tp.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -62,6 +64,22 @@ public class LoginController {
 			redirectAttributes.addFlashAttribute("message", "로그인 실패, 아이디또는 비밀번호가 일치하지 않습니다");
 			return "redirect:/";
 		}
+	}
+	@PostMapping("/checkID")
+	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 생성
+	public Map<String, Boolean> checkID(String U_ID) {
+		log.info("검색할 아이디 : "+U_ID);
+		int howmany = service.checkID(U_ID);
+		log.info("검색된 아이디 갯수는 "+howmany);
+	    Map<String, Boolean> response = new HashMap<>();
+	    if (howmany == 0) {
+	        response.put("valid", true);
+	        log.info("valid를 true로");
+	    } else {
+	        response.put("valid", false);
+	        log.info("valid를 false로");
+	    }
+	    return response;
 	}
 	
 }

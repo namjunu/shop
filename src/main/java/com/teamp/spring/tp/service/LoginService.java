@@ -6,4 +6,6 @@ public interface LoginService {
 	public void createID(UserInfo id);
 
 	public int loginCheck(UserInfo id);
+	
+	public int checkID(String U_ID);
 }
