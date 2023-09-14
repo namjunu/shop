@@ -65,6 +65,11 @@ public class LoginController {
 			return "redirect:/";
 		}
 	}
+	@PostMapping("/logOut")
+	public String logout(HttpSession session) {
+		session.setAttribute("id", "");
+		return "redirect:/";
+	}
 	@PostMapping("/checkID")
 	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 생성
 	public Map<String, Boolean> checkID(String U_ID) {
