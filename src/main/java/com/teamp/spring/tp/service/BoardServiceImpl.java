@@ -34,5 +34,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void write(BoardVO bvo) {
 		mapper.write(bvo);
-	}	
+	}
+	
+	@Override
+	public void delete(int no) {
+		mapper.delete(no);
+	}
+	
+	@Override
+	public void edit(BoardVO bvo) {
+		log.info("edit complete");
+		mapper.edit(bvo);
+	}
 }

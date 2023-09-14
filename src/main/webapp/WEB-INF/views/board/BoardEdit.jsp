@@ -11,17 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-글번호:${read.no}
-글제목:${read.title}
-<hr>
-글내용:${read.content}
-<hr>
-글쓴이:${read.writer}
-작성일:${read.writedate}
-조회수:${read.readcount}
-<hr>
-<a href="/tp/board/BoardEdit?no=${read.no}"><button>글수정</button></a>
-<a href="/tp/board/BoardDelete?no=${read.no}"><button>글삭제</button></a>
-<a href="/tp/board/BoardList"><button>글목록</button></a>
+	<form action="/tp/board/BoardEdit" method="post">
+	<input type="hidden" name = "no" value = ${read.no}>
+	글번호:${read.no}
+	<p>
+	글제목:${read.title}
+	<hr>
+	<textarea rows="10" name='content'>${read.content}</textarea>
+	<br>
+	글쓴이:${read.writer}
+	작성일:${read.writedate}
+	조회수:${read.readcount}
+	<br>
+	<input type="submit" value="글수정">
+	</form>
+	
 </body>
 </html>

@@ -11,4 +11,6 @@ public interface BoardService {
 	public ArrayList<BoardVO> getList(int currentPage);
 	public BoardVO read(int no);
 	public void write(BoardVO bvo);
+	public void delete(int no);
+	public void edit(BoardVO bvo);
 }

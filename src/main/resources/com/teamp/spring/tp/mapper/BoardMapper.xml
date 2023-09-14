@@ -18,4 +18,10 @@
 	<insert id="write">
 		insert into tp_board (title, content) values (#{title}, #{content})
 	</insert>
+	<delete id="delete">
+		delete from tp_board where no = #{no}
+	</delete>
+	<update id="edit" parameterType="com.teamp.spring.tp.dto.BoardVO">
+		UPDATE tp_board SET content = #{content} where no = #{no};
+	</update>
 </mapper>
