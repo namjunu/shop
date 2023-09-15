@@ -27,4 +27,7 @@ public class LoginServiceImpl implements LoginService{
 	public int checkID(String U_ID) {
 		return mapper.checkID(U_ID);
 	}
+	public UserInfo getInfo(String U_ID) {
+		return mapper.getInfo(U_ID);
+	}
 }

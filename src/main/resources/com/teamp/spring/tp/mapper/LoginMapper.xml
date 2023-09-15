@@ -12,4 +12,7 @@
 	<select id="checkID" resultType = "int">
 		select count(*) from members where U_ID = #{U_ID}
 	</select>
+	<select id="getInfo" resultType="com.teamp.spring.tp.dto.UserInfo">
+		select * from members where U_ID = #{U_ID}
+	</select>
 </mapper>

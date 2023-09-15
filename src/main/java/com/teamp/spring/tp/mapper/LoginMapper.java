@@ -8,4 +8,6 @@ public interface LoginMapper {
 	public int loginCheck(UserInfo id);
 
 	public int checkID(String id);
+
+	public UserInfo getInfo(String u_ID);
 }
