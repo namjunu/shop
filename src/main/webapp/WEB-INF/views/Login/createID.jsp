@@ -15,7 +15,7 @@
                 alert("비밀번호가 서로 다릅니다.");
                 return false;
             }
-            return true;
+            return true; 
         }
 
         // ID 중복 확인 버튼을 클릭할 때 실행되는 함수

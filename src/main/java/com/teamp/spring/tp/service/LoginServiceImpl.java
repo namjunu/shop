@@ -16,7 +16,7 @@ public class LoginServiceImpl implements LoginService{
 	@Setter(onMethod_ = @Autowired)
 	private LoginMapper mapper;	
 	
-	
+	 
 	@Override
 	public void createID(UserInfo id) {
 		mapper.createID(id);

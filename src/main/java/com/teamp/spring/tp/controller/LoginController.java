@@ -74,7 +74,7 @@ public class LoginController {
 		session.setAttribute("U_NAME",userInfo.getU_NAME());
 		session.setAttribute("U_ADDRESS",userInfo.getU_ADDRESS());
 		session.setAttribute("U_EMAIL",userInfo.getU_EMAIL());
-		session.setAttribute("U_PHONE",userInfo.getU_PHONE());
+		session.setAttribute("U_PHONE",userInfo.getU_PHONE()); //
 		session.setAttribute("U_POINT",userInfo.getU_POINT());
 		session.setAttribute("U_TIMESTAMP",userInfo.getU_TIMESTAMP());
 		log.info("U_TIMESTAMP는 :"+ session.getAttribute("U_TIMESTAMP"));

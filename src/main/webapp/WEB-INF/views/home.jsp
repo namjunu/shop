@@ -12,7 +12,7 @@
 	Hello world!  
 </h1>
 <P>  The time on the server is ${serverTime}. </P>
-강동형
+강동형 
 
 <jsp:include page="commonLogin.jsp"/>
 </body>

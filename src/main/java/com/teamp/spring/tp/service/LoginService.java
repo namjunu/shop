@@ -7,7 +7,7 @@ public interface LoginService {
 
 	public int loginCheck(UserInfo id);
 	
-	public int checkID(String U_ID);
+	public int checkID(String U_ID); 
 	
 	public UserInfo getInfo(String U_ID);
 }

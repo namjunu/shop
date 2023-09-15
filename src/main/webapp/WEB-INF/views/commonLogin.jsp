@@ -14,7 +14,7 @@
 <% if (idValue != null) { %>
     <form action="./Login/logOut" method="post">
         <input type="submit" value="로그아웃">
-    </form>
+    </form> 
     <p>환영합니다, ID: <%= idValue %></p>
 <% } else { %>
     <form action="./Login/loginCheck" method="post">
