@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamp.spring.tp.dto.BoardVO;
+import com.teamp.spring.tp.dto.PagingVO;
 import com.teamp.spring.tp.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -19,10 +20,14 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper mapper;
 	
 	@Override
-	public ArrayList<BoardVO> getList(int currentPage) {
+	public ArrayList<BoardVO> getList(PagingVO pvo) {
 		log.info("비지니스 계층===========");
-		int limitIndex = (currentPage-1) * 5;
-		return mapper.getList(limitIndex);
+		return mapper.getList(pvo);
+	}
+	
+	@Override
+	public int countBoard() {
+		return mapper.countBoard();
 	}
 	
 	@Override

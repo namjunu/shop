@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamp.spring.tp.dto.BoardVO;
+import com.teamp.spring.tp.dto.PagingVO;
 import com.teamp.spring.tp.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -32,7 +33,10 @@ public class BoardController {
 
 	@GetMapping("/BoardList")
 	public void BoardList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
-		model.addAttribute("list", service.getList(currentPage));
+		int total = service.countBoard();
+		PagingVO pvo = new PagingVO(total, currentPage, 10);
+		model.addAttribute("paging", pvo);
+		model.addAttribute("list", service.getList(pvo));
 	}
 
 	@GetMapping("/BoardRead")

@@ -5,9 +5,27 @@
 <mapper namespace="com.teamp.spring.tp.mapper.BoardMapper">
 	<!-- resultType 에 복수형(ArrayList 등)을 적는게 아님. 
 	그냥 vo 단수의 경로를 적어야됨. -->
-	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
-		SELECT * from tp_board limit #{limitIndex} , 10
+	<select id="countBoard" resultType = "int">
+		SELECT COUNT(*) from tp_board
 	</select>
+	
+	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * from tp_board ORDER BY no DESC limit #{start} , #{cntPerPage}
+	</select>
+	<!-- 페이징 처리 후 게시글 조회 -->
+<!-- 	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+							SELECT * 
+							FROM BOARD 
+							ORDER BY SEQ DESC 
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select> -->
+	
 	<select id="read" resultType="com.teamp.spring.tp.dto.BoardVO">
 		SELECT  * from tp_board where no = #{no}
 	</select>
