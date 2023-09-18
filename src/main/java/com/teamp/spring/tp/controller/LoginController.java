@@ -59,7 +59,7 @@ public class LoginController {
 		}
 		if(loginSuccess) {
 			session.setAttribute("id",id.getU_ID());
-			return "redirect:/";
+			return "redirect:/Login/getInfo";
 		} else {
 			redirectAttributes.addFlashAttribute("message", "로그인 실패, 아이디또는 비밀번호가 일치하지 않습니다");
 			return "redirect:/";
@@ -80,6 +80,25 @@ public class LoginController {
 		log.info("U_TIMESTAMP는 :"+ session.getAttribute("U_TIMESTAMP"));
 		return "redirect:/";
 	}
+	@GetMapping("/editInfo")
+	public void editInfo() {
+	}
+	@PostMapping("/editInfo")
+	public String editInfo(UserInfo id) {
+		log.info(id.getU_ID()+"의 정보를 수정했습니다.");
+		service.editInfo(id);
+		return "redirect:/";
+	}
+	@GetMapping("/editPw")
+	public void editPw() {
+	}
+	@PostMapping("/editPw")
+	public String editPw(UserInfo id) {
+		log.info(id.getU_ID()+id.getU_PW());
+		service.editPw(id);
+		return "redirect:/";
+	}
+	
 	@PostMapping("/logOut")
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
@@ -87,9 +106,9 @@ public class LoginController {
 	}
 	@PostMapping("/checkID")
 	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 생성
-	public Map<String, Boolean> checkID(String U_ID) {
-		log.info("검색할 아이디 : "+U_ID);
-		int howmany = service.checkID(U_ID);
+	public Map<String, Boolean> checkID(String C_ID) {
+		log.info("검색할 아이디 : "+C_ID);
+		int howmany = service.checkID(C_ID);
 		log.info("검색된 아이디 갯수는 "+howmany);
 	    Map<String, Boolean> response = new HashMap<>();
 	    if (howmany == 0) {

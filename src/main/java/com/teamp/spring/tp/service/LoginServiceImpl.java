@@ -30,4 +30,10 @@ public class LoginServiceImpl implements LoginService{
 	public UserInfo getInfo(String U_ID) {
 		return mapper.getInfo(U_ID);
 	}
+	public void editPw(UserInfo id) {
+		mapper.editPw(id);
+	}
+	public void editInfo(UserInfo id) {
+		mapper.editInfo(id);
+	}
 }

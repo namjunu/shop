@@ -15,4 +15,15 @@
 	<select id="getInfo" resultType="com.teamp.spring.tp.dto.UserInfo">
 		select * from members where U_ID = #{U_ID}
 	</select>
+	<update id="editPw">
+		update members set U_PW = #{U_PW} where U_ID = #{U_ID}
+	</update>
+	<update id="editInfo">
+		update members 
+		set U_NAME = #{U_NAME} ,
+			U_ADDRESS = #{U_ADDRESS},
+			U_EMAIL = #{U_EMAIL},
+			U_PHONE = #{U_PHONE}
+		where U_ID = #{U_ID}
+	</update>
 </mapper>

@@ -10,4 +10,8 @@ public interface LoginService {
 	public int checkID(String U_ID); 
 	
 	public UserInfo getInfo(String U_ID);
+
+	public void editPw(UserInfo id);
+
+	public void editInfo(UserInfo id);
 }

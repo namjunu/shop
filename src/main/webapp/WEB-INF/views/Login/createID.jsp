@@ -20,14 +20,14 @@
 
         // ID 중복 확인 버튼을 클릭할 때 실행되는 함수
         function checkID() {
-            var userID = document.getElementById("U_ID").value;
+            var userID = document.getElementById("C_ID").value;
             if(!userID || userID==""){
             	alert("ID를 입력해주세요.");
             	return;
             }
 
             // AJAX 요청을 통해 서버에 ID 중복 확인 요청을 보냅니다.
-            $.post("/tp/Login/checkID", { U_ID: userID }, function (result) {
+            $.post("/tp/Login/checkID", { C_ID: userID }, function (result) {
                 if (!result.valid) {
                 	  // ID가 이미 사용 중인 경우
                     alert("이미 사용 중인 ID입니다. 다른 ID를 입력해주세요.");
@@ -40,6 +40,10 @@
 
                     // 회원가입 버튼을 활성화합니다.
                     document.getElementById("registerButton").disabled = false;
+                    
+                    //ID입력 필드를 비활성화 하고 숨겨진 input에 넣어 값을 고정시킴
+                    document.getElementById("C_ID").disabled = true;
+           			document.getElementById("U_ID").value = userID;
                
                 }
             });
@@ -49,7 +53,8 @@
 
 <body>
 <form action="/tp/Login/createID" method="post" onsubmit="return validatePassword();">
-    id : <input type="text" id = "U_ID" name="U_ID">
+    <input type="hidden" id="U_ID" name ="U_ID">
+    id : <input type="text" id = "C_ID" name="C_ID">
     <input type="button" value="ID중복검사" onclick="checkID()">
     pw : <input type="password" name="U_PW" id="password1">
     pw2 : <input type="password" id="password2">

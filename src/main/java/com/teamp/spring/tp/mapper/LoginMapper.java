@@ -10,4 +10,8 @@ public interface LoginMapper {
 	public int checkID(String id);
 
 	public UserInfo getInfo(String u_ID);
+
+	public void editPw(UserInfo id);
+
+	public void editInfo(UserInfo id);
 }

@@ -12,10 +12,17 @@
 
 <%-- id가 있으면 로그아웃 폼 표시, 없으면 로그인 폼 표시 --%>
 <% if (idValue != null) { %>
+    <form action="./Login/editInfo">
+        <input type="submit" value="회원정보수정">
+    </form> 
+    <form action="./Login/editPw">
+        <input type="submit" value="비밀번호변경">
+    </form> 
     <form action="./Login/logOut" method="post">
         <input type="submit" value="로그아웃">
     </form> 
-    <p>환영합니다, ID: <%= idValue %></p>
+    <p>환영합니다, <%= session.getAttribute("U_NAME") %>님</p>
+    <p>남은 포인트 :<%= session.getAttribute("U_POINT") %></p>
 <% } else { %>
     <form action="./Login/loginCheck" method="post">
         <input name="U_ID" placeholder="로그인 아이디">
