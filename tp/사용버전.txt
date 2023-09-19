@@ -1,0 +1,26 @@
+STS3 3.9.17
+JavaSE-11
+톰캣 - 9.0.46
+
+MySQL
+ username root
+ pw root
+ localhost:3306
+
+database 이름 team_portal
+-- MySQL에 team_portal DATABASE 생성, 사용
+CREATE DATABASE team_portal default CHARACTER SET utf8mb4;
+use team_portal;
+
+
+프로젝트 이름 tp
+패키지 com.teamp.spring.tp
+
+장우식 버전
+ver 1.0.1
+GUI 화면 띄우기
+----------------------------
+ver 1.0.2
+메인 배경화면 띄우기
+
+-----------------------------
