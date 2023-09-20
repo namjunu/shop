@@ -9,26 +9,28 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 
 public class KioskScreen extends JFrame {
+	// 기본 배경화면 및 위의 상단바 생성
+	// 상속시켜서 나갈 예정이므로 public private보다는 protected로 객체 생성 함
 
-	private Image screenImage;
-	private Graphics screenGraphic;
+	protected Image screenImage;
+	protected Graphics screenGraphic;
 
-	private Image background = new ImageIcon(getClass().getResource("/JangImages/introBackgroundImage.png")).getImage();
-	private JLabel menuBar = new JLabel(new ImageIcon(getClass().getResource("/JangImages/menuBarImage.png")));
-	private ImageIcon exitButtonBasic = new ImageIcon(getClass().getResource("/JangImages/exitButtonBasic.png"));
-	private ImageIcon exitButtonEntered = new ImageIcon(getClass().getResource("/JangImages/exitButtonEntered.png"));
+	protected Image background = new ImageIcon(getClass().getResource("/JangImages/introBackgroundImage.png")).getImage();
+	protected JLabel menuBar = new JLabel(new ImageIcon(getClass().getResource("/JangImages/menuBarImage.png")));
+	protected ImageIcon exitButtonBasic = new ImageIcon(getClass().getResource("/JangImages/exitButtonBasic.png"));
+	protected ImageIcon exitButtonEntered = new ImageIcon(getClass().getResource("/JangImages/exitButtonEntered.png"));
 	
 	
-	private JButton exitButton = new JButton(exitButtonBasic);
+	protected JButton exitButton = new JButton(exitButtonBasic);
 
-	private int mouseX, mouseY;
+	protected int mouseX, mouseY;
 	// x값과 y값의 좌표 객체
 	boolean isMainScreen = false;
 	
-	public static KioskIns kioskIns;
 	
 	public void KioskGUI() {
 		//
@@ -42,7 +44,7 @@ public class KioskScreen extends JFrame {
 		// 게임창 크기를 사용자가 임의로 변경할 수 없다.
 		setLocationRelativeTo(null);
 		// 실행했을떄 화면 정중앙에 오도록 함
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		// 창을 종료했을때 프로그램 전체가 종료되도록 함
 		// 이를 설정하지 않으면 창을 종료하더라도 리소스를 계속 잡아먹어 설정해야한다.
 		setVisible(true);
