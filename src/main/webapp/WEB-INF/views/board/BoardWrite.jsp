@@ -9,9 +9,9 @@
 <body>
 
 	<form action="/tp/board/BoardWrite" method="post">
-	제목 : <textarea rows="1" name='title'></textarea>
+	제목 : <textarea rows="1" name='B_TITLE'></textarea>
 	<hr>
-	<textarea rows="10" name='content'></textarea>
+	<textarea rows="10" name='B_CONTENT'></textarea>
 	<input type="submit" value="글쓰기">
 	</form>
 

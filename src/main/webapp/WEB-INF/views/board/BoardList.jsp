@@ -26,11 +26,11 @@
 		
 		<c:forEach var="board" items="${list}">
 			<tr>
-				<td>${board.no}</td>
-				<td><a href = "/tp/board/BoardRead?no=${board.no}">${board.title}</a></td>
-				<td>${board.writer}</td>
-				<td>${board.writedate}</td>
-				<td>${board.category}</td>
+				<td>${board.b_no}</td>
+				<td><a href = "/tp/board/BoardRead?no=${board.b_no}">${board.b_title}</a></td>
+				<td>${board.b_writer}</td>
+				<td>${board.b_writedate}</td>
+				<td>${board.b_category}</td>
 		    </tr>
 		</c:forEach>
 	</table>
@@ -54,12 +54,8 @@
 			<c:if test="${paging.endPage != paging.lastPage}">
 				<a href="/tp/board//BoardList?currentPage=${paging.endPage+1 }">&gt;</a>
 			</c:if>
-		</div>
-		
+		</div>		
 	</div>
-
-
-
 
 </body>
 </html>

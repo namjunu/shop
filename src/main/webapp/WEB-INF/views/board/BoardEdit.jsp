@@ -12,16 +12,16 @@
 </head>
 <body>
 	<form action="/tp/board/BoardEdit" method="post">
-	<input type="hidden" name = "no" value = ${read.no}>
-	글번호:${read.no}
+	<input type="hidden" name = "b_no" value = ${read.b_no }>
+	글번호:${read.b_no}
 	<p>
-	글제목:${read.title}
+	글제목:${read.b_title}
 	<hr>
-	<textarea rows="10" name='content'>${read.content}</textarea>
+	<textarea rows="10" name='b_content'>${read.b_content}</textarea>
 	<br>
-	글쓴이:${read.writer}
-	작성일:${read.writedate}
-	조회수:${read.readcount}
+	글쓴이:${read.b_writer}
+	작성일:${read.b_writedate}
+	조회수:${read.b_readcount}
 	<br>
 	<input type="submit" value="글수정">
 	</form>

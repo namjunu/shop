@@ -6,11 +6,14 @@
 	<!-- resultType 에 복수형(ArrayList 등)을 적는게 아님. 
 	그냥 vo 단수의 경로를 적어야됨. -->
 	<select id="countBoard" resultType = "int">
-		SELECT COUNT(*) from tp_board
+		SELECT COUNT(*) from boards
 	</select>
 	
 	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
-		SELECT * from tp_board ORDER BY no DESC limit #{start} , #{cntPerPage}
+		SELECT * from boards ORDER BY b_no DESC limit #{start} , #{cntPerPage}
+	</select>
+	<select id="getListCategory" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * from boards WHERE b_category = #{category} ORDER BY b_no DESC limit #{start} , #{cntPerPage}  
 	</select>
 	<!-- 페이징 처리 후 게시글 조회 -->
 <!-- 	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
@@ -27,19 +30,19 @@
 	</select> -->
 	
 	<select id="read" resultType="com.teamp.spring.tp.dto.BoardVO">
-		SELECT  * from tp_board where no = #{no}
+		SELECT  * from boards where B_NO = #{b_no}
 	</select>
 	<update id="upCount" parameterType="int">
-		UPDATE tp_board SET readcount = readcount + 1 where no = #{no} 
+		UPDATE boards SET b_readcount = b_readcount + 1 where b_no = #{b_no} 
 	</update>
 	
 	<insert id="write">
-		insert into tp_board (title, content) values (#{title}, #{content})
+		insert into boards (b_title, b_content) values (#{b_title}, #{b_content})
 	</insert>
 	<delete id="delete">
-		delete from tp_board where no = #{no}
+		delete from boards where b_no = #{b_no}
 	</delete>
 	<update id="edit" parameterType="com.teamp.spring.tp.dto.BoardVO">
-		UPDATE tp_board SET content = #{content} where no = #{no};
+		UPDATE boards SET B_CONTENT = #{b_content} where b_no = #{b_no};
 	</update>
 </mapper>

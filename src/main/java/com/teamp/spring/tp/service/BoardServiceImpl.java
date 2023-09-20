@@ -26,14 +26,23 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public ArrayList(BoardVO) getListCategory(PagingVO pvo, String category){
+		return mapper.getListCategory(pvo, category);
+	}
+	
+	@Override
 	public int countBoard() {
 		return mapper.countBoard();
 	}
 	
 	@Override
 	public BoardVO read(int no) {
-		mapper.upCount(no);
 		return mapper.read(no);
+	}
+	
+	@Override
+	public void upCount(int no) {
+		mapper.upCount(no);
 	}
 	
 	@Override

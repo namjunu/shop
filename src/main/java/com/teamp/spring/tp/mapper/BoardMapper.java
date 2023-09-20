@@ -7,6 +7,7 @@ import com.teamp.spring.tp.dto.PagingVO;
 
 public interface BoardMapper {
 	public ArrayList<BoardVO> getList(PagingVO pvo);
+	public ArrayList<BoardVO> getListCategory(PagingVO pvo, String category);
 	public BoardVO read(int no);
 	public void upCount(int no);
 	public void write(BoardVO bvo);

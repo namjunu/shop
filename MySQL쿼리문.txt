@@ -11,13 +11,16 @@ CREATE TABLE tb_example(
 	ex_date timestamp NULL DEFAULT now()
 );
 
-DROP TABLE if exists tp_board;
-CREATE TABLE tp_board(
- 	no int auto_increment primary key,
- 	title varchar(100),
- 	content varchar(1000),
- 	writer varchar(30) default 'guest',
- 	writedate timestamp default now(),
- 	readcount int(4) default 0,
-    category varchar(10) default 'free'
+DROP TABLE if exists boards;
+CREATE TABLE BOARDS(
+ 	B_NO int auto_increment primary key,
+ 	B_TITLE varchar(100),
+ 	B_CONTENT varchar(1000),
+ 	B_WRITER varchar(30) default 'guest',
+ 	B_WRITEDATE timestamp default now(),
+ 	B_LIKECOUNT int(5) default 0,
+ 	B_READCOUNT int(5) default 0,
+    B_CATEGORY varchar(10) default 'free',
+    U_NO INT,
+    foreign key (U_NO) references MEMBERS (U_NO)
  );

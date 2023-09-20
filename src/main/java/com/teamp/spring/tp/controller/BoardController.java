@@ -1,5 +1,7 @@
 package com.teamp.spring.tp.controller;
 
+import java.util.Locale.Category;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,15 +34,26 @@ public class BoardController {
 	private BoardService service;
 
 	@GetMapping("/BoardList")
-	public void BoardList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
-		int total = service.countBoard();
-		PagingVO pvo = new PagingVO(total, currentPage, 10);
-		model.addAttribute("paging", pvo);
-		model.addAttribute("list", service.getList(pvo));
+	public void BoardList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+							@RequestParam(value = "category", defaultValue = "main") String category,
+										Model model) {
+		if(category.equals("main"){
+			int total = service.countBoard();
+			PagingVO pvo = new PagingVO(total, currentPage, 10);
+			model.addAttribute("paging", pvo);
+			model.addAttribute("list", service.getList(pvo));
+		}
+		else {
+			int total = service.countBoard();
+			PagingVO pvo = new PagingVO(total, currentPage, 10);
+			model.addAttribute("paging", pvo);
+			model.addAttribute("list", service.getListCategory(pvo, category));
+		}
 	}
 
 	@GetMapping("/BoardRead")
 	public void BoardRead(@RequestParam("no") int no, Model model) {
+		service.upCount(no);
 		log.info("컨트롤러 ==== 글번호 ===============" + no);
 		model.addAttribute("read", service.read(no));
 	}
