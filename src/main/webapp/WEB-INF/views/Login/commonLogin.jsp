@@ -21,6 +21,18 @@
     <form action="./Login/logOut" method="post">
         <input type="submit" value="로그아웃">
     </form> 
+    <form action="./Login/addPoint" method="post">
+    	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("id") %>">
+    	<input type="text" id="addPoint" name="addPoint">
+    	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
+    	<input type="submit" value="포인트 얻기">
+    </form>
+    <form action="./Login/usePoint" method="post">
+    	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("id") %>">
+    	<input type="text" id="usePoint" name="usePoint">
+    	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
+    	<input type="submit" value="포인트 쓰기">
+    </form>
     <p>환영합니다, <%= session.getAttribute("U_NAME") %>님</p>
     <p>남은 포인트 :<%= session.getAttribute("U_POINT") %></p>
 <% } else { %>

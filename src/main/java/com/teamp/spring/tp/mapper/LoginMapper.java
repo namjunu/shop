@@ -14,4 +14,6 @@ public interface LoginMapper {
 	public void editPw(UserInfo id);
 
 	public void editInfo(UserInfo id);
+
+	public void setPoint(UserInfo id);
 }

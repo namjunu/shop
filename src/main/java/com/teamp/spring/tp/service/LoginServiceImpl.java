@@ -36,4 +36,7 @@ public class LoginServiceImpl implements LoginService{
 	public void editInfo(UserInfo id) {
 		mapper.editInfo(id);
 	}
+	public void setPoint(UserInfo id) {
+		mapper.setPoint(id);
+	}
 }

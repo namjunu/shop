@@ -35,37 +35,53 @@ public class LoginController {
 	private LoginService service;
 	
 
-	@PostMapping("/createID")
+	@GetMapping("/test")
+	public void test() {
+		log.info("testest");
+	}
+	@GetMapping("/createID") //회원가입 창 보내기
+	public void createID() {
+	}
+	@PostMapping("/createID") //회원가입
 	public String createID(UserInfo id) {
 		log.info("아이디 만드는 중.");
 		service.createID(id);
 		log.info("아이디를 만들었음");
 		return "redirect:/";
 	}
-	@GetMapping("/createID")
-	public void createID() {
+	@PostMapping("/checkID") //회원가입 도중 ID가 중복되는지 확인하는 함수
+	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 생성
+	public Map<String, Boolean> checkID(String C_ID) {
+		log.info("검색할 아이디 : "+C_ID);
+		int howmany = service.checkID(C_ID); //C_ID와 같은 id인 회원정보가 있는지 탐색
+		log.info("검색된 아이디 갯수는 "+howmany);
+	    Map<String, Boolean> response = new HashMap<>(); //응답을 저장하는 response 해시맵 생성
+	    if (howmany == 0) {
+	        response.put("valid", true); //C_ID와 같은 id를 가진 회원정보가 없으면 valid를 true로 저장
+	        log.info("valid를 true로");
+	    } else {
+	        response.put("valid", false); //C_ID와 같은 id를 가진 회원정보가 있으면 valid를 false로
+	        log.info("valid를 false로");
+	    }
+	    return response;
 	}
-	@GetMapping("/test")
-	public void test() {
-		log.info("testest");
-	}
-	@PostMapping("loginCheck")
+	@PostMapping("loginCheck") //로그인
 	public String loginCheck(UserInfo id,HttpSession session,RedirectAttributes redirectAttributes) {
-		boolean loginSuccess;
-		if(service.loginCheck(id)== 1) {
+		boolean loginSuccess; //로그인 성공 판단 boolean
+		if(service.loginCheck(id)== 1) { //id, pw를 넣었을 때 count되는 값이 있으면 1
 			loginSuccess = true;
 		} else {
 			loginSuccess = false;
 		}
 		if(loginSuccess) {
-			session.setAttribute("id",id.getU_ID());
-			return "redirect:/Login/getInfo";
+			session.setAttribute("id",id.getU_ID()); //id 세션에 로그인된 U_ID값을 넣음
+			return "redirect:/Login/getInfo"; //유저정보를 세션에 저장하는 동작 수행
 		} else {
 			redirectAttributes.addFlashAttribute("message", "로그인 실패, 아이디또는 비밀번호가 일치하지 않습니다");
 			return "redirect:/";
 		}
 	}
-	@GetMapping("/getInfo")
+	@GetMapping("/getInfo") //유저정보를 세션에 저장
 	public String getInfo(HttpSession session) {
 		String id= (String) session.getAttribute("id");
 		log.info(id);
@@ -80,45 +96,51 @@ public class LoginController {
 		log.info("U_TIMESTAMP는 :"+ session.getAttribute("U_TIMESTAMP"));
 		return "redirect:/";
 	}
-	@GetMapping("/editInfo")
+	
+	@GetMapping("/editInfo") //회원정보 수정 페이지로 이동
 	public void editInfo() {
 	}
-	@PostMapping("/editInfo")
+	@PostMapping("/editInfo") //받은 정보로 회원정보 수정
 	public String editInfo(UserInfo id) {
 		log.info(id.getU_ID()+"의 정보를 수정했습니다.");
 		service.editInfo(id);
 		return "redirect:/";
 	}
-	@GetMapping("/editPw")
+	
+	@GetMapping("/editPw") //비밀번호 재설정 페이지로 이동
 	public void editPw() {
 	}
-	@PostMapping("/editPw")
+	@PostMapping("/editPw") //입력한 비밀번호로 재설정
 	public String editPw(UserInfo id) {
 		log.info(id.getU_ID()+id.getU_PW());
 		service.editPw(id);
 		return "redirect:/";
 	}
 	
-	@PostMapping("/logOut")
+	@PostMapping("/logOut") //세션에 저장된 id를 삭제
 	public String logout(HttpSession session) {
 		session.removeAttribute("id");
 		return "redirect:/";
 	}
-	@PostMapping("/checkID")
-	@ResponseBody // 이 어노테이션을 추가하여 JSON 응답을 생성
-	public Map<String, Boolean> checkID(String C_ID) {
-		log.info("검색할 아이디 : "+C_ID);
-		int howmany = service.checkID(C_ID);
-		log.info("검색된 아이디 갯수는 "+howmany);
-	    Map<String, Boolean> response = new HashMap<>();
-	    if (howmany == 0) {
-	        response.put("valid", true);
-	        log.info("valid를 true로");
-	    } else {
-	        response.put("valid", false);
-	        log.info("valid를 false로");
-	    }
-	    return response;
+	@PostMapping("/addPoint")
+	public String addPoint(@RequestParam("addPoint") int addPoint, UserInfo id, HttpSession session) {
+		int currentPoint = (int)session.getAttribute("U_POINT");
+		currentPoint += addPoint;
+		session.setAttribute("U_POINT", currentPoint);
+		id.setU_POINT(currentPoint);
+		service.setPoint(id);
+		return "redirect:/";
 	}
+	@PostMapping("/usePoint")
+	public String usePoint(@RequestParam("usePoint") int usePoint, UserInfo id, HttpSession session) {
+		int currentPoint = (int)session.getAttribute("U_POINT");
+		currentPoint -= usePoint;
+		session.setAttribute("U_POINT", currentPoint);
+		id.setU_POINT(currentPoint);
+		service.setPoint(id);
+		return "redirect:/";
+	}
+	
+	
 	
 }

@@ -26,4 +26,7 @@
 			U_PHONE = #{U_PHONE}
 		where U_ID = #{U_ID}
 	</update>
+	<update id="setPoint">
+		update members set U_POINT = #{U_POINT}	where U_ID = #{U_ID}
+	</update>
 </mapper>
