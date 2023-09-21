@@ -1,5 +1,6 @@
 package com.teamp.jang.kiosk;
 
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
@@ -41,6 +42,7 @@ public class KioskIns3 extends KioskIns2{
 	protected JButton thoothButton1 = new JButton(thooth1);
 	protected JButton thoothButton2 = new JButton(thooth2);
 	protected JButton thoothButton3 = new JButton(thooth3);
+	protected JButton backButton3 = new JButton(backButtonBasic);
 	
 	// 치아 버튼 123
 	
@@ -48,42 +50,71 @@ public class KioskIns3 extends KioskIns2{
 	@Override
 	public void KioskGUI() {
 		super.KioskGUI();
+		
+		backButton3.setBounds(100, 100, 60, 60);
+		backButton3.setBorderPainted(false);
+		backButton3.setContentAreaFilled(false);
+		backButton3.setFocusPainted(false);
+//		backButton3.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				backButton3.setIcon(backButtonEntered);
+//				// backButton3가 Entered로 변경 
+//				backButton3.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//				// 마우스 커서를 잡는 모양으로 변경
+//			}
+//			@Override
+//			public void mouseExited(MouseEvent e) {
+//				// 마우스가 이미지 밖에 있다면 발생하는 함수
+//				backButton3.setIcon(backButtonBasic);
+//				// backButton3을 Basic로 변경
+//				backButton3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//				// 마우스 커서를 기본 모양으로 변경
+//			}	
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				//마우스로 이미지를 눌렀을때 발생하는 함수
+//				
+//			}
+//		});
+		add(backButton3);
+		
 		injuryButton1.setBounds(300, 300, 200, 200);
 		injuryButton1.setBorderPainted(false);
 		injuryButton1.setContentAreaFilled(true);
 		injuryButton1.setFocusPainted(false);
-		injuryButton1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해1 선택");
-				// todo 보험옮기기
-			}
-		});
+//		injuryButton1.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해1 선택");
+//				// todo 보험옮기기
+//			}
+//		});
 		add(injuryButton1);
 		
 		injuryButton2.setBounds(550, 300, 200, 200);
 		injuryButton2.setBorderPainted(false);
 		injuryButton2.setContentAreaFilled(true);
 		injuryButton2.setFocusPainted(false);
-		injuryButton2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해2 선택");
-			}
-		});
+//		injuryButton2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해2 선택");
+//			}
+//		});
 		add(injuryButton2);
 		
 		injuryButton3.setBounds(800, 300, 200, 200);
 		injuryButton3.setBorderPainted(false);
 		injuryButton3.setContentAreaFilled(true);
 		injuryButton3.setFocusPainted(false);
-		injuryButton3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해3 선택");
-				// todo 보험옮기기
-			}
-		});
+//		injuryButton3.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해3 선택");
+//				// todo 보험옮기기
+//			}
+//		});
 		add(injuryButton3);
 		
 		//--------------------------------------------------------
@@ -95,38 +126,38 @@ public class KioskIns3 extends KioskIns2{
 		diseaseButton1.setBorderPainted(false);
 		diseaseButton1.setContentAreaFilled(true);
 		diseaseButton1.setFocusPainted(false);
-		diseaseButton1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해1 선택");
-				// todo 보험옮기기
-			}
-		});
+//		diseaseButton1.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해1 선택");
+//				// todo 보험옮기기
+//			}
+//		});
 		add(diseaseButton1);
 		
 		diseaseButton2.setBounds(550, 300, 200, 200);
 		diseaseButton2.setBorderPainted(false);
 		diseaseButton2.setContentAreaFilled(true);
 		diseaseButton2.setFocusPainted(false);
-		diseaseButton2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해2 선택");
-			}	
-		});
+//		diseaseButton2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해2 선택");
+//			}	
+//		});
 		add(diseaseButton2);
 		
 		diseaseButton3.setBounds(800, 300, 200, 200);
 		diseaseButton3.setBorderPainted(false);
 		diseaseButton3.setContentAreaFilled(true);
 		diseaseButton3.setFocusPainted(false);
-		diseaseButton3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해3 선택");
-				// todo 보험옮기기
-			}
-		});
+//		diseaseButton3.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해3 선택");
+//				// todo 보험옮기기
+//			}
+//		});
 		add(diseaseButton3);
 		
 		//--------------------------------------------------------
@@ -138,38 +169,38 @@ public class KioskIns3 extends KioskIns2{
 		thoothButton1.setBorderPainted(false);
 		thoothButton1.setContentAreaFilled(true);
 		thoothButton1.setFocusPainted(false);
-		thoothButton1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해1 선택");
-				// todo 보험옮기기
-			}
-		});
+//		thoothButton1.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해1 선택");
+//				// todo 보험옮기기
+//			}
+//		});
 		add(thoothButton1);
 		
 		thoothButton2.setBounds(550, 300, 200, 200);
 		thoothButton2.setBorderPainted(false);
 		thoothButton2.setContentAreaFilled(true);
 		thoothButton2.setFocusPainted(false);
-		thoothButton2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해2 선택");
-			}
-		});
+//		thoothButton2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해2 선택");
+//			}
+//		});
 		add(thoothButton2);
 		
 		thoothButton3.setBounds(800, 300, 200, 200);
 		thoothButton3.setBorderPainted(false);
 		thoothButton3.setContentAreaFilled(true);
 		thoothButton3.setFocusPainted(false);
-		thoothButton3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("상해3 선택");
-				// todo 보험옮기기
-			}
-		});
+//		thoothButton3.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				System.out.println("상해3 선택");
+//				// todo 보험옮기기
+//			}
+//		});
 		add(thoothButton3);
 
 		//--------------------------------------------------------

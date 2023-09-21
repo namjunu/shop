@@ -21,6 +21,7 @@ public class KioskScreen extends JFrame {
 
 	protected Image background = new ImageIcon(getClass().getResource("/JangImages/introBackgroundImage.png")).getImage();
 	protected JLabel menuBar = new JLabel(new ImageIcon(getClass().getResource("/JangImages/menuBarImage.png")));
+	protected JLabel chooseBar = new JLabel(new ImageIcon(getClass().getResource("/JangImages/chooseBarImage.png")));
 	protected ImageIcon exitButtonBasic = new ImageIcon(getClass().getResource("/JangImages/exitButtonBasic.png"));
 	protected ImageIcon exitButtonEntered = new ImageIcon(getClass().getResource("/JangImages/exitButtonEntered.png"));
 	
@@ -121,6 +122,10 @@ public class KioskScreen extends JFrame {
 			}
 		});
 		add(menuBar);
+		
+		chooseBar.setBounds(1050, 75, 200, 600 );
+		add(chooseBar);
+		
 		
 		background = new ImageIcon(getClass().getResource("/JangImages/introBackground.jpg")).getImage();
 

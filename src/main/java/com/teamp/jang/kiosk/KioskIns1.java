@@ -10,7 +10,10 @@ import java.awt.event.*;
 
 public class KioskIns1 extends KioskScreen{
 	// 보험사 클릭 버튼 생성
-		
+	
+	
+	protected ImageIcon backButtonBasic = new ImageIcon(getClass().getResource("/JangImages/backButtonBasic.png"));
+	protected ImageIcon backButtonEntered = new ImageIcon(getClass().getResource("/JangImages/backButtonEntered.png"));
 	protected ImageIcon insurance1 = new ImageIcon(getClass().getResource("/JangImages/insurance1.png"));
 	protected ImageIcon insurance2 = new ImageIcon(getClass().getResource("/JangImages/insurance2.png"));
 	protected ImageIcon insurance3 = new ImageIcon(getClass().getResource("/JangImages/insurance3.png"));
@@ -20,6 +23,7 @@ public class KioskIns1 extends KioskScreen{
 	protected ImageIcon insurance7 = new ImageIcon(getClass().getResource("/JangImages/insurance7.png"));
 	protected ImageIcon insurance8 = new ImageIcon(getClass().getResource("/JangImages/insurance8.png"));
 	protected ImageIcon insurance9 = new ImageIcon(getClass().getResource("/JangImages/insurance9.png"));
+	
 	
 	protected JButton insuranceButton1 = new JButton(insurance1);
 	protected JButton insuranceButton2 = new JButton(insurance2);
@@ -31,13 +35,41 @@ public class KioskIns1 extends KioskScreen{
 	protected JButton insuranceButton8 = new JButton(insurance8);
 	protected JButton insuranceButton9 = new JButton(insurance9);
 	
+	protected JButton backButton1 = new JButton(backButtonBasic);
+	
 	
 	@Override
 	public void KioskGUI() {
 		super.KioskGUI();
 		System.out.println("실행은 되는지 확인");
 		
-				
+		backButton1.setBounds(100, 100, 60, 60);
+		backButton1.setBorderPainted(false);
+		backButton1.setContentAreaFilled(false);
+		backButton1.setFocusPainted(false);
+//		backButton1.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				backButton1.setIcon(backButtonEntered);
+//				// backButton1가 Entered로 변경 
+//				backButton1.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//				// 마우스 커서를 잡는 모양으로 변경
+//			}
+//			@Override
+//			public void mouseExited(MouseEvent e) {
+//				// 마우스가 이미지 밖에 있다면 발생하는 함수
+//				backButton1.setIcon(backButtonBasic);
+//				// backButton1을 Basic로 변경
+//				backButton1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+//				// 마우스 커서를 기본 모양으로 변경
+//			}	
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				//마우스로 이미지를 눌렀을때 발생하는 함수
+//				
+//			}
+//		});
+		add(backButton1);
 		
 		insuranceButton1.setBounds(300, 50, 200, 200);
 		insuranceButton1.setBorderPainted(false);
@@ -49,6 +81,7 @@ public class KioskIns1 extends KioskScreen{
 //				System.out.println("보험1 선택");
 //			}
 //		});
+		// KioskFianl에 모아서 작성해서 주석처리
 		add(insuranceButton1);
 		
 		insuranceButton2.setBounds(550, 50, 200, 200);
