@@ -39,4 +39,7 @@ public class LoginServiceImpl implements LoginService{
 	public void setPoint(UserInfo id) {
 		mapper.setPoint(id);
 	}
+	public void deleteMember(UserInfo id) {
+		mapper.deleteMember(id);
+	}
 }

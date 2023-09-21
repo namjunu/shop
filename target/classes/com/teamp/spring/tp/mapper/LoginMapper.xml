@@ -29,4 +29,7 @@
 	<update id="setPoint">
 		update members set U_POINT = #{U_POINT}	where U_ID = #{U_ID}
 	</update>
+	<delete id="deleteMember">
+		delete from members where U_ID = #{U_ID}
+	</delete>
 </mapper>

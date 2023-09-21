@@ -16,4 +16,6 @@ public interface LoginMapper {
 	public void editInfo(UserInfo id);
 
 	public void setPoint(UserInfo id);
+
+	public void deleteMember(UserInfo id);
 }

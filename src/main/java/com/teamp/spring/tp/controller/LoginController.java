@@ -140,7 +140,27 @@ public class LoginController {
 		service.setPoint(id);
 		return "redirect:/";
 	}
-	
+	@GetMapping("/deleteMember") //탈퇴 페이지로 이동
+	public void deleteMember() {
+	}
+	@PostMapping("deleteMember") //탈퇴 프로세스
+	public String deleteMember(HttpSession session, UserInfo id, RedirectAttributes redirectAttributes) {
+		boolean idcheck;
+		if(service.loginCheck(id)==1) {
+			idcheck=true;
+		}else {
+			idcheck=false;
+		}
+		if(idcheck) {
+			service.deleteMember(id);
+			redirectAttributes.addFlashAttribute("message", "회원정보 삭제에 성공했습니다.");
+			session.removeAttribute("id");
+			return "redirect:/";
+		} else {
+			redirectAttributes.addFlashAttribute("message", "비밀번호를 잘못 입력하셨습니다.");
+			return "redirect:/Login/deleteMember";
+		}
+	}
 	
 	
 }

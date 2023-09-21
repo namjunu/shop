@@ -33,6 +33,8 @@
     	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
     	<input type="submit" value="포인트 쓰기">
     </form>
+    <a href="./Login/deleteMember">탈퇴하기</a>
+    
     <p>환영합니다, <%= session.getAttribute("U_NAME") %>님</p>
     <p>남은 포인트 :<%= session.getAttribute("U_POINT") %></p>
 <% } else { %>
