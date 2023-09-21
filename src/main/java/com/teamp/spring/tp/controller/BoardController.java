@@ -1,6 +1,6 @@
 package com.teamp.spring.tp.controller;
 
-import java.util.Locale.Category;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,26 +33,34 @@ public class BoardController {
 
 	private BoardService service;
 
+	@GetMapping("/sessiontest")
+	public String sessiontest(HttpSession session, @RequestParam(value = "id", defaultValue = "testid") String id) {
+		session.setAttribute("id", id);
+		
+		return "redirect:/board/BoardList";
+	}
+	
 	@GetMapping("/BoardList")
-	public void BoardList(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+	public void BoardList(HttpSession session, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 							@RequestParam(value = "category", defaultValue = "main") String category,
 										Model model) {
-		if(category.equals("main"){
+		if(category.equals("main")){
 			int total = service.countBoard();
 			PagingVO pvo = new PagingVO(total, currentPage, 10);
+			model.addAttribute("category", category);
 			model.addAttribute("paging", pvo);
 			model.addAttribute("list", service.getList(pvo));
-		}
-		else {
-			int total = service.countBoard();
-			PagingVO pvo = new PagingVO(total, currentPage, 10);
+		}else {
+			int total = service.countBoardCategory(category);
+			PagingVO pvo = new PagingVO(total, currentPage, 10, category);
+			model.addAttribute("category", category);
 			model.addAttribute("paging", pvo);
-			model.addAttribute("list", service.getListCategory(pvo, category));
+			model.addAttribute("list", service.getListCategory(pvo));
 		}
 	}
 
 	@GetMapping("/BoardRead")
-	public void BoardRead(@RequestParam("no") int no, Model model) {
+	public void BoardRead(HttpSession session, @RequestParam("no") int no, Model model) {
 		service.upCount(no);
 		log.info("컨트롤러 ==== 글번호 ===============" + no);
 		model.addAttribute("read", service.read(no));
@@ -64,9 +72,9 @@ public class BoardController {
 		return "redirect:/board/BoardList"; // sendRedirect 로 이동하게 됨. // 책 p.245 참고
 	}
 
-	// >>> 홈페이지/spring/guest/write (get 방식으로 오면 여기로 옴. 일반링크이동=get방식임)
-	@GetMapping("/BoardWrite") // 책 p.239 /write 중복이지만 이건 글쓰기 화면을 위한 url 매핑
-	public void BoardWrite() {
+
+	@GetMapping("/BoardWrite") // /write 중복이지만 이건 글쓰기 화면을 위한 url 매핑
+	public void BoardWrite(HttpSession session) {
 
 	}
 

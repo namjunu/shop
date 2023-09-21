@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
@@ -27,7 +28,7 @@
 
 <form action="/tp/board/ReplyWrite" method="post">
 	<textarea rows="10" name='content'></textarea>
-	<input type="submit" value="글쓰기">
+	<input type="submit" value="댓글쓰기">
 </form>
 </body>
 </html>

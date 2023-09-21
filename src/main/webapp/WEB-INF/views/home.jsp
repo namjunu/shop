@@ -9,6 +9,8 @@
 </head>
 <body>
 <P>  The time on the server is ${serverTime}. </P>
-손명균 확인
+
+<a href="/tp/board/sessiontest?id='testid1'">test1 계정 세션</a>
+<a href="/tp/board/sessiontest?id='testid2'">test2 계정 세션</a>
 </body>
 </html>

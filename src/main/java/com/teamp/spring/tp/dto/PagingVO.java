@@ -7,7 +7,7 @@ public class PagingVO {
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
 		private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 		private int cntPage = 5;
-		
+		private String category = "main";
 		
 		public PagingVO() {
 		}
@@ -15,6 +15,15 @@ public class PagingVO {
 			setNowPage(nowPage);
 			setCntPerPage(cntPerPage);
 			setTotal(total);
+			calcLastPage(getTotal(), getCntPerPage());
+			calcStartEndPage(getNowPage(), cntPage);
+			calcStartEnd(getNowPage(), getCntPerPage());
+		}
+		public PagingVO(int total, int nowPage, int cntPerPage, String category) {
+			setNowPage(nowPage);
+			setCntPerPage(cntPerPage);
+			setTotal(total);
+			setCategory(category);
 			calcLastPage(getTotal(), getCntPerPage());
 			calcStartEndPage(getNowPage(), cntPage);
 			calcStartEnd(getNowPage(), getCntPerPage());

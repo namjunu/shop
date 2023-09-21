@@ -12,9 +12,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% String idValue = (String) session.getAttribute("id"); %>
 <div>
-	<h1>게시판</h1>
+	<h1>${category}게시판</h1>
+	<p><%= session.getAttribute("id") %> 님 환영합니다.</p> 
+	<h2>카테고리</h2>
+	<a href="/tp/board/BoardList"><button>Main</button></a>
+	<a href="/tp/board/BoardList?category=free"><button>free</button></a>
+	<a href="/tp/board/BoardList?category=test1"><button>test1</button></a>
+	<a href="/tp/board/BoardList?category=test2"><button>test2</button></a>
 	<table>
 		<tr>
 			<td>글번호</td>

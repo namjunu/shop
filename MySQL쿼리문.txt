@@ -17,10 +17,9 @@ CREATE TABLE BOARDS(
  	B_TITLE varchar(100),
  	B_CONTENT varchar(1000),
  	B_WRITER varchar(30) default 'guest',
+ 	foreign key (B_WRITER) references MEMBERS (U_ID),
  	B_WRITEDATE timestamp default now(),
- 	B_LIKECOUNT int(5) default 0,
- 	B_READCOUNT int(5) default 0,
-    B_CATEGORY varchar(10) default 'free',
-    U_NO INT,
-    foreign key (U_NO) references MEMBERS (U_NO)
+ 	B_LIKECOUNT int default 0,
+ 	B_READCOUNT int default 0,
+    B_CATEGORY varchar(10) default 'free'
  );
