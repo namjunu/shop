@@ -22,12 +22,26 @@
 조회수:${read.b_readcount}
 추천수:${read.b_likecount}
 <hr>
-<a href="/tp/board/BoardEdit?no=${read.b_no}"><button>글수정</button></a>
-<a href="/tp/board/BoardDelete?no=${read.b_no}"><button>글삭제</button></a>
-<a href="/tp/board/BoardList"><button>글목록</button></a>
 
-<form action="/tp/board/ReplyWrite" method="post">
-	<textarea rows="10" name='content'></textarea>
+<c:if test="${idCheck eq 'true'}">
+	<a href="/tp/board/BoardEdit?no=${read.b_no}"><button>글수정</button></a>
+	<a href="/tp/board/BoardDelete?no=${read.b_no}"><button>글삭제</button></a>
+</c:if>
+<a href="/tp/board/BoardList"><button>글목록</button></a>
+<hr>
+<c:forEach var="replys" items="${replys}">
+	<tr>
+		<td>${replys.r_content}</td>
+		<td>${replys.r_writer}</td>
+		<td>${replys.r_writedate}</td>
+    </tr>
+    <hr>
+</c:forEach>
+
+<form action="/tp/board/ReplyWrite" method="get">
+	<input type="hidden" name = "b_no" value = ${read.b_no}>
+	<input type="hidden" name = "r_writer" value = <%=session.getAttribute("id")%>>
+	<textarea rows="10" name='r_content'></textarea>
 	<input type="submit" value="댓글쓰기">
 </form>
 </body>

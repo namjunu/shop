@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.teamp.spring.tp.dto.BoardVO;
 import com.teamp.spring.tp.dto.PagingVO;
+import com.teamp.spring.tp.dto.ReplyVO;
 import com.teamp.spring.tp.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -65,4 +66,17 @@ public class BoardServiceImpl implements BoardService{
 		log.info("edit complete");
 		mapper.edit(bvo);
 	}
+	
+	
+	//´ñ±Û
+	@Override
+	public void replyWrite(ReplyVO rvo) {
+		mapper.replyWrite(rvo);
+	}
+	
+	@Override
+	public ArrayList<ReplyVO> replyList(int bno){
+		return mapper.replyList(bno);
+	}
+	
 }

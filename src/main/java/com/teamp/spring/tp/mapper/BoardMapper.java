@@ -2,10 +2,9 @@ package com.teamp.spring.tp.mapper;
 
 import java.util.ArrayList;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.teamp.spring.tp.dto.BoardVO;
 import com.teamp.spring.tp.dto.PagingVO;
+import com.teamp.spring.tp.dto.ReplyVO;
 
 public interface BoardMapper {
 	public int countBoard();
@@ -17,4 +16,6 @@ public interface BoardMapper {
 	public void write(BoardVO bvo);
 	public void delete(int no);
 	public void edit(BoardVO bvo);
+	public void replyWrite(ReplyVO rvo);
+	public ArrayList<ReplyVO> replyList(int bno);
 }

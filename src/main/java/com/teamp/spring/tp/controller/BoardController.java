@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamp.spring.tp.dto.BoardVO;
 import com.teamp.spring.tp.dto.PagingVO;
+import com.teamp.spring.tp.dto.ReplyVO;
 import com.teamp.spring.tp.service.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -63,7 +64,16 @@ public class BoardController {
 	public void BoardRead(HttpSession session, @RequestParam("no") int no, Model model) {
 		service.upCount(no);
 		log.info("컨트롤러 ==== 글번호 ===============" + no);
-		model.addAttribute("read", service.read(no));
+		BoardVO bvo = service.read(no);
+		String sessionid = (((String) session.getAttribute("id")).replace("\'",""));
+		if(sessionid.equals(bvo.getB_writer().toString())) {
+			model.addAttribute("idCheck", "true");
+		}
+		else {
+			model.addAttribute("idCheck", "false");
+		}
+		model.addAttribute("read", bvo);
+		model.addAttribute("replys", service.replyList(no));
 	}
 
 	@PostMapping("/BoardWrite")
@@ -95,5 +105,11 @@ public class BoardController {
 	public void BoardEdit(@RequestParam("no") int no, Model model) {
 		log.info("컨트롤러 ==== 글번호 ===============" + no);
 		model.addAttribute("read", service.read(no));
+	}
+	
+	@GetMapping("/ReplyWrite")
+	public String ReplyWrite(ReplyVO rvo, @RequestParam("b_no") int b_no) {
+		service.replyWrite(rvo);
+		return "redirect:/board/BoardRead?no="+b_no;
 	}
 }

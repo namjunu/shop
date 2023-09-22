@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.teamp.spring.tp.dto.BoardVO;
 import com.teamp.spring.tp.dto.PagingVO;
+import com.teamp.spring.tp.dto.ReplyVO;
 
 
 public interface BoardService {
@@ -16,5 +17,6 @@ public interface BoardService {
 	public void write(BoardVO bvo);
 	public void delete(int no);
 	public void edit(BoardVO bvo);
-	
+	public void replyWrite(ReplyVO rvo);
+	public ArrayList<ReplyVO> replyList(int bno);
 }
