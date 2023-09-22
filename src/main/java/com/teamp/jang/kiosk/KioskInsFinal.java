@@ -22,7 +22,8 @@ public class KioskInsFinal extends KioskIns4 {
 	public void KioskGUI() {
 		super.KioskGUI();
 		kioskInsurance1 = true;
-		backButtonshow();
+		
+		backButtonClick();
 		
 		insuranceButton1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -50,7 +51,9 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("상해1 선택");
-				// todo 보험옮기기
+				chooseButton = "상해1선택";
+				chooseButtonShow();
+				selectedButtonshow();
 			}
 		});
 		
@@ -58,6 +61,9 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("상해2 선택");
+				chooseButton = "상해2선택";
+				chooseButtonShow();
+				selectedButtonshow();
 			}
 		});
 		
@@ -65,7 +71,9 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("상해3 선택");
-				// todo 보험옮기기
+				chooseButton = "상해3선택";
+				chooseButtonShow();
+				selectedButtonshow();
 			}
 		});
 		
@@ -118,7 +126,7 @@ public class KioskInsFinal extends KioskIns4 {
 		thoothButton1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("상해1 선택");
+				System.out.println("치아1 선택");
 				// todo 보험옮기기
 			}
 		});
@@ -126,14 +134,14 @@ public class KioskInsFinal extends KioskIns4 {
 		thoothButton2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("상해2 선택");
+				System.out.println("치아2 선택");
 			}
 		});
 		
 		thoothButton3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("상해3 선택");
+				System.out.println("치아3 선택");
 				// todo 보험옮기기
 			}
 		});
@@ -240,7 +248,7 @@ public class KioskInsFinal extends KioskIns4 {
 		
 	}
 	
-	public void backButtonshow() {
+	public void backButtonClick() {
 		backButton1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -319,6 +327,57 @@ public class KioskInsFinal extends KioskIns4 {
 				kioskInsurance2Show();
 				kioskInsurance3Show();
 				
+			}
+		});
+	}
+	
+	public void selectedshow() {
+		// 보험 내용 선택 시 선택한 것들 출력하는 함수
+		selectedButton1.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			//마우스로 이미지를 눌렀을때 발생하는 함수
+			if(selected2 !=null) {
+			selected1 = selected2;
+			}
+			if(selected3!=null) {
+				selected2 = selected3;
+			}
+			if(selected4!=null) {
+				selected3 = selected4;
+			}
+			selected4 = null;
+			
+		}
+		});
+		selectedButton2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				//마우스로 이미지를 눌렀을때 발생하는 함수
+				if(selected3!=null) {
+					selected2 = selected3;
+				}
+				if(selected4!=null) {
+					selected3 = selected4;
+				}
+				selected4 = null;
+			}
+		});
+		selectedButton3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				//마우스로 이미지를 눌렀을때 발생하는 함수
+				if(selected4!=null) {
+					selected3 = selected4;
+				}
+				selected4 = null;
+			}
+		});
+		selectedButton4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				//마우스로 이미지를 눌렀을때 발생하는 함수
+				selected4 = null;
 			}
 		});
 	}
