@@ -46,16 +46,6 @@ public class HomeController {
 	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
 	    return "search_map";
 	}
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String showLoginPage() {
-	    // 로그인 페이지를 보여주는 뷰 이름을 반환합니다.
-	    return "login/login"; // 뷰 이름은 "login"으로 반환하십시오.
-	}
-	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
-	public String showLoginSuccessPage() {
-	    // 로그인 성공 페이지를 보여주는 뷰 이름을 반환합니다.
-	    return "login/loginSuccess"; // 뷰 이름은 "loginsuccess"로 반환하십시오.
-	}
 	@RequestMapping(value = "/reservation/main", method = RequestMethod.GET)
 	public String showReservationMainPage() {
 	    // 예약 관리 메인 페이지를 보여주는 뷰 이름을 반환합니다.
