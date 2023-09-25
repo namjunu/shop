@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamp.spring.tp.mapper.LoginMapper">
+	<insert id="createID">
+		insert into members (U_ID,U_PW) values (#{U_ID}, #{U_PW})
+	</insert>
+	<select id="loginCheck" resultType = "int">
+		select count(*) from members where U_ID = #{U_ID} and U_PW = #{U_PW}
+	</select>
+	<select id="checkID" resultType = "int">
+		select count(*) from members where U_ID = #{U_ID}
+	</select> 
+	<select id="getInfo" resultType="com.teamp.spring.tp.dto.UserInfo">
+		select * from members where U_ID = #{U_ID}
+	</select>
+	<update id="editPw">
+		update members set U_PW = #{U_PW} where U_ID = #{U_ID}
+	</update>
+	<update id="editInfo">
+		update members 
+		set U_NAME = #{U_NAME} ,
+			U_ADDRESS = #{U_ADDRESS},
+			U_EMAIL = #{U_EMAIL},
+			U_PHONE = #{U_PHONE}
+		where U_ID = #{U_ID}
+	</update>
+	<update id="setPoint">
+		update members set U_POINT = #{U_POINT}	where U_ID = #{U_ID}
+	</update>
+	<delete id="deleteMember">
+		delete from members where U_ID = #{U_ID}
+	</delete>
+</mapper>
