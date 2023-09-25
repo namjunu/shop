@@ -10,3 +10,28 @@ CREATE TABLE tb_example(
 	ex_id varchar(50) NOT NULL,
 	ex_date timestamp NULL DEFAULT now()
 );
+
+DROP TABLE if exists boards;
+CREATE TABLE BOARDS(
+ 	B_NO int auto_increment primary key,
+ 	B_TITLE varchar(100),
+ 	B_CONTENT varchar(1000),
+ 	B_WRITER varchar(30) default 'guest',
+ 	foreign key (B_WRITER) references MEMBERS (U_ID),
+ 	B_WRITEDATE timestamp default now(),
+ 	B_LIKECOUNT int default 0,
+ 	B_READCOUNT int default 0,
+    B_CATEGORY varchar(10) default 'free'
+ );
+ 
+DROP TABLE if exists replys;
+CREATE TABLE REPLYS(
+ 	R_NO int auto_increment primary key,
+ 	B_NO int not null,
+ 	foreign key (B_NO) references BOARDS (B_NO),
+ 	R_CONTENT varchar(255) not null,
+ 	R_WRITER varchar(30) not null,
+ 	foreign key (R_WRITER) references MEMBERS (U_ID),
+ 	R_WRITEDATE timestamp default now(),
+ 	R_LIKECOUNT int default 0
+ );
