@@ -1,10 +1,10 @@
--- DATABASE �깮�꽦�� �궗�슜踰꾩쟾.txt瑜� 李멸퀬�빐二쇱꽭�슂
+-- DATABASE 생성은 사용버전.txt를 참고해주세요
 
 -- Update 2023-09-07 (initial)
--- tb_abc�닚 �젙�젹
--- �씠�븯 荑쇰━臾�, 洹몃�濡� 蹂듭궗, �깮�꽦�빐�꽌 �궗�슜�븯�떆硫� �맗�땲�떎.
+-- tb_abc순 정렬
+-- 이하 쿼리문, 그대로 복사, 생성해서 사용하시면 됩니다.
 
--------------- �삁�떆 �뀒�씠釉� --------------
+-------------- 예시 테이블 --------------
 DROP TABLE if exists tb_example;
 CREATE TABLE tb_example(
 	ex_id varchar(50) NOT NULL,
