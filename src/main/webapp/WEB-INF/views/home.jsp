@@ -8,7 +8,11 @@
 	<title>Home</title>
 </head>
 <body>
+<h1>
+	Hello world!  
+</h1>
 <P>  The time on the server is ${serverTime}. </P>
-남준우
+
+<jsp:include page="Login/commonLogin.jsp"/>
 </body>
 </html>
