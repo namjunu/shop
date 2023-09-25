@@ -13,7 +13,7 @@
 	Hello world!  
 </h1>
 <P>  The time on the server is ${serverTime}. </P>
-강동형
+남준우
 <a href="./Login/createID">회원가입</a>
 </body>
 </html>

@@ -19,16 +19,18 @@
     </style>
 </head>
 <body>
+	
     <h1 id="hospitalName">삼성서울병원</h1>
     <div id="map"></div>
-
-    <!-- jQuery 라이브러리를 추가합니다 -->
+    
+	    <!-- jQuery 라이브러리를 추가 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Kakao Maps API 스크립트를 추가합니다 -->
+    <!-- Kakao Maps API 스크립트를 추가 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=480d6b066347f57f4f5e316ebd771566&libraries=services"></script>
-
-    <!-- jQuery 코드를 추가합니다 -->
+	
+	
+    <!-- jQuery 코드를 추가-->
     <script>
         $(document).ready(function() {
             var mapOpened = false; // 지도 상태를 나타내는 변수

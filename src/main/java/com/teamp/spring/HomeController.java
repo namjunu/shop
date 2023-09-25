@@ -38,15 +38,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/map", method = RequestMethod.GET)
 	public String showHospitalMap() {
-	    // 여기에서 필요한 로직을 수행하고
 	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
 	    return "hospital_map";
 	}
-	@RequestMapping(value = "/map/book", method = RequestMethod.GET)
-	public String showBookPage() {
-	    // 여기에서 필요한 로직을 수행하고
-	    // book.jsp를 보여주는 뷰 이름을 반환합니다.
-	    return "book/hopistal_book";
+	@RequestMapping(value = "/searchMap", method = RequestMethod.GET)
+	public String showSearchMap() {
+	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
+	    return "search_map";
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLoginPage() {
@@ -58,6 +56,10 @@ public class HomeController {
 	    // 로그인 성공 페이지를 보여주는 뷰 이름을 반환합니다.
 	    return "login/loginSuccess"; // 뷰 이름은 "loginsuccess"로 반환하십시오.
 	}
-
+	@RequestMapping(value = "/reservation/main", method = RequestMethod.GET)
+	public String showReservationMainPage() {
+	    // 예약 관리 메인 페이지를 보여주는 뷰 이름을 반환합니다.
+	    return "reservation/reservationMain"; // 뷰 이름은 "reservationMain"으로 반환하십시오.
+	}
 }
 
