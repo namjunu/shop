@@ -79,4 +79,9 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.replyList(bno);
 	}
 	
+	@Override
+	public void replyDelete(int r_no) {
+		mapper.replyDelete(r_no);
+	}
+	
 }

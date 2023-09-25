@@ -43,5 +43,8 @@
 	<select id="replyList" resultType="com.teamp.spring.tp.dto.ReplyVO">
 		SELECT * from REPLYS WHERE b_no = #{bno} ORDER BY r_no DESC
 	</select>
+	<delete id="replyDelete">
+		delete from REPLYS where r_no = #{r_no}
+	</delete>
 	
 </mapper>

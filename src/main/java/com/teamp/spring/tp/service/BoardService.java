@@ -19,4 +19,5 @@ public interface BoardService {
 	public void edit(BoardVO bvo);
 	public void replyWrite(ReplyVO rvo);
 	public ArrayList<ReplyVO> replyList(int bno);
+	public void replyDelete(int r_no);
 }

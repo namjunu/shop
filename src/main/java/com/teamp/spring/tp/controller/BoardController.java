@@ -112,4 +112,11 @@ public class BoardController {
 		service.replyWrite(rvo);
 		return "redirect:/board/BoardRead?no="+b_no;
 	}
+	
+	@GetMapping("/ReplyDelete")
+	public String ReplyDelete(@RequestParam("r_no") int r_no, @RequestParam("b_no") int b_no) {
+		service.replyDelete(r_no);
+		return "redirect:/board/BoardRead?no="+b_no;
+	}
+	
 }
