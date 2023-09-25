@@ -76,7 +76,7 @@ public class LoginController {
 			loginSuccess = false;
 		}
 		if(loginSuccess) {
-			session.setAttribute("id",id.getU_ID()); //id 세션에 로그인된 U_ID값을 넣음
+			session.setAttribute("U_ID",id.getU_ID()); //id 세션에 로그인된 U_ID값을 넣음
 			return "redirect:/Login/getInfo"; //유저정보를 세션에 저장하는 동작 수행
 		} else {
 			redirectAttributes.addFlashAttribute("message", "로그인 실패, 아이디또는 비밀번호가 일치하지 않습니다");
@@ -85,7 +85,7 @@ public class LoginController {
 	}
 	@GetMapping("/getInfo") //유저정보를 세션에 저장
 	public String getInfo(HttpSession session) {
-		String id= (String) session.getAttribute("id");
+		String id= (String) session.getAttribute("U_ID");
 		log.info(id);
 		UserInfo userInfo = service.getInfo(id);
 		session.setAttribute("U_NO",userInfo.getU_NO());
@@ -121,7 +121,14 @@ public class LoginController {
 	
 	@PostMapping("/logOut") //세션에 저장된 id를 삭제
 	public String logout(HttpSession session) {
-		session.removeAttribute("id");
+		session.removeAttribute("U_ID");
+		session.removeAttribute("U_NO");
+		session.removeAttribute("U_NAME");
+		session.removeAttribute("U_ADDRESS");
+		session.removeAttribute("U_EMAIL");
+		session.removeAttribute("U_PHONE");
+		session.removeAttribute("U_POINT");
+		session.removeAttribute("U_TIMESTAMP");
 		return "redirect:/";
 	}
 	@PostMapping("/addPoint")
@@ -156,7 +163,7 @@ public class LoginController {
 		if(idcheck) {
 			service.deleteMember(id);
 			redirectAttributes.addFlashAttribute("message", "회원정보 삭제에 성공했습니다.");
-			session.removeAttribute("id");
+			session.removeAttribute("U_ID");
 			return "redirect:/";
 		} else {
 			redirectAttributes.addFlashAttribute("message", "비밀번호를 잘못 입력하셨습니다.");

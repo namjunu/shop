@@ -8,7 +8,7 @@
 </head>
 <body>
 <%-- 세션에 id가 있는지 확인 --%>
-<% String idValue = (String) session.getAttribute("id"); %>
+<% String idValue = (String) session.getAttribute("U_ID"); %>
 
 <%-- id가 있으면 로그아웃 폼 표시, 없으면 로그인 폼 표시 --%>
 <% if (idValue != null) { %>
@@ -22,13 +22,13 @@
         <input type="submit" value="로그아웃">
     </form> 
     <form action="./Login/addPoint" method="post">
-    	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("id") %>">
+    	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     	<input type="text" id="addPoint" name="addPoint">
     	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
     	<input type="submit" value="포인트 얻기">
     </form>
     <form action="./Login/usePoint" method="post">
-    	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("id") %>">
+    	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     	<input type="text" id="usePoint" name="usePoint">
     	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
     	<input type="submit" value="포인트 쓰기">
@@ -45,7 +45,7 @@
     </form>
     <a href="./Login/createID">회원가입</a>
 <% } %>
-id:${id}
+id:${U_ID}
 msg:${message}
 </body>
 </html>
