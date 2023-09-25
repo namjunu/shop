@@ -36,7 +36,7 @@ public class BoardController {
 
 	@GetMapping("/sessiontest")
 	public String sessiontest(HttpSession session, @RequestParam(value = "id", defaultValue = "testid") String id) {
-		session.setAttribute("id", id);
+		session.setAttribute("U_ID", id);
 		
 		return "redirect:/board/BoardList";
 	}
