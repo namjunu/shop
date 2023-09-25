@@ -106,7 +106,7 @@ public class LoginController {
 	public String editInfo(UserInfo id) {
 		log.info(id.getU_ID()+"의 정보를 수정했습니다.");
 		service.editInfo(id);
-		return "redirect:/";
+		return "redirect:/Login/getInfo";
 	}
 	
 	@GetMapping("/editPw") //비밀번호 재설정 페이지로 이동
