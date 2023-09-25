@@ -11,6 +11,19 @@ CREATE TABLE tb_example(
 	ex_date timestamp NULL DEFAULT now()
 );
 
+drop table if exists members;
+CREATE TABLE MEMBERS (
+	U_NO INT AUTO_INCREMENT primary key,
+    U_ID varchar(255) unique not null,
+    U_PW varchar(255) not null,
+    U_NAME varchar(255),
+    U_POINT INT default 0,
+    U_ADDRESS varchar(255),
+    U_EMAIL varchar(255),
+    U_PHONE varchar(15),
+    U_TIMESTAMP timestamp NULL DEFAULT now()
+);
+
 DROP TABLE if exists boards;
 CREATE TABLE BOARDS(
  	B_NO int auto_increment primary key,

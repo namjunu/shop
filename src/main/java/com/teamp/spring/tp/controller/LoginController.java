@@ -1,7 +1,5 @@
 package com.teamp.spring.tp.controller;
 
-
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -21,6 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.teamp.spring.tp.controller.LoginController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.teamp.spring.tp.dto.UserInfo;
 import com.teamp.spring.tp.service.LoginService;
 
@@ -33,7 +36,6 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class LoginController {
 	private LoginService service;
-	
 
 	@GetMapping("/test")
 	public void test() {
@@ -104,7 +106,7 @@ public class LoginController {
 	public String editInfo(UserInfo id) {
 		log.info(id.getU_ID()+"의 정보를 수정했습니다.");
 		service.editInfo(id);
-		return "redirect:/";
+		return "redirect:/Login/getInfo";
 	}
 	
 	@GetMapping("/editPw") //비밀번호 재설정 페이지로 이동
@@ -170,4 +172,9 @@ public class LoginController {
 	}
 	
 	
+
+	@GetMapping("/book")
+	public void book() {
+	}
+
 }

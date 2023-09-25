@@ -1,6 +1,5 @@
 package com.teamp.jang.kiosk;
 
-
 public class KioskMapper {
 	public KioskDto getData1();
 	public KioskDto getData2();
