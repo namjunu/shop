@@ -17,7 +17,6 @@
 <a href="/tp/board/sessiontest?id='testid1'">test1 계정 세션</a>
 <a href="/tp/board/sessiontest?id='testid2'">test2 계정 세션</a>
 	<a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
-남준우
 <a href="./Login/createID">회원가입</a>
 </body>
 </html>

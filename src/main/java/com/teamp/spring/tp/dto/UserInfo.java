@@ -2,6 +2,8 @@ package com.teamp.spring.tp.dto;
 
 import java.sql.Timestamp;
 
+import com.teamp.spring.tp.service.PwHashService;
+
 import lombok.Data;
 
 @Data
@@ -16,5 +18,8 @@ public class UserInfo {
 	private String U_EMAIL;	//유저의 이메일
 	private String U_PHONE;	//유저의 전화번호
 	private Timestamp U_TIMESTAMP;	//유저의 마지막 접속기록
+	public void hashPassword(PwHashService pwHashService) {
+		this.U_PW = pwHashService.hashPassword(this.U_PW); //유저 pw를 해싱하여 저장
+	}
 }
 
