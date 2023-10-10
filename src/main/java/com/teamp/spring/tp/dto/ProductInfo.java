@@ -16,4 +16,48 @@ public class ProductInfo {
     private Timestamp pCreatedDate;
     private Timestamp pUpdatedDate;
     private String pTags;
+ // Getter 메서드 추가
+    public int getpNo() {
+        return pNo;
+    }
+
+    public String getpName() {
+        return pName;
+    }
+
+    public int getpPrice() {
+        return pPrice;
+    }
+
+    public String getpBrand() {
+        return pBrand;
+    }
+
+    public String getpDescription() {
+        return pDescription;
+    }
+
+    public String getpCategory() {
+        return pCategory;
+    }
+
+    public int getpStock() {
+        return pStock;
+    }
+
+    public String getpImage() {
+        return pImage;
+    }
+
+    public Timestamp getpCreatedDate() {
+        return pCreatedDate;
+    }
+
+    public Timestamp getpUpdatedDate() {
+        return pUpdatedDate;
+    }
+
+    public String getpTags() {
+        return pTags;
+    }
 }

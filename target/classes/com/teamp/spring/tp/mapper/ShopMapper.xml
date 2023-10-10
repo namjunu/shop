@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamp.spring.tp.mapper.ShopMapper">
+    
+    <resultMap id="productInfoMap" type="com.teamp.spring.tp.dto.ProductInfo">
+        <id column="P_NO" property="pNo" />
+        <result column="P_NAME" property="pName" />
+        <result column="P_PRICE" property="pPrice" />
+        <result column="P_BRAND" property="pBrand" />
+        <result column="P_DESCRIPTION" property="pDescription" />
+        <result column="P_CATEGORY" property="pCategory" />
+        <result column="P_STOCK" property="pStock" />
+        <result column="P_IMAGE" property="pImage" />
+        <result column="P_CREATED_DATE" property="pCreatedDate" />
+        <result column="P_UPDATED_DATE" property="pUpdatedDate" />
+        <result column="P_TAGS" property="pTags" />
+    </resultMap>
+
+    <select id="getAllProducts" resultMap="productInfoMap">
+        SELECT * FROM PRODUCTS;
+    </select>
+    
+</mapper>

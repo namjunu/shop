@@ -3,6 +3,7 @@ package com.teamp.spring.tp.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -38,11 +39,16 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Controller
 public class ShopController {
-	private ShopService shopService;
-	
+	private final ShopService shopService;
+
 	@GetMapping("/test")
 	public void test() {
 		log.info("testest");
 	}
-
+	@GetMapping("/main")
+	public String showProductList(Model model) {
+		List<ProductInfo> productList = shopService.getAllProducts();
+        model.addAttribute("productList", productList);
+		return "Shop/shop_main";
+	}
 }
