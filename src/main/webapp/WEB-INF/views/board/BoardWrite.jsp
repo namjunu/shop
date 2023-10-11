@@ -13,8 +13,8 @@
 	제목 : <textarea rows="1" name='b_title'></textarea>
 	<hr>
 	<textarea rows="10" name='b_content'></textarea>
-	작성자 : <%= session.getAttribute("id") %>
-	<input type="hidden" name = "b_writer" value = <%=session.getAttribute("id")%>>
+	작성자 : <%= session.getAttribute("U_ID") %>
+	<input type="hidden" name = "b_writer" value = <%=session.getAttribute("U_ID")%>>
 	<br>
 	<div >
 		<div>카테고리 : </div>

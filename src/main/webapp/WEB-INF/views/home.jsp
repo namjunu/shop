@@ -14,6 +14,7 @@
 </h1>
 <P>  The time on the server is ${serverTime}. </P>
   <jsp:include page="Login/commonLogin.jsp"/>
+<a href="/tp/board/BoardList">게시판가기</a>
 <a href="/tp/board/sessiontest?id='testid1'">test1 계정 세션</a>
 <a href="/tp/board/sessiontest?id='testid2'">test2 계정 세션</a>
 	<a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>

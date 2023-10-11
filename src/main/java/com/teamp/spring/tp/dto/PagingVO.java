@@ -8,6 +8,8 @@ public class PagingVO {
 		private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 		private int cntPage = 5;
 		private String category = "main";
+		private String search = "";
+		private String searchType = "";
 		
 		public PagingVO() {
 		}
@@ -24,6 +26,17 @@ public class PagingVO {
 			setCntPerPage(cntPerPage);
 			setTotal(total);
 			setCategory(category);
+			calcLastPage(getTotal(), getCntPerPage());
+			calcStartEndPage(getNowPage(), cntPage);
+			calcStartEnd(getNowPage(), getCntPerPage());
+		}
+		public PagingVO(int total, int nowPage, int cntPerPage, String category, String search, String searchType) {
+			setNowPage(nowPage);
+			setCntPerPage(cntPerPage);
+			setTotal(total);
+			setCategory(category);
+			setSearch(search);
+			setSearchType(searchType);
 			calcLastPage(getTotal(), getCntPerPage());
 			calcStartEndPage(getNowPage(), cntPage);
 			calcStartEnd(getNowPage(), getCntPerPage());

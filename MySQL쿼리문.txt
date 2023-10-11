@@ -48,3 +48,14 @@ CREATE TABLE REPLYS(
  	R_WRITEDATE timestamp default now(),
  	R_LIKECOUNT int default 0
  );
+ 
+DROP TABLE if exists likes;
+CREATE TABLE LIKES(
+	L_NO int auto_increment primary key,
+	B_NO int not null,
+	foreign key (B_NO) references BOARDS (B_NO),
+	U_NO int not null,
+	foreign key (U_NO) references MEMBERS (U_NO),
+	L_CHECK boolean default true
+);
+ 

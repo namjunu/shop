@@ -12,6 +12,43 @@
 	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
 		SELECT * from boards ORDER BY b_no DESC limit #{start} , #{cntPerPage}
 	</select>
+	
+	
+	<select id="countBoardSearch" resultType = "int">
+		SELECT COUNT(*) from boards
+		<if test='"title".equals(searchType)'>
+		WHERE B_TITLE LIKE concat('%',#{search},'%')
+		</if>
+		<if test='searchType.equals("content")'>
+		WHERE B_CONTENT LIKE concat('%',#{search},'%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+		WHERE b_title LIKE concat('%',#{search},'%')
+   		or b_content LIKE concat('%',#{search},'%')
+		</if>
+		<if test='searchType.equals("writer")'>
+		WHERE b_writer LIKE concat('%',#{search},'%')
+		</if>
+	</select>
+	<select id="getListSearch" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * from boards
+		<if test='searchType.equals("title")'>
+		WHERE B_TITLE LIKE concat('%',#{search},'%')
+		</if>
+		<if test='searchType.equals("content")'>
+		WHERE b_content LIKE concat('%', #{search}, '%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+		WHERE b_title LIKE concat('%', #{search}, '%') 
+   		or b_content LIKE concat('%', #{search}, '%')
+		</if>
+		<if test='searchType.equals("writer")'>
+		WHERE b_writer LIKE concat('%', #{search}, '%')
+		</if>
+		ORDER BY b_no DESC limit #{start} , #{cntPerPage}  
+	</select>
+	
+	
 	<select id="countBoardCategory" resultType = "int">
 		SELECT COUNT(*) from boards where b_category = #{category}
 	</select>
@@ -47,4 +84,23 @@
 		delete from REPLYS where r_no = #{r_no}
 	</delete>
 	
+	<!-- 글 추천부분 구현 -->
+	<select id="likeCheck" resultType="Boolean">
+		SELECT L_CHECK from LIKES WHERE B_NO = #{bno} and U_NO = #{uno}
+	</select>
+	<insert id="insertLike">
+		insert into LIKES (B_NO, U_NO, L_CHECK) values (#{bno}, #{uno}, true)
+	</insert>
+	<update id="updateLike" >
+		UPDATE boards SET B_LIKECOUNT = B_LIKECOUNT+1 where b_no = #{bno};
+	</update>
+	<update id="updateLikeCancel" >
+		UPDATE boards SET B_LIKECOUNT = B_LIKECOUNT-1 where b_no = #{bno};
+	</update>
+	<update id="updateLikeCheck" >
+		UPDATE LIKES SET L_CHECK = true where B_NO = #{bno} and U_NO = #{uno};
+	</update>
+	<update id="updateLikeCheckCancel" >
+		UPDATE LIKES SET L_CHECK = false where B_NO = #{bno} and U_NO = #{uno};
+	</update>
 </mapper>

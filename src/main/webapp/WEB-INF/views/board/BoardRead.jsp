@@ -15,18 +15,26 @@
 <body>
 
 <% 
-	String sessionid = ((String) session.getAttribute("id")).replaceAll("\'", "").toString();
+	String sessionid = ((String) session.getAttribute("U_ID")).replaceAll("\'", "").toString();
 	pageContext.setAttribute("sessionid", sessionid);
 %>
 글번호:${read.b_no}
 글제목:${read.b_title}
 <hr>
-글내용:${read.b_content}
-<hr>
+
 글쓴이:${read.b_writer}
 작성일:${read.b_writedate}
 조회수:${read.b_readcount}
-추천수:${read.b_likecount}
+<hr>
+글내용:${read.b_content}
+<br>
+<a href="/tp/board/BoardLike?no=${read.b_no}"><button>
+	<c:choose>
+		<c:when test = "${likeValue}"><h4>추천취소</h4></c:when>
+		<c:otherwise><h4>추천</h4></c:otherwise>
+	</c:choose>
+	<h3>${read.b_likecount}</h3>
+</button></a>
 <hr>
 
 <c:if test="${idCheck eq 'true'}">
@@ -49,7 +57,7 @@
 
 <form action="/tp/board/ReplyWrite" method="get">
 	<input type="hidden" name = "b_no" value = ${read.b_no}>
-	<input type="hidden" name = "r_writer" value = <%=session.getAttribute("id")%>>
+	<input type="hidden" name = "r_writer" value = <%=sessionid%>>
 	<textarea rows="10" name='r_content'></textarea>
 	<input type="submit" value="댓글쓰기">
 </form>
