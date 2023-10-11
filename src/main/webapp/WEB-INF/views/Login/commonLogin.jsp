@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/commonLogin.css'/>">
 </head>
 <body>
+
 <%-- 세션에 id가 있는지 확인 --%>
 <% String idValue = (String) session.getAttribute("U_ID"); %>
 
 <%-- id가 있으면 로그아웃 폼 표시, 없으면 로그인 폼 표시 --%>
 <% if (idValue != null) { %>
+<div id="login-box">
     <form action="./Login/editInfo">
         <input type="submit" value="회원정보수정">
     </form> 
@@ -45,7 +50,9 @@
     </form>
     <a href="./Login/createID">회원가입</a>
 <% } %>
+
 id:${U_ID}
 msg:${message}
+</div>
 </body>
 </html>

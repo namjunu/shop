@@ -1,0 +1,36 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif; /* Noto Sans KR 폰트 적용 (네이버와 유사) */
+}
+
+#login-box {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 2px #ccc;
+    margin: 50px auto; /* 페이지 중앙에 박스 배치 */
+}
+
+#login-box form {
+    margin: 10px 0;
+}
+
+#login-box input[type="text"],
+#login-box input[type="password"],
+#login-box input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+#login-box input[type="submit"] {
+    background-color: #2db400; /* 네이버 색상 */
+    color: white;
+    cursor: pointer;
+}
+
+#login-box input[type="submit"]:hover {
+    background-color: #29a100;
+}
