@@ -18,13 +18,18 @@
             <th>이미지</th>
         </tr>
         <c:forEach items="${productList}" var="product" begin="0" end="24">
-            <tr>
-                <td>${product.pNo}</td>
-                <td>${product.pName}</td>
-                <td>${product.pPrice}</td>
-                <td><img src="${product.pImage}" alt="${product.pName} 이미지" width="100"></td>
-            </tr>
-        </c:forEach>
+	    <tr>
+	        <td>${product.pNo}</td>
+	        <td>${product.pName}</td>
+	        <td>${product.pPrice}</td>
+	        <td>
+	            <a href="<c:url value='/Shop/product_detail/${product.pNo}'/>">
+	                <img src="${product.pImage}" alt="${product.pName} 이미지" width="100">
+	            </a>
+	        </td>
+	    </tr>
+	</c:forEach>
+
     </table>
 
     <!-- 페이지 이동을 위한 링크 -->

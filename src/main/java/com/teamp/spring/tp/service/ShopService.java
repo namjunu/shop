@@ -6,5 +6,6 @@ import com.teamp.spring.tp.dto.ProductInfo;
 public interface ShopService {
 
 	List<ProductInfo> getAllProducts();
+	ProductInfo getProductById(int productId);
 
 }

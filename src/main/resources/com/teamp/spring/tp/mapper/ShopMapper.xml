@@ -19,5 +19,7 @@
     <select id="getAllProducts" resultMap="productInfoMap">
         SELECT * FROM PRODUCTS;
     </select>
-    
+    <select id="getProductById" resultMap="productInfoMap">
+    SELECT * FROM PRODUCTS WHERE P_NO=#{productId}
+	</select>
 </mapper>

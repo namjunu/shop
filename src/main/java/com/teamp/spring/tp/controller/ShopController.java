@@ -11,11 +11,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -50,5 +53,12 @@ public class ShopController {
 		List<ProductInfo> productList = shopService.getAllProducts();
         model.addAttribute("productList", productList);
 		return "Shop/shop_main";
+	}
+	@RequestMapping(value="/productDetail/{productId}", method=RequestMethod.GET)
+	public ModelAndView productDetail(@PathVariable("productId") int productId) {
+	    ModelAndView mv = new ModelAndView("Shop/product_detail");
+	    ProductInfo product = shopService.getProductById(productId);
+	    mv.addObject("product", product);
+	    return mv;
 	}
 }
