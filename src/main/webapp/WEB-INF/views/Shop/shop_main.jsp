@@ -9,7 +9,20 @@
 <body>
 <jsp:include page="/WEB-INF/views/Login/commonLogin.jsp"/>
     <h1>제품 목록</h1>
-    
+    <form action="/tp/Shop/productList" method="get">
+        <label for="category">Category:</label>
+        <select name="category" id="category">
+            <option value="" selected>Select Category</option>
+            <option value="Foods">식류</option>
+            <option value="Clothing">의류</option>
+            <!-- Add more categories as needed -->
+        </select>
+        
+        <label for="keyword">Keyword:</label>
+        <input type="text" id="keyword" name="keyword" placeholder="Search products">
+        
+        <input type="submit" value="Search">
+    </form>
     <table border="1">
         <tr>
             <th>제품 번호</th>
@@ -23,7 +36,7 @@
 	        <td>${product.pName}</td>
 	        <td>${product.pPrice}</td>
 	        <td>
-	            <a href="<c:url value='/Shop/product_detail/${product.pNo}'/>">
+	            <a href="<c:url value='/Shop/productDetail?productId=${product.pNo}'/>">
 	                <img src="${product.pImage}" alt="${product.pName} 이미지" width="100">
 	            </a>
 	        </td>

@@ -19,7 +19,27 @@
     <select id="getAllProducts" resultMap="productInfoMap">
         SELECT * FROM PRODUCTS;
     </select>
+    
     <select id="getProductById" resultMap="productInfoMap">
-    SELECT * FROM PRODUCTS WHERE P_NO=#{productId}
-	</select>
+        SELECT * FROM PRODUCTS WHERE P_NO=#{productId}
+    </select>
+    
+    <select id="searchProducts" parameterType="string" resultMap="productInfoMap">
+        SELECT * FROM PRODUCTS WHERE P_NAME LIKE #{keyword}
+    </select>
+    
+    <select id="selectProductsByCategory" parameterType="string" resultMap="productInfoMap">
+        SELECT * FROM PRODUCTS WHERE P_CATEGORY = #{category}
+    </select>
+    
+    <select id="searchProductsByCategoryAndKeyword" parameterType="map" resultMap="productInfoMap">
+        SELECT * FROM PRODUCTS 
+        WHERE P_CATEGORY = #{category} 
+        AND P_NAME LIKE #{keyword}
+    </select>
+    
+    <insert id="insertIntoCart">
+	    INSERT INTO CART (U_ID, P_NO, QUANTITY)
+	    VALUES (#{userId}, #{productId}, #{quantity})
+	</insert>
 </mapper>
