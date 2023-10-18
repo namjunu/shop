@@ -15,7 +15,6 @@
         <result column="P_UPDATED_DATE" property="pUpdatedDate" />
         <result column="P_TAGS" property="pTags" />
     </resultMap>
-
     <select id="getAllProducts" resultMap="productInfoMap">
         SELECT * FROM PRODUCTS;
     </select>
@@ -38,8 +37,29 @@
         AND P_NAME LIKE #{keyword}
     </select>
     
-    <insert id="insertIntoCart">
+	<insert id="saveCart">
 	    INSERT INTO CART (U_ID, P_NO, QUANTITY)
-	    VALUES (#{userId}, #{productId}, #{quantity})
+	    VALUES
+	    <foreach item="item" index="index" collection="cart" separator=",">
+	        (#{userId}, #{index}, #{item})
+	    </foreach>
 	</insert>
+	<select id="getCart" resultType="com.teamp.spring.tp.dto.CartItem">
+		SELECT * FROM CART WHERE U_ID = #{userId}
+	</select>
+	
+	<update id="updateCartQuantity" parameterType="map">
+		UPDATE CART 
+		SET QUANTITY = #{quantity} 
+		WHERE U_ID = #{userId} AND P_NO = #{p_NO}
+	</update>
+	
+	<select id="findCartItem" resultType="Integer">
+		SELECT COUNT(*) FROM CART WHERE U_ID = #{userId} AND P_NO = #{p_NO}
+	</select>
+	
+	<delete id="removeFromCart">
+		DELETE FROM CART
+		WHERE U_ID = #{userId} AND P_NO = #{p_NO}
+	</delete>
 </mapper>

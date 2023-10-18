@@ -43,8 +43,20 @@ public class ShopServiceImpl implements ShopService{
 	    }
 
 	    @Override
-	    public Map<Integer, CartItem> getCartFromDatabase(String userId) {
+	    public List<CartItem> getCartFromDatabase(String userId) {
 	        return shopMapper.getCart(userId);
 	    }
-
+	    @Override
+	    public int findCartItem(String userId, int p_NO) {
+	        return shopMapper.findCartItem(userId, p_NO);
+	    }
+	    @Override
+	    public void updateCartQuantity(String userId, int p_NO, int quantity) {
+	        shopMapper.updateCartQuantity(userId, p_NO, quantity);
+	    }
+	    
+	    @Override
+	    public void removeFromCart(String userId, int p_NO) {
+	        shopMapper.removeFromCart(userId, p_NO);
+	    }
 }

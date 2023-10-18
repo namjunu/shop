@@ -21,9 +21,21 @@ public interface ShopMapper {
     List<ProductInfo> searchProductsByCategoryAndKeyword(Map<String, Object> params);
 
     void insertIntoCart(@Param("userId") String userId, 
-            @Param("productId") int productId, 
+            @Param("p_NO") int p_NO, 
             @Param("quantity") int quantity);
-    void saveCart(String userId, Map<Integer, Integer> cart);
+    void saveCart(@Param("userId") String userId, @Param("cart") Map<Integer, Integer> cart);
 
-    Map<Integer, CartItem> getCart(String userId);
+
+    List<CartItem> getCart(@Param("userId") String userId);
+    
+    // Adding the method to update the quantity of a product in the cart
+    void updateCartQuantity(@Param("userId") String userId, 
+                            @Param("p_NO") int p_NO, 
+                            @Param("quantity") int quantity);
+                            
+    // Adding the method to remove a product from the cart
+    void removeFromCart(@Param("userId") String userId, 
+                        @Param("p_NO") int p_NO);
+    
+    int findCartItem(@Param("userId") String userId, @Param("p_NO") int p_NO);
 }

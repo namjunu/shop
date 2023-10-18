@@ -1,8 +1,13 @@
 package com.teamp.spring.tp.dto;
 
-public class CartItem {
+import lombok.Data;
 
-    private int productId; // 상품 ID
+@Data
+public class CartItem {
+	
+	private int cartId; //Cart 번호
+	private String userId; //유저 No
+    private int p_NO; // 상품 ID
     private int quantity; // 상품 수량
 
     // 기본 생성자
@@ -10,18 +15,18 @@ public class CartItem {
     }
 
     // 모든 필드를 매개변수로 받는 생성자
-    public CartItem(int productId, int quantity) {
-        this.productId = productId;
+    public CartItem(int p_NO, int quantity) {
+        this.p_NO = p_NO;
         this.quantity = quantity;
     }
 
     // 상품 ID에 대한 getter와 setter
-    public int getProductId() {
-        return productId;
+    public int getp_NO() {
+        return p_NO;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setp_NO(int p_NO) {
+        this.p_NO = p_NO;
     }
 
     // 상품 수량에 대한 getter와 setter
@@ -37,7 +42,7 @@ public class CartItem {
     @Override
     public String toString() {
         return "CartItem{" +
-                "productId=" + productId +
+                "P_NO=" + p_NO +
                 ", quantity=" + quantity +
                 '}';
     }

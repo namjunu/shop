@@ -78,7 +78,43 @@ public class ShopController {
 		return "Shop/shop_main";
 	}
 	@PostMapping("/addToCart")
-	public String addToCart(@RequestParam("productId") int productId,
+	public String addToCart(@RequestParam("p_NO") int p_NO,
+	                        @RequestParam("quantity") int quantity,
+	                        HttpSession session) {
+	    String uId = (String) session.getAttribute("U_ID");
+	    Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
+
+	    if (cart == null) {
+	        cart = new HashMap<>();
+	    }
+
+	    // Product is already in the cart, update the quantity
+	    if (cart.containsKey(p_NO)) {
+	        cart.put(p_NO, cart.get(p_NO) + quantity);
+	    } else {
+	        // Product is not in the cart, add new product
+	        cart.put(p_NO, quantity);
+	    }
+
+	    session.setAttribute("cart", cart);
+
+	    // Only interact with the database if the user is logged in
+	    if (uId != null) {
+	        int existingQuantity = shopService.findCartItem(uId, p_NO);
+	        if (existingQuantity > 0) {
+	            // If product exists, update the quantity
+	            shopService.updateCartQuantity(uId, p_NO, quantity + existingQuantity);
+	        } else {
+	            // If product doesn't exist, save the cart to the database
+	            shopService.saveCartToDatabase(uId, cart);
+	        }
+	    }
+
+	    return "redirect:/Shop/main";
+	}
+	
+	@PostMapping("/updateCart")
+	public void updateCart(@RequestParam("p_NO") int p_NO,
 	                        @RequestParam("quantity") int quantity,
 	                        HttpSession session) {
 	    String userId = (String) session.getAttribute("U_ID");
@@ -88,26 +124,59 @@ public class ShopController {
 	        cart = new HashMap<>();
 	    }
 	    
-	    cart.put(productId, quantity);
+	    cart.put(p_NO, quantity);
 	    session.setAttribute("cart", cart);
 	    
 	    if (userId != null) {
 	        shopService.saveCartToDatabase(userId, cart);
-	        session.removeAttribute("cart");
 	    }
-	    
-	    return "redirect:/Shop/main";
+	}
+	@GetMapping("/testId")
+	public void testId(HttpSession session) {
+		String userId = (String) session.getAttribute("U_ID");
+		log.info(userId);
 	}
 	@GetMapping("/cart")
 	public String getCart(HttpSession session, Model model) {
 	    String userId = (String) session.getAttribute("U_ID");
 	    
 	    if (userId != null) {
-	        Map<Integer, CartItem> cartFromDB = shopService.getCartFromDatabase(userId);
+	        List<CartItem> cartFromDB = shopService.getCartFromDatabase(userId);
+	        Map<Integer, ProductInfo> productDetails = new HashMap<>();
+	        for(CartItem item : cartFromDB){
+	            ProductInfo productInfo = shopService.getProductById(item.getp_NO());
+	            productDetails.put(item.getp_NO(), productInfo);
+	        }
+	        model.addAttribute("productDetails", productDetails);
 	        model.addAttribute("cartFromDB", cartFromDB);
 	    }
-	    
 	    return "/Shop/cart";
 	}
+    @PostMapping("/updateCartQuantity")
+    public String updateCartQuantity(@RequestParam("p_NO") int p_NO,
+                                     @RequestParam("quantity") int quantity,
+                                     HttpSession session) {
+        String userId = (String) session.getAttribute("U_ID");
+
+        if (userId != null) {
+            // shopService should have a method to update cart quantity
+            shopService.updateCartQuantity(userId, p_NO, quantity);
+        }
+
+        return "redirect:/Shop/cart";
+    }
+
+    @PostMapping("/removeFromCart")
+    public String removeFromCart(@RequestParam("p_NO") int p_NO,
+                                 HttpSession session) {
+        String userId = (String) session.getAttribute("U_ID");
+
+        if (userId != null) {
+            // shopService should have a method to remove a product from the cart
+            shopService.removeFromCart(userId, p_NO);
+        }
+
+        return "redirect:/Shop/cart";
+    }
 
 }

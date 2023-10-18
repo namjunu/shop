@@ -17,7 +17,7 @@
     <p>Tags: ${product.pTags}</p>
     <!-- 장바구니에 담기 폼 시작 -->
     <form action="<c:url value='/Shop/addToCart'/>" method="post">
-        <input type="hidden" name="productId" value="${product.pNo}"/>
+        <input type="hidden" name="p_NO" value="${product.pNo}"/>
         <label for="quantity">Quantity:</label>
         <input type="number" id="quantity" name="quantity" value="1" min="1"/>
         <button type="submit">Add to Cart</button>
