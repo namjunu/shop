@@ -48,10 +48,13 @@
         <input name="U_PW" type="password" placeholder="로그인 암호">
         <input type="submit" value="로그인">
     </form>
-    <a href="/tp/Login/createID">회원가입</a>
+    <a href="/tp/Login/createID" class="link-button">회원가입</a>
 <% } %>
-<!-- 장바구니로 이동하는 링크 추가 -->
+<br>
+<br>
 <a href="/tp/Shop/cart" class="link-button">장바구니 보기</a>
+<br>
+<br>
 <a href="/tp/Shop/purchaseHistory" class="link-button">주문내역</a>
 </div>
 </body>

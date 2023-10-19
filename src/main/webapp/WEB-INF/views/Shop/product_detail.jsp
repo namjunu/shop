@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/shop_styles.css'/>">
     <title>${product.p_NAME} Details</title>
      <style>
-        /* 추가된 CSS 코드 */
-        .container {
+		.container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* 수정: 가로로 요소 나열 */
             align-items: flex-start;
             text-align: left;
         }
 
         .product-image {
-            width: 300px; /* 이미지 크기 조정 */
+            flex-basis: 30%; /* 수정: 1/3 크기로 설정 */
         }
 
         .product-info {
+            flex-basis: 30%; /* 수정: 1/3 크기로 설정 */
             padding: 10px;
         }
 
@@ -33,15 +33,9 @@
             flex-direction: column;
             gap: 10px;
         }
-        
-        .login-panel {
-            order: -1; /* 로그인 패널을 가장 위로 이동 */
-            margin-bottom: 20px; /* 로그인 패널과 아래 내용 사이 여백 추가 */
-        }
 
-        .main-links {
-            flex-grow: 0; /* 메인 페이지 링크가 너무 확장되지 않도록 설정 */
-            padding: 10px; /* 링크 영역 패딩 추가 */
+        .common-login {
+            flex-basis: 30%; /* 수정: 1/3 크기로 설정 */
         }
     </style>
 </head>
@@ -105,9 +99,10 @@
         
         <a href="<c:url value='/Shop/main'/>">Back to Product List</a>
         </div>
-        </div>
-        <aside class="login-panel">
+                <aside class="common-login">
             <jsp:include page="/WEB-INF/views/Login/commonLogin.jsp"/>
         </aside>
+        </div>
+
 </body>
 </html>

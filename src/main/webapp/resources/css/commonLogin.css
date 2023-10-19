@@ -1,7 +1,5 @@
-/* shop_styles.css */
-
 body {
-    font-family: 'Noto Sans KR', sans-serif; /* Noto Sans KR 폰트 적용 (네이버와 유사) */
+    font-family: 'Noto Sans KR', sans-serif; 
 }
 
 #login-box {
@@ -10,8 +8,8 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 2px #ccc;
-    margin: 50px auto; /* 페이지 중앙에 박스 배치 */
-    text-align: right; /* 로그인 상자 내용을 오른쪽으로 정렬 */
+    margin: 50px auto; 
+    text-align: right; 
 }
 
 #login-box form {
@@ -33,7 +31,7 @@ body {
 }
 
 #login-box input[type="submit"] {
-    background-color: #2db400; /* 네이버 색상 */
+    background-color: #2db400;
     color: white;
     cursor: pointer;
 }
@@ -42,7 +40,6 @@ body {
     background-color: #29a100;
 }
 
-/* 장바구니와 주문내역 링크 스타일 */
 .link-button {
     text-decoration: none;
     color: #fff;
