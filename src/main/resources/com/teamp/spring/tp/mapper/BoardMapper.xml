@@ -50,11 +50,40 @@
 	
 	
 	<select id="countBoardCategory" resultType = "int">
-		SELECT COUNT(*) from boards where b_category = #{category}
+		SELECT COUNT(*) from boards
+		<choose>
+			<when test='value.equals("like")'>
+			WHERE B_LIKECOUNT >= 1;
+			</when>
+			<otherwise>
+			WHERE b_category = #{category}
+			</otherwise>
+		</choose>
 	</select>
+	
+	<select id="countBoardMy" resultType = "int">
+		SELECT COUNT(*) from boards
+		WHERE B_WRITER = #{writer}
+	</select>
+	
 	<select id="getListCategory" resultType="com.teamp.spring.tp.dto.BoardVO">
-		SELECT * from boards WHERE b_category = #{category} ORDER BY b_no DESC limit #{start} , #{cntPerPage}  
+		SELECT * from boards 
+		<choose>
+			<when test='category.equals("like")'>
+			WHERE B_LIKECOUNT >= 1
+			</when>
+			<otherwise>
+			WHERE b_category = #{category}
+			</otherwise>
+		</choose> 
+		ORDER BY b_no DESC limit #{start} , #{cntPerPage}  
 	</select>
+	<select id="getListMy" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * from boards 
+		WHERE B_WRITER = #{writer}
+		ORDER BY b_no DESC limit #{pvo.start} , #{pvo.cntPerPage}  
+	</select>
+	
 	
 	<select id="read" resultType="com.teamp.spring.tp.dto.BoardVO">
 		SELECT  * from boards where B_NO = #{b_no}

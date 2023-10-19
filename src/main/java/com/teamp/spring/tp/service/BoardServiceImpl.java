@@ -38,6 +38,11 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
+	public int countBoardMy(String u_id) {
+		return mapper.countBoardMy(u_id);
+	}
+	
+	@Override
 	public ArrayList<BoardVO> getListSearch(PagingVO pvo){
 		System.out.println("get list search = "+pvo.getSearch());
 		System.out.println("get list searchType = "+pvo.getSearchType());
@@ -47,6 +52,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public ArrayList<BoardVO> getListCategory(PagingVO pvo){
 		return mapper.getListCategory(pvo);
+	}
+	
+	@Override
+	public ArrayList<BoardVO> getListMy(PagingVO pvo , String u_id){
+		return mapper.getListMy(pvo, u_id);
 	}
 	
 	@Override

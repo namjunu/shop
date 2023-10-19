@@ -19,10 +19,14 @@ public interface BoardMapper {
 	public int countBoardSearch(@Param("search")String search, @Param("searchType")String searchType);
 	//게시판 카테고리에 해당하는 글 세기
 	public int countBoardCategory(String category);
+	//게시판 내가 쓴 글 세기
+	public int countBoardMy(@Param("writer")String u_id);
 	//게시판 검색한것에 해당하는 글 가져오기
 	public ArrayList<BoardVO> getListSearch(PagingVO pvo);
 	//게시판 카테고리에 해당하는 글 가져오기
 	public ArrayList<BoardVO> getListCategory(PagingVO pvo);
+	//게시판 내가 쓴 글 가져오기
+	public ArrayList<BoardVO> getListMy(@Param("pvo")PagingVO pvo, @Param("writer")String u_id);
 	//게시판 글 가져오기
 	public BoardVO read(int no);
 	//게시판 조회수 증가

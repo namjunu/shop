@@ -41,13 +41,20 @@ public class BoardController {
 							Model model) {
 		if(category.equals("main")){
 			int total = service.countBoardSearch(search, searchType);
-			System.out.println(total);
+			System.out.println("검색된 글 수 : "+total);
 			PagingVO pvo = new PagingVO(total, currentPage, 10, category, search, searchType);
 			model.addAttribute("category", category);
 			model.addAttribute("paging", pvo);
 			model.addAttribute("list", service.getListSearch(pvo));
+		}else if(category.equals("my")){
+			int total = service.countBoardMy((String)session.getAttribute("U_ID"));	
+			PagingVO pvo = new PagingVO(total, currentPage, 10, category);
+			model.addAttribute("category", category);
+			model.addAttribute("paging", pvo);
+			model.addAttribute("list", service.getListMy(pvo, (String)session.getAttribute("U_ID")));
 		}else {
 			int total = service.countBoardCategory(category);
+			System.out.println("카테고리 수 :" +total);
 			PagingVO pvo = new PagingVO(total, currentPage, 10, category);
 			model.addAttribute("category", category);
 			model.addAttribute("paging", pvo);

@@ -1,9 +1,7 @@
 package com.teamp.spring.tp.service;
 
 import java.util.ArrayList;
-
 import org.apache.ibatis.annotations.Param;
-
 import com.teamp.spring.tp.dto.BoardVO;
 import com.teamp.spring.tp.dto.PagingVO;
 import com.teamp.spring.tp.dto.ReplyVO;
@@ -14,8 +12,10 @@ public interface BoardService {
 	public ArrayList<BoardVO> getList(PagingVO pvo);
 	public int countBoardSearch(String search, String searchType);
 	public int countBoardCategory(String category);
+	public int countBoardMy(String u_id);
 	public ArrayList<BoardVO> getListSearch(PagingVO pvo);
 	public ArrayList<BoardVO> getListCategory(PagingVO pvo);
+	public ArrayList<BoardVO> getListMy(PagingVO pvo, String u_id);
 	public BoardVO read(int no);
 	public void upCount(int no);
 	public void write(BoardVO bvo);
