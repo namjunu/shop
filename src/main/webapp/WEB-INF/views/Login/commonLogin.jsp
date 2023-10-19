@@ -26,13 +26,13 @@
     <form action="/tp/Login/logOut" method="post">
         <input type="submit" value="로그아웃">
     </form> 
-    <form action="/tp/Login/addPoint" method="post">
+    <form action="/tp/Login/addPoint" method="post" class="hidden">
     	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     	<input type="text" id="addPoint" name="addPoint">
     	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
     	<input type="submit" value="포인트 얻기">
     </form>
-    <form action="/tp/Login/usePoint" method="post">
+    <form action="/tp/Login/usePoint" method="post" class="hidden">
     	<input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     	<input type="text" id="usePoint" name="usePoint">
     	<input type="hidden" id="U_POINT" name="U_POINT" value="<%= session.getAttribute("U_POINT") %>">
@@ -51,9 +51,8 @@
     <a href="/tp/Login/createID">회원가입</a>
 <% } %>
 <!-- 장바구니로 이동하는 링크 추가 -->
-    <a href="/tp/Shop/cart">장바구니 보기</a>
-id:${U_ID}
-msg:${message}
+<a href="/tp/Shop/cart" class="link-button">장바구니 보기</a>
+<a href="/tp/Shop/purchaseHistory" class="link-button">주문내역</a>
 </div>
 </body>
 </html>

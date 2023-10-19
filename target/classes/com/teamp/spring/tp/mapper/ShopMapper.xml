@@ -3,24 +3,33 @@
 <mapper namespace="com.teamp.spring.tp.mapper.ShopMapper">
     
     <resultMap id="productInfoMap" type="com.teamp.spring.tp.dto.ProductInfo">
-        <id column="P_NO" property="pNo" />
-        <result column="P_NAME" property="pName" />
-        <result column="P_PRICE" property="pPrice" />
-        <result column="P_BRAND" property="pBrand" />
-        <result column="P_DESCRIPTION" property="pDescription" />
-        <result column="P_CATEGORY" property="pCategory" />
-        <result column="P_STOCK" property="pStock" />
-        <result column="P_IMAGE" property="pImage" />
-        <result column="P_CREATED_DATE" property="pCreatedDate" />
-        <result column="P_UPDATED_DATE" property="pUpdatedDate" />
-        <result column="P_TAGS" property="pTags" />
+        <id column="P_NO" property="P_NO" />
+        <result column="P_NAME" property="P_NAME" />
+        <result column="P_PRICE" property="P_PRICE" />
+        <result column="P_BRAND" property="P_BRAND" />
+        <result column="P_DESCRIPTION" property="P_DESCRIPTION" />
+        <result column="P_CATEGORY" property="P_CATEGORY" />
+        <result column="P_STOCK" property="P_STOCK" />
+        <result column="P_IMAGE" property="P_IMAGE" />
+        <result column="P_CREATED_DATE" property="P_CREATED_DATE" />
+        <result column="P_UPDATED_DATE" property="P_UPDATED_DATE" />
+        <result column="P_TAGS" property="P_TAGS" />
     </resultMap>
+    <resultMap id="orderInfoMap" type="com.teamp.spring.tp.dto.OrdersInfo">
+	    <id column="O_ID" property="O_ID" />
+	    <result column="P_NO" property="P_NO" />
+	    <result column="QUANTITY" property="QUANTITY" />
+	    <result column="PAYMENT_AMOUNT" property="PAYMENT_AMOUNT" />
+	    <result column="O_NAME" property="O_NAME" />
+	    <result column="O_PHONE" property="O_PHONE" />
+	    <result column="O_ADDRESS" property="O_ADDRESS" />
+	</resultMap>
     <select id="getAllProducts" resultMap="productInfoMap">
         SELECT * FROM PRODUCTS;
     </select>
     
     <select id="getProductById" resultMap="productInfoMap">
-        SELECT * FROM PRODUCTS WHERE P_NO=#{productId}
+        SELECT * FROM PRODUCTS WHERE P_NO=#{P_NO}
     </select>
     
     <select id="searchProducts" parameterType="string" resultMap="productInfoMap">
@@ -28,38 +37,80 @@
     </select>
     
     <select id="selectProductsByCategory" parameterType="string" resultMap="productInfoMap">
-        SELECT * FROM PRODUCTS WHERE P_CATEGORY = #{category}
+        SELECT * FROM PRODUCTS WHERE P_CATEGORY = #{P_CATEGORY}
     </select>
     
     <select id="searchProductsByCategoryAndKeyword" parameterType="map" resultMap="productInfoMap">
         SELECT * FROM PRODUCTS 
-        WHERE P_CATEGORY = #{category} 
+        WHERE P_CATEGORY = #{P_CATEGORY} 
         AND P_NAME LIKE #{keyword}
     </select>
-    
+    <update id="updateProduct" parameterType="com.teamp.spring.tp.dto.ProductInfo">
+	    UPDATE PRODUCTS
+	    SET 
+	        P_NAME = #{P_NAME},
+	        P_PRICE = #{P_PRICE},
+	        P_BRAND = #{P_BRAND},
+	        P_DESCRIPTION = #{P_DESCRIPTION},
+	        P_CATEGORY = #{P_CATEGORY},
+	        P_STOCK = #{P_STOCK},
+	        P_IMAGE = #{P_IMAGE},
+	        P_UPDATED_DATE = CURRENT_TIMESTAMP,
+	        P_TAGS = #{P_TAGS}
+	    WHERE 
+	        P_NO = #{P_NO}
+	</update>
 	<insert id="saveCart">
 	    INSERT INTO CART (U_ID, P_NO, QUANTITY)
 	    VALUES
 	    <foreach item="item" index="index" collection="cart" separator=",">
-	        (#{userId}, #{index}, #{item})
+	        (#{U_ID}, #{index}, #{item})
 	    </foreach>
 	</insert>
 	<select id="getCart" resultType="com.teamp.spring.tp.dto.CartItem">
-		SELECT * FROM CART WHERE U_ID = #{userId}
+		SELECT * FROM CART WHERE U_ID = #{U_ID}
 	</select>
 	
 	<update id="updateCartQuantity" parameterType="map">
 		UPDATE CART 
 		SET QUANTITY = #{quantity} 
-		WHERE U_ID = #{userId} AND P_NO = #{p_NO}
+		WHERE U_ID = #{U_ID} AND P_NO = #{P_NO}
 	</update>
 	
 	<select id="findCartItem" resultType="Integer">
-		SELECT COUNT(*) FROM CART WHERE U_ID = #{userId} AND P_NO = #{p_NO}
+		SELECT COUNT(*) FROM CART WHERE U_ID = #{U_ID} AND P_NO = #{P_NO}
 	</select>
 	
 	<delete id="removeFromCart">
 		DELETE FROM CART
-		WHERE U_ID = #{userId} AND P_NO = #{p_NO}
+		WHERE U_ID = #{U_ID} AND P_NO = #{P_NO}
+	</delete>
+	
+	
+	<insert id="saveOrder" parameterType="com.teamp.spring.tp.dto.OrdersInfo">
+	    INSERT INTO ORDERS (O_ID, P_NO, QUANTITY, PAYMENT_AMOUNT, O_NAME, O_PHONE, O_ADDRESS)
+	    VALUES (#{O_ID}, #{P_NO}, #{QUANTITY}, #{PAYMENT_AMOUNT}, #{O_NAME}, #{O_PHONE}, #{O_ADDRESS})
+	</insert>
+	
+	<insert id="savePurchaseHistory" parameterType="com.teamp.spring.tp.dto.PurchaseInfo">
+	    INSERT INTO PURCHASE_HISTORY (U_ID)
+	    VALUES (#{U_ID})
+	</insert>
+	<select id="getGeneratedOrderId" resultType="Integer">
+		SELECT LAST_INSERT_ID()
+	</select>
+	<select id="getPurchaseHistory" resultType="com.teamp.spring.tp.dto.PurchaseInfo">
+		SELECT * FROM PURCHASE_HISTORY
+		WHERE U_ID = #{U_ID}
+	</select>
+	<select id="getOrderById" parameterType="Integer" resultMap="orderInfoMap">
+	    SELECT * FROM ORDERS WHERE O_ID = #{O_ID}
+	</select>
+	<select id="getOneOrderById" parameterType="Integer" resultMap="orderInfoMap">
+	    SELECT * FROM ORDERS WHERE O_ID = #{O_ID} AND P_NO = #{P_NO}
+	</select>
+	<delete id="removeOrder">
+	    DELETE FROM ORDERS
+	    WHERE O_ID = #{O_ID} AND P_NO = #{P_NO}
 	</delete>
 </mapper>

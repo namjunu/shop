@@ -1,3 +1,5 @@
+/* shop_styles.css */
+
 body {
     font-family: 'Noto Sans KR', sans-serif; /* Noto Sans KR 폰트 적용 (네이버와 유사) */
 }
@@ -9,10 +11,15 @@ body {
     border-radius: 5px;
     box-shadow: 0px 0px 10px 2px #ccc;
     margin: 50px auto; /* 페이지 중앙에 박스 배치 */
+    text-align: right; /* 로그인 상자 내용을 오른쪽으로 정렬 */
 }
 
 #login-box form {
     margin: 10px 0;
+}
+
+.hidden {
+    display: none;
 }
 
 #login-box input[type="text"],
@@ -33,4 +40,14 @@ body {
 
 #login-box input[type="submit"]:hover {
     background-color: #29a100;
+}
+
+/* 장바구니와 주문내역 링크 스타일 */
+.link-button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
 }

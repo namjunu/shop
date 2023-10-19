@@ -1,0 +1,42 @@
+.container {
+            display: flex;
+        }
+
+        .cart-info {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .common-login {
+            flex: 1;
+        }
+        .cart-item form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item form input[type="submit"] {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #0074e4;
+}
+.purchase-button {
+    background-color: #0074e4;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.purchase-button:hover {
+    background-color: #0056b3;
+}

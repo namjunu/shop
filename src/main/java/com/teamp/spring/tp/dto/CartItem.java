@@ -6,7 +6,7 @@ import lombok.Data;
 public class CartItem {
 	
 	private int cartId; //Cart 번호
-	private String userId; //유저 No
+	private String U_ID; //유저 No
     private int p_NO; // 상품 ID
     private int quantity; // 상품 수량
 
@@ -20,7 +20,13 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    // 상품 ID에 대한 getter와 setter
+    public CartItem(String u_ID2, int p_NO2, int quantity2) {
+		this.U_ID = u_ID2;
+		this.p_NO = p_NO2;
+		this.quantity = quantity2;
+	}
+
+	// 상품 ID에 대한 getter와 setter
     public int getp_NO() {
         return p_NO;
     }
