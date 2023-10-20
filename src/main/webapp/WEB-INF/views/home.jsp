@@ -26,6 +26,5 @@
         <jsp:include page="Login/commonLogin.jsp"/>
     </aside>
 </div>
-	<a href="/searchMap">주변병원 검색</a>
 </body>
 </html>
