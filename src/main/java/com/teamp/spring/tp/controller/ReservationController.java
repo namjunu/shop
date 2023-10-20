@@ -1,44 +1,54 @@
 package com.teamp.spring.tp.controller;
 
-import com.teamp.spring.tp.dto.ReservationDto;
+import com.teamp.spring.tp.dto.ReservationVo;
 import com.teamp.spring.tp.service.ReservationService;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 
 @Log4j
 @RequestMapping("/reservation/*")
 @AllArgsConstructor
 @Controller
 public class ReservationController {
+    private ReservationService reservationService;
 
-    private final ReservationService reservationService;
-
-    @GetMapping("/del/{ex_book_number}")
-    public String del(@PathVariable String ex_book_number) {
-        reservationService.del(ex_book_number);
-        // 수정: 리다이렉트 경로를 /reservation/list/{userId} 로 수정 (사용자 아이디 필요)
-        return "redirect:/";
+    @GetMapping("/booklist")
+    public void booklist(Model model) {
+        model.addAttribute("list", reservationService.booklist());
     }
 
-    @PostMapping("/add")
-    public String add(ReservationDto reservationDto) {
-        reservationService.add(reservationDto);
-        // 수정: 리다이렉트 경로를 /reservation/list/{userId} 로 수정 (사용자 아이디 필요)
-        return "redirect:/";
+    @PostMapping("/bookadd")
+    public String bookadd(
+    		@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("R_date") Date R_date, 
+    		@RequestParam("R_name") String R_name, 
+    		@RequestParam("R_hospital_name") String R_hospital_name){
+        reservationService.bookadd(R_date, R_name, R_hospital_name);
+        return "redirect:/searchMap";
     }
 
-    @PostMapping("/modify")
-    public String modify(@RequestBody ReservationDto reservationDto) {
-        reservationService.modify(reservationDto);
-        // 수정: 리다이렉트 경로를 /reservation/list/{userId} 로 수정 (사용자 아이디 필요)
-        return "redirect:/";
+    @PostMapping("/bookdelete")
+    public String bookdelete(@RequestParam("R_name") String R_name) {
+        reservationService.bookdelete(R_name);
+        return "redirect:/searchMap";
     }
+
+    @PostMapping("/bookmodify")
+    public String bookmodify(
+    	@DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("R_date") Date R_date, 
+        @RequestParam("R_name") String R_name, 
+        @RequestParam("R_hospital_name") String R_hospital_name) {
+        reservationService.bookmodify(R_date, R_name, R_hospital_name);
+        return "redirect:/searchMap";
+    }
+
 }
