@@ -21,7 +21,7 @@
 </head>
 <body>
 <form action="/tp/Login/editPw" method="post" onsubmit="return validatePassword();">
-    <input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("id") %>">
+    <input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     pw : <input type="password" name="U_PW" id="password1">
     pw2 : <input type="password" id="password2">
     <input type="submit" id="registerButton" value="비밀번호변경">

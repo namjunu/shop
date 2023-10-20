@@ -19,3 +19,4 @@ public interface LoginService {
 
 	public void deleteMember(UserInfo id);
 }
+

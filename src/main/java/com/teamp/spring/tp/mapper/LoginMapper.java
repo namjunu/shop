@@ -19,3 +19,4 @@ public interface LoginMapper {
 
 	public void deleteMember(UserInfo id);
 }
+
