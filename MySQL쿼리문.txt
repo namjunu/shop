@@ -13,6 +13,15 @@ CREATE TABLE tb_example(
 	ex_date timestamp NULL DEFAULT now()
 );
 
+------------- 예약 테이블 ------------------
+
+DROP TABLE if exists book;
+CREATE TABLE book(
+	R_date date not null,
+    R_name varchar(50) not null,
+    R_hospital_name varchar (50) not null
+);
+
 ------------- 멤버 테이블 ----------------
 drop table if exists members;
 CREATE TABLE MEMBERS (
