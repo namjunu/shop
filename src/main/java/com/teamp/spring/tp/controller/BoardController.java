@@ -32,7 +32,7 @@ public class BoardController {
 		
 		return "redirect:/board/BoardList";
 	}
-	
+	//세션 만료시 홈이나 로그인으로 돌아가도록 변경해야함
 	@GetMapping("/BoardList")
 	public void BoardList(HttpSession session, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 							@RequestParam(value = "category", defaultValue = "main") String category,
