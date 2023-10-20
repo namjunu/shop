@@ -12,20 +12,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/tp/board/BoardEdit" method="post">
-	<input type="hidden" name = "b_no" value = ${read.b_no }>
-	글번호:${read.b_no}
-	<p>
-	글제목:${read.b_title}
-	<hr>
-	<textarea rows="10" name='b_content'>${read.b_content}</textarea>
-	<br>
-	글쓴이:${read.b_writer}
-	작성일:${read.b_writedate}
-	조회수:${read.b_readcount}
-	<br>
-	<input type="submit" value="글수정">
+	<form name = "wform" action="/tp/board/BoardEdit" method="post" onsubmit="return check()">
+		<input type="hidden" name = "b_no" value = ${read.b_no }>
+		글번호:${read.b_no}
+		<p>
+		글제목:${read.b_title}
+		<hr>
+		<textarea rows="10" name='b_content'>${read.b_content}</textarea>
+		<br>
+		글쓴이:${read.b_writer}
+		작성일:${read.b_writedate}
+		조회수:${read.b_readcount}
+		<br>
+		<input type="submit" value="글수정">
 	</form>
 	
+	<script>
+	function check() {
+	        var f = document.wform;
+			 if (f.b_content.value == "") {
+	            alert("내용을 입력해주세요");
+	            f.b_content.focus();
+	            return false;
+	        }
+		}
+	</script>
 </body>
 </html>

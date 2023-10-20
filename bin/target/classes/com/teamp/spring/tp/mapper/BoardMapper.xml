@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamp.spring.tp.mapper.BoardMapper">
+	<!-- resultType 에 복수형(ArrayList 등)을 적는게 아님. 
+	그냥 vo 단수의 경로를 적어야됨. -->
+	<select id="countBoard" resultType = "int">
+		SELECT COUNT(*) from boards
+	</select>
+	
+	<select id="getList" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * from boards ORDER BY b_no DESC limit #{start} , #{cntPerPage}
+	</select>
+	<select id="countBoardCategory" resultType = "int">
+		SELECT COUNT(*) from boards where b_category = #{category}
+	</select>
+	<select id="getListCategory" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT * from boards WHERE b_category = #{category} ORDER BY b_no DESC limit #{start} , #{cntPerPage}  
+	</select>
+	
+	<select id="read" resultType="com.teamp.spring.tp.dto.BoardVO">
+		SELECT  * from boards where B_NO = #{b_no}
+	</select>
+	<update id="upCount" parameterType="int">
+		UPDATE boards SET b_readcount = b_readcount + 1 where b_no = #{b_no} 
+	</update>
+	
+	<insert id="write">
+		insert into boards (b_title, b_content, b_writer, b_category) values (#{b_title}, #{b_content}, #{b_writer}, #{b_category})
+	</insert>
+	<delete id="delete">
+		delete from boards where b_no = #{b_no}
+	</delete>
+	<update id="edit" parameterType="com.teamp.spring.tp.dto.BoardVO">
+		UPDATE boards SET B_CONTENT = #{b_content} where b_no = #{b_no};
+	</update>
+	
+	<!--댓글부분 구현  -->
+	<insert id="replyWrite">
+		insert into REPLYS (b_no, r_content, r_writer) values (#{b_no}, #{r_content}, #{r_writer})
+	</insert>
+	<select id="replyList" resultType="com.teamp.spring.tp.dto.ReplyVO">
+		SELECT * from REPLYS WHERE b_no = #{bno} ORDER BY r_no DESC
+	</select>
+	<delete id="replyDelete">
+		delete from REPLYS where r_no = #{r_no}
+	</delete>
+	
+</mapper>

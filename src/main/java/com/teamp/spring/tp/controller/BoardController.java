@@ -32,42 +32,62 @@ public class BoardController {
 		
 		return "redirect:/board/BoardList";
 	}
-	
+	//세션 만료시 홈이나 로그인으로 돌아가도록 변경해야함
 	@GetMapping("/BoardList")
 	public void BoardList(HttpSession session, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 							@RequestParam(value = "category", defaultValue = "main") String category,
-										Model model) {
+							@RequestParam(value = "search", defaultValue = "") String search,
+							@RequestParam(value = "searchType", defaultValue = "") String searchType,
+							Model model) {
 		if(category.equals("main")){
-			int total = service.countBoard();
-			PagingVO pvo = new PagingVO(total, currentPage, 10);
+			int total = service.countBoardSearch(search, searchType);
+			System.out.println("검색된 글 수 : "+total);
+			PagingVO pvo = new PagingVO(total, currentPage, 10, category, search, searchType);
 			model.addAttribute("category", category);
 			model.addAttribute("paging", pvo);
-			model.addAttribute("list", service.getList(pvo));
+			model.addAttribute("list", service.getListSearch(pvo));
+		}else if(category.equals("my")){
+			int total = service.countBoardMy((String)session.getAttribute("U_ID"));	
+			PagingVO pvo = new PagingVO(total, currentPage, 10, category);
+			model.addAttribute("category", category);
+			model.addAttribute("paging", pvo);
+			model.addAttribute("list", service.getListMy(pvo, (String)session.getAttribute("U_ID")));
 		}else {
 			int total = service.countBoardCategory(category);
+			System.out.println("카테고리 수 :" +total);
 			PagingVO pvo = new PagingVO(total, currentPage, 10, category);
 			model.addAttribute("category", category);
 			model.addAttribute("paging", pvo);
 			model.addAttribute("list", service.getListCategory(pvo));
 		}
+		System.out.println((int) session.getAttribute("U_NO"));
 	}
 
 	@GetMapping("/BoardRead")
 	public void BoardRead(HttpSession session, @RequestParam("no") int no, Model model) {
 		service.upCount(no);
-		log.info("��Ʈ�ѷ� ==== �۹�ȣ ===============" + no);
 		BoardVO bvo = service.read(no);
-		String sessionid = (((String) session.getAttribute("id")).replace("\'",""));
-		if(sessionid.equals(bvo.getB_writer().toString())) {
+		String sessionid = (((String) session.getAttribute("U_ID")).replace("\'",""));
+		if(sessionid.equals(bvo.getB_writer().toString())) { 
 			model.addAttribute("idCheck", "true");
 		}
 		else {
 			model.addAttribute("idCheck", "false");
 		}
+		
+		Boolean likeValue = service.likeCheck(no, (int) session.getAttribute("U_NO"));
+		System.out.println((int) session.getAttribute("U_NO"));
+		System.out.println(likeValue);
+		model.addAttribute("likeValue", likeValue);
 		model.addAttribute("read", bvo);
 		model.addAttribute("replys", service.replyList(no));
 	}
-
+	@GetMapping("/BoardLike")
+	public String BoardLike(HttpSession session, @RequestParam("no") int no, Model model){
+		service.likeBoard(no, (int) session.getAttribute("U_NO"));
+		return "redirect:/board/BoardRead?no="+no;
+	}
+	
 	@PostMapping("/BoardWrite")
 	public String BoardWrite(BoardVO bvo) {
 		service.write(bvo);
@@ -95,7 +115,6 @@ public class BoardController {
 	 
 	@GetMapping("/BoardEdit")
 	public void BoardEdit(@RequestParam("no") int no, Model model) {
-		log.info("��Ʈ�ѷ� ==== �۹�ȣ ===============" + no);
 		model.addAttribute("read", service.read(no));
 	}
 	
