@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.teamp.spring.tp.dto.UserInfo;
 import com.teamp.spring.tp.service.LoginService;
+import com.teamp.spring.tp.service.PwHashService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -36,6 +37,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 public class LoginController {
 	private LoginService service;
+	private final PwHashService pwHashService;
 
 	@GetMapping("/test")
 	public void test() {
@@ -47,6 +49,7 @@ public class LoginController {
 	@PostMapping("/createID") //회원가입
 	public String createID(UserInfo id) {
 		log.info("아이디 만드는 중.");
+		id.hashPassword(pwHashService);
 		service.createID(id);
 		log.info("아이디를 만들었음");
 		return "redirect:/";
@@ -70,6 +73,7 @@ public class LoginController {
 	@PostMapping("loginCheck") //로그인
 	public String loginCheck(UserInfo id,HttpSession session,RedirectAttributes redirectAttributes) {
 		boolean loginSuccess; //로그인 성공 판단 boolean
+		id.hashPassword(pwHashService);
 		if(service.loginCheck(id)== 1) { //id, pw를 넣었을 때 count되는 값이 있으면 1
 			loginSuccess = true;
 		} else {
@@ -115,6 +119,7 @@ public class LoginController {
 	@PostMapping("/editPw") //입력한 비밀번호로 재설정
 	public String editPw(UserInfo id) {
 		log.info(id.getU_ID()+id.getU_PW());
+		id.hashPassword(pwHashService);
 		service.editPw(id);
 		return "redirect:/";
 	}
@@ -155,6 +160,7 @@ public class LoginController {
 	@PostMapping("deleteMember") //탈퇴 프로세스
 	public String deleteMember(HttpSession session, UserInfo id, RedirectAttributes redirectAttributes) {
 		boolean idcheck;
+		id.hashPassword(pwHashService);
 		if(service.loginCheck(id)==1) {
 			idcheck=true;
 		}else {

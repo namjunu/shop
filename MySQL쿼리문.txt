@@ -1,6 +1,8 @@
+CREATE DATABASE team_portal default CHARACTER SET utf8mb4;
+use team_portal;
 -- DATABASE 생성은 사용버전.txt를 참고해주세요
 
--- Update 2023-09-07 (initial)
+-- Update 2023-09-18 
 -- tb_abc순 정렬
 -- 이하 쿼리문, 그대로 복사, 생성해서 사용하시면 됩니다.
 
@@ -11,6 +13,7 @@ CREATE TABLE tb_example(
 	ex_date timestamp NULL DEFAULT now()
 );
 
+------------- 멤버 테이블 ----------------
 drop table if exists members;
 CREATE TABLE MEMBERS (
 	U_NO INT AUTO_INCREMENT primary key,
@@ -21,9 +24,37 @@ CREATE TABLE MEMBERS (
     U_ADDRESS varchar(255),
     U_EMAIL varchar(255),
     U_PHONE varchar(15),
+    U_MBTI varchar(4) default "xxxx",
     U_TIMESTAMP timestamp NULL DEFAULT now()
 );
+insert into MEMBERS (U_ID, U_PW) values ('admin', 'admin');
+select*from MEMBERS;
+delete from MEMBERS where U_ID = "";
 
+CREATE TABLE MEM_LOGS(
+	U_NO INT AUTO_INCREMENT primary key,
+    U_ID varchar(255),
+    U_LOG timestamp Null default now()
+);
+
+------------- 상품 테이블 ----------------
+DROP TABLE IF EXISTS PRODUCTS;
+CREATE TABLE PRODUCTS(
+	P_NO INT AUTO_INCREMENT PRIMARY KEY,
+    P_NAME varchar(255) not null,
+    P_PRICE int default 0,
+    P_BRAND varchar(255),
+    P_DESCRIPTION varchar(255),
+    P_CATEGORY varchar(255),
+    P_STOCK int default 0,
+    P_IMAGE varchar(255),
+    P_CREATED_DATE timestamp default now(),
+    P_UPDATED_DATE timestamp,
+    P_TAGS varchar(255)
+);
+
+
+----------- 게시판 테이블 --------------
 DROP TABLE if exists boards;
 CREATE TABLE BOARDS(
  	B_NO int auto_increment primary key,
