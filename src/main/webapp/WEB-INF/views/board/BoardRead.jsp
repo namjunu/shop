@@ -55,11 +55,22 @@
     <hr>
 </c:forEach>
 
-<form action="/tp/board/ReplyWrite" method="get">
+<form name = "rform" action="/tp/board/ReplyWrite" method="get" onsubmit="return check()">
 	<input type="hidden" name = "b_no" value = ${read.b_no}>
 	<input type="hidden" name = "r_writer" value = <%=sessionid%>>
 	<textarea rows="10" name='r_content'></textarea>
 	<input type="submit" value="댓글쓰기">
 </form>
+
+<script>
+	function check() {
+	        var f = document.rform;
+			 if (f.r_content.value == "") {
+	            alert("내용을 입력해주세요");
+	            f.r_content.focus();
+	            return false;
+	        }
+		}
+	</script>
 </body>
 </html>
