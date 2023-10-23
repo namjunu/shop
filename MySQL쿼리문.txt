@@ -2,7 +2,7 @@ CREATE DATABASE team_portal default CHARACTER SET utf8mb4;
 use team_portal;
 -- DATABASE 생성은 사용버전.txt를 참고해주세요
 
--- Update 2023-09-18 
+-- Update 2023-10-23 
 -- tb_abc순 정렬
 -- 이하 쿼리문, 그대로 복사, 생성해서 사용하시면 됩니다.
 
