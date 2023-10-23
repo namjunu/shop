@@ -13,15 +13,6 @@ CREATE TABLE tb_example(
 	ex_date timestamp NULL DEFAULT now()
 );
 
-------------- 예약 테이블 ------------------
-
-DROP TABLE if exists book;
-CREATE TABLE book(
-	R_date date not null,
-    R_name varchar(50) not null,
-    R_hospital_name varchar (50) not null
-);
-
 ------------- 멤버 테이블 ----------------
 drop table if exists members;
 CREATE TABLE MEMBERS (
@@ -54,15 +45,63 @@ CREATE TABLE PRODUCTS(
     P_PRICE int default 0,
     P_BRAND varchar(255),
     P_DESCRIPTION varchar(255),
-    P_CATEGORY varchar(255),
+    P_CATEGORY varchar(255) default 'none',
     P_STOCK int default 0,
     P_IMAGE varchar(255),
     P_CREATED_DATE timestamp default now(),
     P_UPDATED_DATE timestamp,
     P_TAGS varchar(255)
 );
+insert into products (P_NAME) values ('testItem');
+insert into products (P_NAME) values ('testItem2');
+insert into products (P_NAME) values ('testItem3');
+insert into products (P_NAME) values ('testItem4');
+insert into products (P_NAME, P_CATEGORY) values ('김치', 'Foods');
+insert into products (P_NAME, P_CATEGORY) values ('감자', 'Foods');
+insert into products (P_NAME, P_CATEGORY) values ('만두', 'Foods');
+insert into products (P_NAME, P_CATEGORY) values ('삼겹살', 'Foods');
+insert into products (P_NAME, P_CATEGORY) values ('청바지', 'Clothing');
+insert into products (P_NAME, P_CATEGORY) values ('셔츠', 'Clothing');
+insert into products (P_NAME, P_CATEGORY) values ('양말', 'Clothing');
+insert into products (P_NAME, P_CATEGORY) values ('치마', 'Clothing');
+select*from products;
+select*from products where p_no= 1;
 
+----------- 주문 관련 테이블 ------------
+drop table if exists CART; -- 카트 테이블
+CREATE TABLE CART (
+    CART_ID INT AUTO_INCREMENT PRIMARY KEY,
+    U_ID varchar(255),
+    P_NO INT,
+    QUANTITY INT NOT NULL,
+    FOREIGN KEY (U_ID) REFERENCES MEMBERS(U_ID),
+    FOREIGN KEY (P_NO) REFERENCES PRODUCTS(P_NO)
+);
+select*from cart;
+update cart set quantity = 10 where P_NO = 8 and U_ID = 'admin';
+update cart set quantity = 2;
 
+drop table if exists ORDERS; -- 주문 테이블
+drop table if exists PURCHASE_HISTORY; -- 구매 이력 테이블
+
+CREATE TABLE PURCHASE_HISTORY (
+    O_ID INT AUTO_INCREMENT PRIMARY KEY,
+    U_ID varchar(255),
+    O_DATE timestamp default now()
+);
+
+CREATE TABLE ORDERS (
+    O_ID INT NOT NULL,
+    P_NO INT NOT NULL,
+    QUANTITY INT NOT NULL,
+    PAYMENT_AMOUNT INT NOT NULL,
+    O_NAME varchar(255) NOT NULL,
+    O_PHONE varchar(15) NOT NULL,
+    O_ADDRESS VARCHAR(255) NOT NULL
+);
+insert into purchase_history (U_ID) values ('admin');
+select*from orders;
+select*from purchase_history;
 ----------- 게시판 테이블 --------------
 DROP TABLE if exists boards;
 CREATE TABLE BOARDS(
@@ -70,31 +109,21 @@ CREATE TABLE BOARDS(
  	B_TITLE varchar(100),
  	B_CONTENT varchar(1000),
  	B_WRITER varchar(30) default 'guest',
+ 	foreign key (B_WRITER) references MEMBERS (U_ID),
  	B_WRITEDATE timestamp default now(),
  	B_LIKECOUNT int default 0,
  	B_READCOUNT int default 0,
     B_CATEGORY varchar(10) default 'free'
  );
-
+ 
 DROP TABLE if exists replys;
 CREATE TABLE REPLYS(
  	R_NO int auto_increment primary key,
  	B_NO int not null,
- 	foreign key (B_NO) references BOARDS (B_NO) on delete cascade,
+ 	foreign key (B_NO) references BOARDS (B_NO),
  	R_CONTENT varchar(255) not null,
  	R_WRITER varchar(30) not null,
- 	foreign key (R_WRITER) references MEMBERS (U_ID) on delete cascade,
+ 	foreign key (R_WRITER) references MEMBERS (U_ID),
  	R_WRITEDATE timestamp default now(),
  	R_LIKECOUNT int default 0
  );
- 
-DROP TABLE if exists likes;
-CREATE TABLE LIKES(
-	L_NO int auto_increment primary key,
-	B_NO int not null,
-	foreign key (B_NO) references BOARDS (B_NO) on delete cascade,
-	U_NO int not null,
-	foreign key (U_NO) references MEMBERS (U_NO) on delete cascade,
-	L_CHECK boolean default true
-);
- 
