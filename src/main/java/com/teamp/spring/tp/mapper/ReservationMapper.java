@@ -1,14 +1,22 @@
 package com.teamp.spring.tp.mapper;
 
-import com.teamp.spring.tp.dto.ReservationDto;
+import java.util.ArrayList;
+import java.util.Date;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.teamp.spring.tp.dto.ReservationVo;
 
 public interface ReservationMapper {
+    ArrayList<ReservationVo> booklist();
 
-	ReservationDto list(String userId);
+    void bookadd(@Param("R_date")Date R_date, @Param("R_name")String R_name, @Param("R_hospital_name")String R_hospital_name);
 
-    void del(String ex_book_number);
+    void bookdelete(String R_name);
 
-    void add(ReservationDto guestDto);
+    void bookmodify(ReservationVo reservationDto);
 
-    void modify(ReservationDto guestDto);
+    void bookmodify(Date R_date, String R_name, String R_hospital_name);
+
 }
+ 

@@ -10,17 +10,29 @@
         function validatePassword() {
             var pw1 = document.getElementById("password1").value;
             var pw2 = document.getElementById("password2").value;
+         // 띄어쓰기 검사 정규식
+            var spaceRegex = /\s/;
 
+            if (spaceRegex.test(pw1)) {
+                alert("pw에 띄어쓰기가 포함되어 있습니다.");
+                return false;
+            }
             if (pw1 !== pw2) {
                 alert("비밀번호가 서로 다릅니다.");
                 return false;
-            }
+            } 
             return true; 
         }
 
         // ID 중복 확인 버튼을 클릭할 때 실행되는 함수
         function checkID() {
             var userID = document.getElementById("C_ID").value;
+            var spaceRegex = /\s/;
+
+            if (spaceRegex.test(userID)) {
+                alert("id에 띄어쓰기가 포함되어 있습니다.");
+                return false;
+            } 
             if(!userID || userID==""){
             	alert("ID를 입력해주세요.");
             	return;
