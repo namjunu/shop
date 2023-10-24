@@ -17,6 +17,7 @@ public interface ReservationMapper {
     void bookmodify(ReservationVo reservationDto);
 
     void bookmodify(Date R_date, String R_name, String R_hospital_name);
-
+    
+    ArrayList<ReservationVo> booksearch(String R_name);
 }
  

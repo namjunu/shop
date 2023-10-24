@@ -19,12 +19,13 @@ public class KioskIns4 extends KioskIns3 {
 	protected ImageIcon selectedImage2 ;
 	protected ImageIcon selectedImage3 ;
 	protected ImageIcon selectedImage4 ;
+	protected ImageIcon submitImage = new ImageIcon(getClass().getResource("/JangImages/" + "제출" + ".png")); ;
 	
 	protected JButton selectedButton1 ;
 	protected JButton selectedButton2 ;
 	protected JButton selectedButton3 ;
 	protected JButton selectedButton4 ;
-	
+	protected JButton submitButton = new JButton(submitImage); 
 	
 	
 	@Override
@@ -75,6 +76,13 @@ public class KioskIns4 extends KioskIns3 {
 //			});
 			add(selectedButton1);
 			selectedButton1.setVisible(true);
+			submitButton.setBounds(1050, 575, 200, 100);
+			submitButton.setBorderPainted(false);
+			submitButton.setContentAreaFilled(false);
+			submitButton.setFocusPainted(false);
+			add(submitButton);
+			submitButton.setVisible(true);
+			
 		}else if(selectedButton1==null && selected1==null){
 			
 		}else {

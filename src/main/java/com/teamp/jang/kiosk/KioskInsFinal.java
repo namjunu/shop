@@ -146,6 +146,14 @@ public class KioskInsFinal extends KioskIns4 {
 			}
 		});
 		
+		submitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("제출 선택");
+				
+			}
+		});
+		
 		
 	}
 	
