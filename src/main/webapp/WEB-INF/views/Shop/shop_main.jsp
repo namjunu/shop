@@ -15,18 +15,21 @@
         <h1>제품 목록</h1>
     </header>
         <form action="/tp/Shop/productList" method="get">
-            <label for="P_CATEGORY">Category:</label>
+            <label for="P_CATEGORY">카테고리:</label>
             <select name="P_CATEGORY" id="P_CATEGORY">
-                <option value="" selected>Select Category</option>
+                <option value="" selected>없음</option>
                 <option value="Foods">식류</option>
                 <option value="Clothing">의류</option>
                 <!-- Add more categories as needed -->
             </select>
             
-            <label for="keyword">Keyword:</label>
+            <label for="keyword">검색어:</label>
             <input type="text" id="keyword" name="keyword" placeholder="Search products">
             
-            <input type="submit" value="Search">
+            <input type="submit" value="검색하기">
+            <c:if test="${U_ID == 'admin' }">
+            	<a href="/tp/Shop/insertProduct">제품 추가하기</a>
+            </c:if>
         </form>
         <table>
             <tr>

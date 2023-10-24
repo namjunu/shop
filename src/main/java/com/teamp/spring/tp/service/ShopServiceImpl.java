@@ -58,6 +58,10 @@ public class ShopServiceImpl implements ShopService{
 	        shopMapper.updateProduct(productInfo);
 	    }
 	    @Override
+	    public void insertProduct(ProductInfo productInfo) {
+	        shopMapper.insertProduct(productInfo);
+	    }
+	    @Override
 	    public void saveCartToDatabase(String U_ID, Map<Integer, Integer> cart) {
 	        shopMapper.saveCart(U_ID, cart);
 	    }

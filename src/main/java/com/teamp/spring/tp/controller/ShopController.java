@@ -19,6 +19,8 @@ import com.teamp.spring.tp.dto.CartItem;
 import com.teamp.spring.tp.dto.OrdersInfo;
 import com.teamp.spring.tp.dto.ProductInfo;
 import com.teamp.spring.tp.dto.PurchaseInfo;
+import com.teamp.spring.tp.dto.UserInfo;
+import com.teamp.spring.tp.service.LoginService;
 import com.teamp.spring.tp.service.ShopService;
 
 import lombok.AllArgsConstructor;
@@ -30,6 +32,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ShopController {
     private final ShopService shopService;
+	private LoginService loginService;
 
     @GetMapping("/test") // 테스트테스트
     public void test() {
@@ -80,7 +83,22 @@ public class ShopController {
         shopService.updateProduct(productInfo);
         return "redirect:/Shop/productDetail?P_NO=" + productInfo.getP_NO();
     }
-
+    @GetMapping("/insertProduct") //제품 추가
+    public String insertProduct(HttpSession session) {
+    	String U_ID = (String) session.getAttribute("U_ID");
+    	log.info(U_ID+"로 로그인");
+    	if("admin".equals(U_ID)) {
+    		return "Shop/insertProduct";
+    	} else {
+    	log.info("관리자가 아닙니다.");
+    	return "redirect:/Shop/main";
+    	}
+    }
+    @PostMapping("/insertProduct") //제품 정보 받아서 제품 추가 서비스
+    public String insertProduct(ProductInfo productInfo) {
+    	shopService.insertProduct(productInfo);
+    	return "redirect:/Shop/main";
+    }
     @PostMapping("/addToCart")
     public String addToCart(@RequestParam("P_NO") int P_NO,
                             @RequestParam("quantity") int quantity,
@@ -300,6 +318,10 @@ public class ShopController {
             // 주문 완료 후 세션의 카트 비우기
             session.removeAttribute("cart");
     		session.setAttribute("U_POINT", currentPoint);
+    		UserInfo userInfo = new UserInfo();
+    		userInfo.setU_ID(U_ID);
+    		userInfo.setU_POINT(currentPoint);
+    		loginService.setPoint(userInfo);
         }
 
         // 주문 완료 후 리다이렉트 또는 다른 작업 수행
