@@ -8,6 +8,18 @@
 </head>
 <body>
     <h1>제품 등록</h1>
+     <style>
+        body {
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+            text-align: center;
+        }
+
+        form {
+            text-align: left;
+        }
+    </style>
     <form action="<c:url value='/Shop/insertProduct'/>" method="post">
         <label for="P_NAME">제품 이름:</label>
         <input type="text" id="P_NAME" name="P_NAME" required><br>

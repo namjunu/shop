@@ -20,6 +20,18 @@
     </script>
 </head>
 <body>
+ <style>
+        body {
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+            text-align: center;
+        }
+
+        form {
+            text-align: left;
+        }
+    </style>
 <form action="/tp/Login/editPw" method="post" onsubmit="return validatePassword();">
     <input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     pw : <input type="password" name="U_PW" id="password1">

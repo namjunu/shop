@@ -20,11 +20,11 @@
                 <option value="" selected>없음</option>
                 <option value="Foods">식류</option>
                 <option value="Clothing">의류</option>
-                <!-- Add more categories as needed -->
+                <!-- 카테고리 추가하기 -->
             </select>
             
             <label for="keyword">검색어:</label>
-            <input type="text" id="keyword" name="keyword" placeholder="Search products">
+            <input type="text" id="keyword" name="keyword" placeholder="상품 검색하기">
             
             <input type="submit" value="검색하기">
             <c:if test="${U_ID == 'admin' }">
