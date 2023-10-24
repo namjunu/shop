@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>주변 병원 찾기</title>
+    <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
     <script src="/resources/reservation.js"></script>
     <link rel="stylesheet" href="<c:url value='/resources/css/styles.css'/>"> 
     <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css'/>"> 
@@ -27,12 +28,12 @@
     </style>
 </head>
 <body>
-<header>
-    <h1>Hello world!</h1>
-</header>
+	<header>
+		<h1><a href="${cp}/">Hello world!</a></h1>
+	</header>
 <nav>
     <a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
-    <a href="../Shop/main">쇼핑몰</a>
+    <a href="./Shop/main">쇼핑몰</a>
     <a href="${cp}/searchMap">주변병원 검색</a>
     <a href="${cp}/board/BoardList">게시판</a>
 </nav>
