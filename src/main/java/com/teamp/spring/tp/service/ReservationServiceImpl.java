@@ -29,7 +29,12 @@ public class ReservationServiceImpl implements ReservationService {
     public void bookdelete(String R_name) {
         reservationMapper.bookdelete(R_name);
     }
-
+    
+    @Override
+    public ArrayList<ReservationVo> booksearch(String R_name) {
+        return reservationMapper.booksearch(R_name);
+    }
+    
     @Override
     public void bookmodify(Date R_date, String R_name, String R_hospital_name) {
         ReservationVo reservationDto = new ReservationVo();

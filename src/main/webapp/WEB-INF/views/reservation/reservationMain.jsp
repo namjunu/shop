@@ -65,5 +65,20 @@ pageEncoding="UTF-8"%>
       value="<% session.getAttribute("selectedHospital"); %>" required><br />
       <input type="submit" value="예약 수정" />
     </form>
+    
+    <h2>예약 조회</h2>
+	<form action="/reservation/booksearch" method="post">
+	  <label for="search_R_name">이름:</label>
+	  <input type="text" id="search_R_name" name="R_name" required /><br />
+	  <input type="submit" value="예약 조회" />
+	</form>
+	
+	<!-- 예약 삭제 폼 -->
+	<h2>예약 삭제</h2>
+	<form action="/reservation/bookdelete" method="post">
+	  <label for="delete_R_name">예약자 이름:</label>
+	  <input type="text" id="delete_R_name" name="R_name" required /><br />
+	  <input type="submit" value="예약 삭제" />
+	</form>
   </body>
 </html>
