@@ -1,5 +1,10 @@
 package com.teamp.spring.tp.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -29,16 +34,23 @@ public class BoardController {
 	@GetMapping("/sessiontest")
 	public String sessiontest(HttpSession session, @RequestParam(value = "id", defaultValue = "testid") String id) {
 		session.setAttribute("U_ID", id);
-		
 		return "redirect:/board/BoardList";
 	}
 	//세션 만료시 홈이나 로그인으로 돌아가도록 변경해야함
 	@GetMapping("/BoardList")
-	public void BoardList(HttpSession session, @RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+	public void BoardList(HttpSession session,
+							@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
 							@RequestParam(value = "category", defaultValue = "main") String category,
 							@RequestParam(value = "search", defaultValue = "") String search,
 							@RequestParam(value = "searchType", defaultValue = "") String searchType,
 							Model model) {
+		if((session.getAttribute("U_NO") == null) || ((int)session.getAttribute("U_NO") == 0)) {
+			session.setAttribute("U_NO", 0);
+			model.addAttribute("lgcheck", false);
+		}
+		else {
+			model.addAttribute("lgcheck", true);
+		}
 		if(category.equals("main")){
 			int total = service.countBoardSearch(search, searchType);
 			System.out.println("검색된 글 수 : "+total);
@@ -60,32 +72,57 @@ public class BoardController {
 			model.addAttribute("paging", pvo);
 			model.addAttribute("list", service.getListCategory(pvo));
 		}
-		System.out.println((int) session.getAttribute("U_NO"));
 	}
 
 	@GetMapping("/BoardRead")
 	public void BoardRead(HttpSession session, @RequestParam("no") int no, Model model) {
 		service.upCount(no);
 		BoardVO bvo = service.read(no);
-		String sessionid = (((String) session.getAttribute("U_ID")).replace("\'",""));
+		String sessionid = "";
+		if(session.getAttribute("U_ID")==null) {
+			sessionid = "Guest";
+		}
+		else {
+			sessionid = (((String) session.getAttribute("U_ID")).replace("\'",""));
+		}
 		if(sessionid.equals(bvo.getB_writer().toString())) { 
 			model.addAttribute("idCheck", "true");
 		}
 		else {
 			model.addAttribute("idCheck", "false");
 		}
-		
-		Boolean likeValue = service.likeCheck(no, (int) session.getAttribute("U_NO"));
-		System.out.println((int) session.getAttribute("U_NO"));
-		System.out.println(likeValue);
+		Boolean likeValue = false;
+		if((int)session.getAttribute("U_NO") != 0) {
+			likeValue = service.likeCheck(no, (int) session.getAttribute("U_NO"));
+		}
+		//System.out.println((int) session.getAttribute("U_NO"));
+		//System.out.println(likeValue);
 		model.addAttribute("likeValue", likeValue);
 		model.addAttribute("read", bvo);
 		model.addAttribute("replys", service.replyList(no));
 	}
 	@GetMapping("/BoardLike")
-	public String BoardLike(HttpSession session, @RequestParam("no") int no, Model model){
-		service.likeBoard(no, (int) session.getAttribute("U_NO"));
-		return "redirect:/board/BoardRead?no="+no;
+	public String BoardLike(HttpSession session, HttpServletRequest request,
+							@RequestParam("no") int no, Model model){
+		System.out.println((int)session.getAttribute("U_NO"));
+		if((int)session.getAttribute("U_NO") == 0) {
+			return "redirect:/board/alert";
+		}
+		else {
+			service.likeBoard(no, (int) session.getAttribute("U_NO"));
+			return "redirect:/board/BoardRead?no="+no;
+		}
+	}
+	
+	@GetMapping("/logincheck")
+	public String logincheck(HttpSession session, HttpServletRequest request){
+		System.out.println((int)session.getAttribute("U_NO"));
+		if((int)session.getAttribute("U_NO") == 0) {
+			return "redirect:/board/alert";
+		}
+		else {
+			return "redirect:/board/BoardWrite";
+		}
 	}
 	
 	@PostMapping("/BoardWrite")
@@ -94,10 +131,9 @@ public class BoardController {
 		return "redirect:/board/BoardList";
 	}
 
-
 	@GetMapping("/BoardWrite") 
 	public void BoardWrite(HttpSession session) {
-
+		
 	}
 
 	@GetMapping("/BoardDelete")
@@ -119,15 +155,28 @@ public class BoardController {
 	}
 	
 	@GetMapping("/ReplyWrite")
-	public String ReplyWrite(ReplyVO rvo, @RequestParam("b_no") int b_no) {
-		service.replyWrite(rvo);
-		return "redirect:/board/BoardRead?no="+b_no;
+	public String ReplyWrite(HttpSession session, HttpServletRequest request,
+							ReplyVO rvo, @RequestParam("b_no") int b_no) {
+		System.out.println((int)session.getAttribute("U_NO"));
+		if((int)session.getAttribute("U_NO") == 0) {
+			return "redirect:/board/alert";
+		}
+		else {
+			service.replyWrite(rvo);
+			return "redirect:/board/BoardRead?no="+b_no;
+		}
 	}
 	
 	@GetMapping("/ReplyDelete")
 	public String ReplyDelete(@RequestParam("r_no") int r_no, @RequestParam("b_no") int b_no) {
 		service.replyDelete(r_no);
 		return "redirect:/board/BoardRead?no="+b_no;
+	}
+	
+	@GetMapping("/alert")
+	public void alert(HttpSession session, HttpServletRequest request) {
+		request.setAttribute("msg", "로그인 후 이용해주세요");
+		request.setAttribute("url", "/tp");
 	}
 	
 }
