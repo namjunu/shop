@@ -13,4 +13,6 @@ public interface ReservationService {
     void bookdelete(String R_name);
 
     void bookmodify(Date R_date, String R_name, String R_hospital_name);
+    
+    ArrayList<ReservationVo> booksearch(String R_name);
 }

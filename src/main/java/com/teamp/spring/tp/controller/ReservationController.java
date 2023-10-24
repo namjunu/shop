@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,5 +51,11 @@ public class ReservationController {
         reservationService.bookmodify(R_date, R_name, R_hospital_name);
         return "redirect:/searchMap";
     }
-
+    
+    @PostMapping("/booksearch")
+    public String bookSearch(String R_name, Model model) {
+        ArrayList<ReservationVo> searchResults = reservationService.booksearch(R_name);
+        model.addAttribute("searchResults", searchResults);
+        return "reservation/searchResultsView";
+    }
 }
