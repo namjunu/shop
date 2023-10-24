@@ -7,37 +7,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+	<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
+    <link rel="stylesheet" href="<c:url value='/resources/css/styles.css'/>"> 
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css'/>"> 
+    <meta charset="UTF-8">
+    <style>
+    	.container{
+    	justify-content: space-between;
+   	    flex-direction: column;
+    	}
+    	.td_1{
+    	width : 8%;
+    	}
+    	.td_2{
+    	width : 40%;
+    	}
+    	.td_3{
+    	width : 13%;
+    	}
+    	.td_4{
+    	width : 20%;
+    	}
+    	.td_5{
+    	width : 13%;
+    	}
+    	.form-select{
+    	display : inline;
+    	width : 10%;
+    	}
+    	.form-control{
+    	display : inline;
+    	width : 20%;
+    	}
+    </style>
+<title>TP - 게시판</title>
 </head>
 <body>
 <% 
 	String searchValue = "";
 	String searchTypeValue = "";
-	if(request.getParameter("searchValue")!= null){
+	String uid = "";
+	String categoryVal = "";
+	if(request.getParameter("search")!= null){
 		searchValue = (String) request.getParameter("search");
 	}
 	if(request.getParameter("searchType")!= null){
 		searchTypeValue = (String) request.getParameter("searchType");
 	}
+	if(session.getAttribute("U_ID")==null){
+		uid = "Guest";
+	}
+	else{
+		uid = (String) session.getAttribute("U_ID");
+	}
+	if("main".equals((String)request.getParameter("category")) || (request.getParameter("category")==null)){
+		categoryVal = "메인";
+	}else if("free".equals((String)request.getParameter("category"))){
+		categoryVal = "자유";
+	}else if("question".equals((String)request.getParameter("category"))){
+		categoryVal = "질문";
+	}else if("like".equals((String)request.getParameter("category"))){
+		categoryVal = "추천";
+	}else if("my".equals((String)request.getParameter("category"))){
+		categoryVal = "내가 쓴 글";
+	}
 %>
-<div>
-	<h1>${category}게시판</h1>
-	<p><%= session.getAttribute("U_ID") %>(<%= session.getAttribute("U_NO") %>) 님 환영합니다.</p> 
-	<h2>카테고리</h2>
-	<a href="/tp/board/BoardList"><button>메인</button></a>
-	<a href="/tp/board/BoardList?category=free"><button>자유</button></a>
-	<a href="/tp/board/BoardList?category=question"><button>질문</button></a>
-	<a href="/tp/board/BoardList?category=like"><button>추천</button></a>
-	<a href="/tp/board/BoardList?category=my"><button>내가 쓴 글</button></a>
-	<table>
+<header>
+    <h1>Hello world!</h1>
+</header>
+<nav>
+    <a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
+    <a href="./Shop/main">쇼핑몰</a>
+    <a href="/searchMap">주변병원 검색</a>
+    <a href="${cp}/board/BoardList">게시판</a>
+</nav>
+<div class="container">
+	<div><h1>게시판 - <%=categoryVal %> </h1></div>
+	<div><p><%= uid %><%-- (<%= session.getAttribute("U_NO") %>) --%> 님 환영합니다.</p></div>
+	<div><h2>카테고리</h2></div>
+	<div>
+		<a href="/tp/board/BoardList"><button class="btn btn-default btn-light">메인</button></a>
+		<a href="/tp/board/BoardList?category=free"><button class="btn btn-default btn-light">자유</button></a>
+		<a href="/tp/board/BoardList?category=question"><button class="btn btn-default btn-light">질문</button></a>
+		<a href="/tp/board/BoardList?category=like"><button class="btn btn-default btn-light">추천</button></a>
+		
+		<c:if  test="${lgcheck eq true}">
+			<a href="/tp/board/BoardList?category=my"><button class="btn btn-default btn-light">내가 쓴 글</button></a>
+		</c:if>
+		</div>
+	
+	<table class="table table-hover">
 		<tr>
-			<td>글번호</td>
-			<td>글제목</td>
-			<td>글쓴이</td>
-			<td>작성일</td>
-			<td>카테고리</td>
+			<td class = "td_1">글번호</td>
+			<td class = "td_2">글제목</td>
+			<td class = "td_3">글쓴이</td>
+			<td class = "td_4">작성일</td>
+			<td class = "td_5">카테고리</td>
 		</tr>
 		
 		<c:forEach var="board" items="${list}">
@@ -50,19 +115,20 @@
 		    </tr>
 		</c:forEach>
 	</table>
-
-	<a href = "/tp/board/BoardWrite"><button>글쓰기</button></a>
-		<hr>
+	<div>
+	<a href = "/tp/board/logincheck"><button class="btn btn-default btn-light">글쓰기</button></a>
+	</div>
+	<hr>
 	<form action="/tp/board/BoardList">
 		<div float = "left">
-			<select name="searchType" >
+			<select name="searchType" class="form-select form-select-sm" aria-label=".form-select-sm example">
 		    <option value="title" selected="selected">제목</option>
 		    <option value="content">내용</option>
 		    <option value="title_content">제목+내용</option>
 		    <option value="writer">글쓴이</option>
 			</select>
-			<input type = "text" name ="search" value = <%= searchValue %>>
-			<input type = "submit" value = "검색">
+			<input type = "text" name ="search" class="form-control" value = "<%= searchValue %>" >
+			<input type = "submit" value = "검색" class="btn btn-default btn-light">
 		</div>
 	</form>
 	<hr>
@@ -85,7 +151,7 @@
 			</c:if>
 		</div>		
 	</div>
-
+<script src="<c:url value='/resources/js/bootstrap.bundle.css'/>"></script>
 </body>
 </html>
     

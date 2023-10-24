@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TP - 게시판</title>
 </head>
 <body>
 
