@@ -44,11 +44,6 @@ public class HomeController {
 	}
 	
 
-	@RequestMapping(value = "/map", method = RequestMethod.GET)
-	public String showHospitalMap() {
-	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
-	    return "hospital_map";
-	}
 	@RequestMapping(value = "/searchMap", method = RequestMethod.GET)
 	public String showSearchMap() {
 	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
