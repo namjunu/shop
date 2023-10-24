@@ -60,6 +60,28 @@
 	    WHERE 
 	        P_NO = #{P_NO}
 	</update>
+	<insert id="insertProduct" parameterType="com.teamp.spring.tp.dto.ProductInfo">
+	    INSERT INTO PRODUCTS
+	    (P_NAME, 
+	     P_PRICE, 
+	     P_BRAND, 
+	     P_DESCRIPTION, 
+	     P_CATEGORY, 
+	     P_STOCK, 
+	     P_IMAGE, 
+	     P_UPDATED_DATE, 
+	     P_TAGS)
+	    VALUES 
+	   (#{P_NAME},
+        #{P_PRICE},
+        #{P_BRAND},
+        #{P_DESCRIPTION},
+        #{P_CATEGORY},
+        #{P_STOCK},
+        #{P_IMAGE},
+        CURRENT_TIMESTAMP,
+        #{P_TAGS})
+	</insert>
 	<insert id="saveCart">
 	    INSERT INTO CART (U_ID, P_NO, QUANTITY)
 	    VALUES

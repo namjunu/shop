@@ -48,6 +48,7 @@
         <input name="U_PW" type="password" placeholder="로그인 암호">
         <input type="submit" value="로그인">
     </form>
+    <br>
     <a href="/tp/Login/createID" class="link-button">회원가입</a>
 <% } %>
 <br>
@@ -56,6 +57,9 @@
 <br>
 <br>
 <a href="/tp/Shop/purchaseHistory" class="link-button">주문내역</a>
+<br>
+<br>
+<a href="/tp" class="link-button">홈으로</a>
 </div>
 </body>
 </html>

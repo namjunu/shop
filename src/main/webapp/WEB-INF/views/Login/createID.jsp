@@ -64,6 +64,18 @@
 </head>
 
 <body>
+ <style>
+        body {
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+            text-align: center;
+        }
+
+        form {
+            text-align: left;
+        }
+    </style>
 <form action="/tp/Login/createID" method="post" onsubmit="return validatePassword();">
     <input type="hidden" id="U_ID" name ="U_ID">
     id : <input type="text" id = "C_ID" name="C_ID">

@@ -18,7 +18,8 @@ public interface ShopMapper {
     List<ProductInfo> selectProductsByCategory(String P_CATEGORY);  
     List<ProductInfo> searchProductsByCategoryAndKeyword(Map<String, Object> params);
     void updateProduct(ProductInfo productInfo);
-    
+	void insertProduct(ProductInfo productInfo);
+	
     void insertIntoCart(@Param("U_ID") String U_ID, 
             @Param("P_NO") int P_NO, 
             @Param("quantity") int quantity);
@@ -39,4 +40,5 @@ public interface ShopMapper {
 	void removeOrder(Integer O_ID, Integer P_NO);
 	OrdersInfo getOneOrderById(Integer o_ID, Integer P_NO);
 	List<PurchaseInfo> getPurchaseHistory(String U_ID);
+
 }

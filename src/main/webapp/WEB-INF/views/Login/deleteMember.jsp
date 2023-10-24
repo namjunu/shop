@@ -7,6 +7,18 @@
 <title>회원 탈퇴</title>
 </head>
 <body>
+ <style>
+        body {
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+            text-align: center;
+        }
+
+        form {
+            text-align: left;
+        }
+    </style>
 <form action="/tp/Login/deleteMember" method="post" >
     <input type="hidden" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>">
     회원정보를 삭제하시려면 비밀번호를 입력 해 주세요 <input type="password" name="U_PW" id="password">
