@@ -1,4 +1,3 @@
-<%@page import="java.util.Locale"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
@@ -22,7 +21,7 @@
 	        ArrayList<ReservationVo> searchResults = (ArrayList<ReservationVo>) request.getAttribute("searchResults");
 	        if (searchResults != null && !searchResults.isEmpty()) {
 	            for (ReservationVo result : searchResults) {
-	                String formattedDate = new java.text.SimpleDateFormat("yyyy년 MM월 dd일 EEE", new Locale("ko", "KR")).format(result.getR_date());
+	                String formattedDate = new java.text.SimpleDateFormat("yyyy년 MM월 dd일 EEE").format(result.getR_date());
 	    %>
 	    <tr>
 	        <td><%= result.getR_name() %></td>
