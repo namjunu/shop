@@ -7,26 +7,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
+<c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
+<link rel="stylesheet" href="<c:url value='/resources/css/styles.css'/>"> 
+<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css'/>"> 
+    <style>
+    	.container{
+    	justify-content: space-between;
+   	    flex-direction: column;
+    	}
+    	.form-select{
+    	display : inline;
+    	width : 20%;
+    	}
+    	.form-control{
+    	display : inline;
+    	width : 100%;
+    	}
+    	label{
+    	display : block;
+    	}
+    	textarea { 
+    	resize:none; 
+    	}
+    	.category-select{
+    	display : inline;
+    	}
+    </style>
 <title>TP - 게시판</title>
 </head>
 <body>
-	<form name = "wform" action="/tp/board/BoardEdit" method="post" onsubmit="return check()">
-		<input type="hidden" name = "b_no" value = ${read.b_no }>
-		글번호:${read.b_no}
-		<p>
-		글제목:${read.b_title}
-		<hr>
-		<textarea rows="10" name='b_content'>${read.b_content}</textarea>
-		<br>
-		글쓴이:${read.b_writer}
-		작성일:${read.b_writedate}
-		조회수:${read.b_readcount}
-		<br>
-		<input type="submit" value="글수정">
-	</form>
-	
+	<header>
+	    <h1>Hello world!</h1>
+	</header>
+	<nav>
+	    <a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
+	    <a href="./Shop/main">쇼핑몰</a>
+	    <a href="/searchMap">주변병원 검색</a>
+	    <a href="${cp}/board/BoardList">게시판</a>
+	</nav>
+	<div class = "container">
+		<form name = "wform" action="/tp/board/BoardEdit" method="post" onsubmit="return check()">
+			<input type="hidden" name = "b_no" value = ${read.b_no }>
+			<div class="form-group">
+				<h5 for="title" class="form-label mt-4">제목</h5>
+				<input readonly type="text"  class="form-control" name='b_title' value="${read.b_title}"> 
+			</div>
+			<hr>
+			<div class="row">
+			    <div class="col">
+					<h5>작성자 : ${read.b_writer}</h5>
+			    </div>
+			    <div class="col">
+			    	<h5 class="text-end">작성일 : ${read.b_writedate}</h5>
+			    </div>
+			    <div class="col">
+					<h5 class="text-end">조회수 : ${read.b_readcount}</h5>
+			    </div>
+		  	</div>
+			<hr>
+			<div class="form-group">
+				<textarea class ="form-control" rows="10" name='b_content'>${read.b_content}</textarea>
+			</div>
+			<div>
+			<input type="hidden" name = "b_writer" value = <%=session.getAttribute("U_ID")%>>
+			</div>
+			
+			<br>
+			<div class = "row">
+				<div class = "col">
+					<h5 class = "category-select">카테고리 : ${read.b_category }</h5>
+				</div>
+				<div class = "col">
+					<h5 class = "text-end">작성자 : <%= session.getAttribute("U_ID") %></h5>
+				</div>
+			</div>
+			<input class="btn btn-light mt-3 btn-lg" type="submit" value="글수정">
+		</form>
+	</div>
 	<script>
 	function check() {
 	        var f = document.wform;

@@ -20,7 +20,7 @@
     	width : 8%;
     	}
     	.td_2{
-    	width : 40%;
+    	width : 30%;
     	}
     	.td_3{
     	width : 13%;
@@ -30,6 +30,9 @@
     	}
     	.td_5{
     	width : 13%;
+    	}
+    	.td_6{
+    	width : 8%
     	}
     	.form-select{
     	display : inline;
@@ -103,6 +106,7 @@
 			<td class = "td_3">글쓴이</td>
 			<td class = "td_4">작성일</td>
 			<td class = "td_5">카테고리</td>
+			<td class = "td_6">조회수</td>
 		</tr>
 		
 		<c:forEach var="board" items="${list}">
@@ -112,6 +116,7 @@
 				<td>${board.b_writer}</td>
 				<td>${board.b_writedate}</td>
 				<td>${board.b_category}</td>
+				<td>${board.b_readcount}</td>
 		    </tr>
 		</c:forEach>
 	</table>

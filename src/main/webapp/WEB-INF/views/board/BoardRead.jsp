@@ -35,6 +35,9 @@
     	.replyform{
     	width = 1rem;
     	}
+    	textarea{
+    	resize:none; 
+    	}
     </style>
 <title>TP - 게시판</title>
 </head>
@@ -129,7 +132,7 @@
 		<div class="input-group mb-3">
 			<input type="hidden" name = "b_no" value = ${read.b_no}>
 			<input type="hidden" name = "r_writer" value = <%=sessionid%>>
-			<input type="text" class="form-control" rows="10" name='r_content'></textarea>
+			<textarea type="text" class="form-control" rows="5" name='r_content'></textarea>
 			<input class = "btn btn-outline-secondary" type="submit" value="댓글쓰기">
 		</div>
 	</form>
