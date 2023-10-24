@@ -285,13 +285,24 @@ public class ShopController {
         String U_ID = (String) session.getAttribute("U_ID");
 
         // 2. createPurchase를 통해 Purchase 생성하고 O_ID 가져오기
+        if(U_ID==null) {
+        	log.info("U_ID가 없습니다.");
+        	U_ID ="guest";
+        }
+        log.info(U_ID+"로 purchase 생성중");
         shopService.createPurchase(U_ID);
+        log.info(U_ID+"로 purchase 생성완료");
         Integer generatedOrderId = shopService.getOrderId();
-
+        log.info("주문번호:"+generatedOrderId);
         // 3. Session에서 Cart 정보 가져와서 Order 생성
         @SuppressWarnings("unchecked")
         Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
-        int currentPoint = (int)session.getAttribute("U_POINT");
+        int currentPoint;
+        if (U_ID != null && !U_ID.equals("guest")) {
+        	currentPoint = (int)session.getAttribute("U_POINT");
+        } else {
+        	currentPoint = 0;
+        }
 		
 
         if (cart != null) {
@@ -317,11 +328,13 @@ public class ShopController {
 
             // 주문 완료 후 세션의 카트 비우기
             session.removeAttribute("cart");
-    		session.setAttribute("U_POINT", currentPoint);
-    		UserInfo userInfo = new UserInfo();
-    		userInfo.setU_ID(U_ID);
-    		userInfo.setU_POINT(currentPoint);
-    		loginService.setPoint(userInfo);
+            if(!U_ID.equals("guest")) {
+            	session.setAttribute("U_POINT", currentPoint);
+            	UserInfo userInfo = new UserInfo();
+            	userInfo.setU_ID(U_ID);
+            	userInfo.setU_POINT(currentPoint);
+            	loginService.setPoint(userInfo);
+            }
         }
 
         // 주문 완료 후 리다이렉트 또는 다른 작업 수행
