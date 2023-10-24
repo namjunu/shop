@@ -15,7 +15,7 @@ public interface ShopService {
     List<ProductInfo> selectProductsByCategory(String P_CATEGORY);    
     List<ProductInfo> searchProductsByCategoryAndKeyword(Map<String, Object> params);
     void updateProduct(ProductInfo productInfo);
-    
+    void insertProduct(ProductInfo productInfo);
     
     void saveCartToDatabase(String U_ID, Map<Integer, Integer> cart);    
     List<CartItem> getCartFromDatabase(String U_ID);    

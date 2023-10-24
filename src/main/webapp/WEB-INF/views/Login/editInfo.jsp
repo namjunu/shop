@@ -7,6 +7,18 @@
 <title>회원정보 수정</title>
 </head>
 <body>
+ <style>
+        body {
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+            text-align: center;
+        }
+
+        form {
+            text-align: left;
+        }
+    </style>
 <form action="/tp/Login/editInfo" method="post">
     id:<input type="text" id="U_ID" name ="U_ID" value="<%= session.getAttribute("U_ID") %>" readonly>
     name:<input type="text" id="U_NAME" name="U_NAME" value="<%= session.getAttribute("U_NAME") %>">
