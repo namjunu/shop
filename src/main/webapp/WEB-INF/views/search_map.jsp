@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>주변 병원 찾기</title>
+    <c:set var="cp" value="${pageContext.request.contextPath}"></c:set>
     <script src="/resources/reservation.js"></script>
+    <link rel="stylesheet" href="<c:url value='/resources/css/styles.css'/>"> 
+    <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.css'/>"> 
     <style>
         #map {
-            width: 100%;
-            height: 400px;
+		    width: 80%;
+		    height: 800px;
+		    border: 2px solid #333; /* 테두리 추가 */
+		    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+		    border-radius: 10px; /* 모서리를 둥글게 만듦 */
         }
         /* link - 아직 클릭하지 않은 경우 black 색상 설정 */
         a:link { color: black; text-decoration: none;}    
@@ -19,6 +28,16 @@
     </style>
 </head>
 <body>
+	<header>
+		<h1><a href="${cp}/">Hello world!</a></h1>
+	</header>
+<nav>
+    <a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
+    <a href="./Shop/main">쇼핑몰</a>
+    <a href="${cp}/searchMap">주변병원 검색</a>
+    <a href="${cp}/board/BoardList">게시판</a>
+</nav>
+<div class="container">
     <div id="map"></div>
     <!-- Kakao Maps API 스크립트를 추가 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=480d6b066347f57f4f5e316ebd771566&libraries=services"></script>
@@ -130,5 +149,6 @@
         });
     }
     </script>
+    </div>
 </body>
 </html>

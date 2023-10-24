@@ -30,12 +30,18 @@
     	.category-select{
     	display : inline;
     	}
+    	/* link - 아직 클릭하지 않은 경우 black 색상 설정 */
+        a:link { color: black; text-decoration: none;}    
+        /* visited - 한번 클릭하거나 전에 클릭한적 있을 경우 black 설정 */
+        a:visited { color: black; text-decoration: none;}    
+        /* hover - 마우스를 해당 링크에 위치했을 경우 black 설정 */
+        a:hover { color: black; text-decoration: none;}
     </style>
 <title>TP - 게시판</title>
 </head>
 <body>
 	<header>
-	    <h1>Hello world!</h1>
+	    <h1><a href="${cp}/">Hello world!</a></h1>
 	</header>
 	<nav>
 	    <a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
