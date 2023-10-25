@@ -19,12 +19,6 @@
 		    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
 		    border-radius: 10px; /* 모서리를 둥글게 만듦 */
         }
-        /* link - 아직 클릭하지 않은 경우 black 색상 설정 */
-        a:link { color: black; text-decoration: none;}    
-        /* visited - 한번 클릭하거나 전에 클릭한적 있을 경우 black 설정 */
-        a:visited { color: black; text-decoration: none;}    
-        /* hover - 마우스를 해당 링크에 위치했을 경우 black 설정 */
-        a:hover { color: black; text-decoration: none;}
     </style>
 </head>
 <body>
