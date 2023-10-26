@@ -35,14 +35,14 @@ public class ReservationController {
     		@RequestParam("R_hospital_name") String R_hospital_name){
         reservationService.bookadd(R_date, R_name, R_hospital_name);
         System.out.println("예약이 완료되었습니다.");
-        return "redirect:/searchMap";
+        return "redirect:/reservationMain";
     }
 
     @PostMapping("/bookdelete")
     public String bookdelete(@RequestParam("R_name") String R_name) {
         reservationService.bookdelete(R_name);
         System.out.println("예약이 삭제되었습니다.");
-        return "redirect:/searchMap";
+        return "redirect:/reservationMain";
     }
 
     @PostMapping("/bookmodify")
@@ -52,7 +52,7 @@ public class ReservationController {
         @RequestParam("R_hospital_name") String R_hospital_name) {
         reservationService.bookmodify(R_date, R_name, R_hospital_name);
         System.out.println("예약이 수정되었습니다.");
-        return "redirect:/searchMap";
+        return "redirect:/reservationMain";
     }
     
     @PostMapping("/booksearch")
