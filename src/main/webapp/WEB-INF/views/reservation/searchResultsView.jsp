@@ -21,7 +21,7 @@
 	        ArrayList<ReservationVo> searchResults = (ArrayList<ReservationVo>) request.getAttribute("searchResults");
 	        if (searchResults != null && !searchResults.isEmpty()) {
 	            for (ReservationVo result : searchResults) {
-	                String formattedDate = new java.text.SimpleDateFormat("yyyy년 MM월 dd일 EEE").format(result.getR_date());
+	                String formattedDate = new java.text.SimpleDateFormat("yyyy년 MM월 dd일 EEEE").format(result.getR_date());
 	    %>
 	    <tr>
 	        <td><%= result.getR_name() %></td>
