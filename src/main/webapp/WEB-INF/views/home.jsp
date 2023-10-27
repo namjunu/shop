@@ -11,8 +11,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   </head>
   <body>
     <header>
-	    <h1><a href="${cp}/">Hello world!</a></h1>
-	</header>
+      <h1><a href="${cp}/">Hello world!</a></h1>
+    </header>
     <nav>
       <a href="${cp}/jang/Kiosk">보험 키오스크 이동</a>
       <a href="./Shop/main">쇼핑몰</a>

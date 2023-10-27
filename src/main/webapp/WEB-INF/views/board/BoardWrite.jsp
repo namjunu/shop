@@ -35,7 +35,7 @@
 </head>
 <body>
 	<header>
-	    <h1>Hello world!</h1>
+	    <h1><a href="${cp}/">Hello world!</a></h1>
 	</header>
 	<nav>
 	    <a href ="${cp}/jang/Kiosk">보험 키오스크 이동</a>
