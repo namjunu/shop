@@ -18,7 +18,7 @@ public interface BoardMapper {
 	//게시판 검색한것에 해당하는 글 세기
 	public int countBoardSearch(@Param("search")String search, @Param("searchType")String searchType);
 	//게시판 카테고리에 해당하는 글 세기
-	public int countBoardCategory(String category);
+	public int countBoardCategory(@Param("category")String category);
 	//게시판 내가 쓴 글 세기
 	public int countBoardMy(@Param("writer")String u_id);
 	//게시판 검색한것에 해당하는 글 가져오기

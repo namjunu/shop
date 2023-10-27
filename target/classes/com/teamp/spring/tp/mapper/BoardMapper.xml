@@ -52,7 +52,7 @@
 	<select id="countBoardCategory" resultType = "int">
 		SELECT COUNT(*) from boards
 		<choose>
-			<when test='value.equals("like")'>
+			<when test='category.equals("like")'>
 			WHERE B_LIKECOUNT >= 1;
 			</when>
 			<otherwise>
