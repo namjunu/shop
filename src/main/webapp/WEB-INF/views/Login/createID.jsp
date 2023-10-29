@@ -78,11 +78,11 @@
     </style>
 <form action="/tp/Login/createID" method="post" onsubmit="return validatePassword();">
     <input type="hidden" id="U_ID" name ="U_ID">
-    id : <input type="text" id = "C_ID" name="C_ID">
+    <br>id : <input type="text" id = "C_ID" name="C_ID">
     <input type="button" value="ID중복검사" onclick="checkID()">
-    pw : <input type="password" name="U_PW" id="password1">
-    pw2 : <input type="password" id="password2">
-    <input type="submit" id="registerButton" value="회원가입" disabled>
+    <br>pw : <input type="password" name="U_PW" id="password1">
+    <br>pw2 : <input type="password" id="password2">
+    <br><input type="submit" id="registerButton" value="회원가입" disabled>
 </form>
 </body>
 </html>

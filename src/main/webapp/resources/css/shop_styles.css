@@ -12,7 +12,6 @@ body {
     background-color: white;
     box-shadow: 0px 0px 10px 2px #ccc;
 }
-
 .sidebar {
     width: 60%;
     padding: 20px;
@@ -55,6 +54,10 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+table img {
+    width: 100px; /* 원하는 가로 크기로 설정 */
+    height: 100px; /* 원하는 세로 크기로 설정 */
 }
 
 th, td {
