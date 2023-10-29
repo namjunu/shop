@@ -8,6 +8,11 @@
     <title>제품 목록</title>
 </head>
 <body>
+<!-- 페이징 하기 위한 준비 -->
+<c:set var="currentPage" value="${param.page == null ? 1 : param.page}" />
+<c:set var="itemsPerPage" value="15" />
+<c:set var="begin" value="${(currentPage - 1) * itemsPerPage}" />
+<c:set var="end" value="${begin + itemsPerPage - 1}" />
 <div class="container">
 	<div class="sidebar">
 	<div class="main-content">
@@ -18,8 +23,9 @@
             <label for="P_CATEGORY">카테고리:</label>
             <select name="P_CATEGORY" id="P_CATEGORY">
                 <option value="" selected>없음</option>
-                <option value="Foods">식류</option>
-                <option value="Clothing">의류</option>
+                <option value="1">식류</option>
+                <option value="2">의류</option>
+                <option value="3">전자제품</option>
                 <!-- 카테고리 추가하기 -->
             </select>
             
@@ -38,14 +44,18 @@
                 <th>가격</th>
                 <th>이미지</th>
             </tr>
-            <c:forEach items="${productList}" var="product" begin="0" end="24">
+            <c:forEach items="${productList}" var="product" begin="${begin}" end="${end}">
                 <tr>
                     <td>${product.p_NO}</td>
-                    <td>${product.p_NAME}</td>
+                    <td>
+	                    <a href="<c:url value='/Shop/productDetail?P_NO=${product.p_NO}'/>">
+	                            ${product.p_NAME}
+	                    </a>
+                    </td>
                     <td>${product.p_PRICE}</td>
                     <td>
                         <a href="<c:url value='/Shop/productDetail?P_NO=${product.p_NO}'/>">
-                            <img src="${product.p_IMAGE}" alt="${product.p_NAME} 이미지">
+                            <img src="${product.p_IMAGE}" alt="${product.p_NAME} 이미지" style="max-width: 100px; max-height: 100px;">
                         </a>
                     </td>
                 </tr>
