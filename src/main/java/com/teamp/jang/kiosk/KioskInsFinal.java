@@ -5,8 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JButton;
+import java.util.ArrayList;
 
 public class KioskInsFinal extends KioskIns4 {
 	
@@ -16,7 +15,9 @@ public class KioskInsFinal extends KioskIns4 {
 	boolean kioskInsurance3disease = false;
 	boolean kioskInsurance3thooth = false;
 	boolean kioskInsurance4 = false;
-	
+
+	public KioskDto kioskDto;
+	public KioskDAO kioskDAO = new KioskDAO();
 	
 	@Override
 	public void KioskGUI() {
@@ -24,7 +25,6 @@ public class KioskInsFinal extends KioskIns4 {
 		kioskInsurance1 = true;
 		
 		backButtonClick();
-		
 		insuranceButton1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -33,6 +33,7 @@ public class KioskInsFinal extends KioskIns4 {
 				kioskInsurance2 = true;
 				kioskInsurance1Show();
 				kioskInsurance2Show();
+				i_name = "보험1";
 			}
 		});
 		
@@ -51,7 +52,7 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("상해1 선택");
-				chooseButton = "상해1선택";
+				chooseButton = "상해1";
 				chooseButtonShow();
 				selectedButtonshow();
 			}
@@ -61,7 +62,7 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("상해2 선택");
-				chooseButton = "상해2선택";
+				chooseButton = "상해2";
 				chooseButtonShow();
 				selectedButtonshow();
 			}
@@ -71,7 +72,7 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("상해3 선택");
-				chooseButton = "상해3선택";
+				chooseButton = "상해3";
 				chooseButtonShow();
 				selectedButtonshow();
 			}
@@ -92,7 +93,7 @@ public class KioskInsFinal extends KioskIns4 {
 		diseaseButton1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("상해1 선택");
+				System.out.println("질병1 선택");
 				// todo 보험옮기기
 			}
 		});
@@ -100,14 +101,14 @@ public class KioskInsFinal extends KioskIns4 {
 		diseaseButton2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("상해2 선택");
+				System.out.println("질병2 선택");
 			}	
 		});
 		
 		diseaseButton3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				System.out.println("상해3 선택");
+				System.out.println("질병3 선택");
 				// todo 보험옮기기
 			}
 		});
@@ -150,6 +151,10 @@ public class KioskInsFinal extends KioskIns4 {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				System.out.println("제출 선택");
+				System.out.printf("i_name = %s, i_selected1 = %s, i_selected2 = %s, i_selected3 = %s, i_selected4 = %s", i_name, selected1, selected2, selected3, selected4);
+				
+				kioskDto = new KioskDto(i_name, selected1, selected2, selected3, selected4);
+				ArrayList<KioskDto> dto_List = kioskDAO.list(kioskDto);
 				
 			}
 		});

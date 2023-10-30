@@ -36,7 +36,7 @@ public class KioskIns1 extends KioskScreen{
 	protected JButton insuranceButton9 = new JButton(insurance9);
 	
 	protected JButton backButton1 = new JButton(backButtonBasic);
-	
+	protected String i_name;
 	
 	@Override
 	public void KioskGUI() {

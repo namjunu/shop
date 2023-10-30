@@ -46,7 +46,7 @@ public class KioskIns4 extends KioskIns3 {
 	
 	public void selectedButtonshow() {
 		if(selected1 != null) {
-			selectedImage1 = new ImageIcon(getClass().getResource("/JangImages/" + selected1 + ".png"));
+			selectedImage1 = new ImageIcon(getClass().getResource("/JangImages/" + selected1 + "선택.png"));
 			selectedButton1 = new JButton(selectedImage1);
 			selectedButton1.setBounds(1080, 90, 60, 30);
 			selectedButton1.setBorderPainted(false);
@@ -90,7 +90,7 @@ public class KioskIns4 extends KioskIns3 {
 		}
 		
 		if(selected2 != null) {
-			selectedImage2 = new ImageIcon(getClass().getResource("/JangImages/" + selected2 + ".png"));
+			selectedImage2 = new ImageIcon(getClass().getResource("/JangImages/" + selected2 + "선택.png"));
 			selectedButton2 = new JButton(selectedImage2);
 			selectedButton2.setBounds(1080, 150, 60, 30);
 			selectedButton2.setBorderPainted(false);
@@ -127,7 +127,7 @@ public class KioskIns4 extends KioskIns3 {
 		}
 		
 		if(selected3 != null) {
-			selectedImage3 = new ImageIcon(getClass().getResource("/JangImages/" + selected3 + ".png"));
+			selectedImage3 = new ImageIcon(getClass().getResource("/JangImages/" + selected3 + "선택.png"));
 			selectedButton3 = new JButton(selectedImage3);
 			selectedButton3.setBounds(1080, 210, 60, 30);
 			selectedButton3.setBorderPainted(false);
@@ -164,7 +164,7 @@ public class KioskIns4 extends KioskIns3 {
 		}
 		
 		if(selected4 != null) {
-			selectedImage4 = new ImageIcon(getClass().getResource("/JangImages/" + selected4 + ".png"));
+			selectedImage4 = new ImageIcon(getClass().getResource("/JangImages/" + selected4 + "선택.png"));
 			selectedButton4 = new JButton(selectedImage4);
 			selectedButton4.setBounds(1080, 270, 60, 30);
 			selectedButton4.setBorderPainted(false);
