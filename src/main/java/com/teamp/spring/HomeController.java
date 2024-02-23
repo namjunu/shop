@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.teamp.jang.kiosk.KioskScreen;
 
 /**
  * Handles requests for the application home page.
@@ -38,21 +37,5 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/Kiosk")
-	public void Kisok() {
-		new KioskScreen();
-	}
-	
-
-	@RequestMapping(value = "/searchMap", method = RequestMethod.GET)
-	public String showSearchMap() {
-	    // hospital_map.jsp를 보여주는 뷰 이름을 반환합니다.
-	    return "search_map";
-	}
-	@RequestMapping(value = "/reservationMain", method = RequestMethod.GET)
-	public String showReservationMainPage() {
-	    // 예약 관리 메인 페이지를 보여주는 뷰 이름을 반환합니다.
-	    return "reservation/reservationMain"; // 뷰 이름은 "reservationMain"으로 반환하십시오.
-	}
 }
 
